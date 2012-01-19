@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
-#jojo
+
 import breve
 from random import uniform, randint
 
 class Male(breve.Frog):
 
- # modification pour le chef
-
     def __init__(self):
+
         breve.Frog.__init__(self)
         self.voicePower = randint(10,100)
         self.voiceQuality = randint(1,10)
