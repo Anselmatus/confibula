@@ -12,7 +12,10 @@ class Movement(breve.Abstract):
 	print 'movement ok'
 	
     def selectMovement(self, id):
-	return self.randomMovement(id)
+	if isinstance(self.getFrog(id), breve.Male) :
+	    return self.randomMovement(id)
+	else :
+	    return self.randomMovement(id)
 	
     def randomMovement(self, id):
 	speed = 3 * (float(self.getFrog(id).energy)/1000)

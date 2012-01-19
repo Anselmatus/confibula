@@ -1,20 +1,14 @@
+ 
 # -*- coding: utf-8 -*-
 
 import breve
 from random import uniform, randint
 
-class Frog(breve.Mobile):
+class Female(breve.Mobile):
     numFrog = 0
-    sexType = ('Female','Male') 
 	
     def __init__(self):
-        breve.Mobile.__init__(self)
-        Frog.numFrog += 1 
-	self.id = Frog.numFrog
-        self.energy = 1000
-	self.sex = Frog.sexType[randint(0,1)]
-        self.minEnergy = randint(5,20)
-        self.state = None
+        breve.Female.__init__(self)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.init()
 
@@ -25,6 +19,9 @@ class Frog(breve.Mobile):
 		
     def iterate(self):
         self.setVelocity( self.controller.selectMovement(self.getId()) ) 
+
+    def getId(self):
+        return self.id
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
@@ -37,4 +34,4 @@ class Frog(breve.Mobile):
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s' % (self.id, self.energy, pos.x, pos.y, env)
 
-breve.Frog = Frog
+breve.Female = Female

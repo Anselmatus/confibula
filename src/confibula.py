@@ -18,6 +18,8 @@ from utils import logger
 
 import environment
 import frog
+import male
+import female
 import movement
 
 
@@ -62,7 +64,6 @@ class Confibula(breve.Control):
 
     def iterate(self):
         breve.Control.iterate(self)
-        print self.frogs[0]
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -103,7 +104,7 @@ class Confibula(breve.Control):
     def loadFrogs(self):
         frogsNumber = self.config.getValue("frogsNumber")
         del(self.frogs[:])
-        self.frogs = breve.createInstances(breve.Frog, frogsNumber)
+        self.frogs = breve.createInstances(breve.Male, frogsNumber)
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)      
