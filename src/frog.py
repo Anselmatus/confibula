@@ -23,15 +23,16 @@ class Frog(breve.Mobile):
         self.setShape( breve.createInstances(breve.Cube, 1).initWith( breve.vector(0.1, 0.1, 0.1)))
         self.setColor( breve.randomExpression( breve.vector( 1, 1, 1 ) ) )
 		
-    def iterate(self):
-        self.setVelocity( self.controller.selectMovement(self.getId()) ) 
+
+	def getId(self):
+		return self.id
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
-
+	
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()

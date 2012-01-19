@@ -22,16 +22,7 @@ class Male(breve.Frog):
         self.state = "singer"
 		
     def iterate(self):
-        self.setVelocity( self.controller.selectMovement(self.getId()) )
-
-    def getId(self):
-        return self.id
-
-    def getEnvironment(self):
-        return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
-
-    def getSoundLevel(self):
-        return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
+        self.setVelocity( self.controller.selectMovement(self.id) )
 
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
@@ -39,4 +30,3 @@ class Male(breve.Frog):
         return 'Frog #%d  energy:%d  voicePower:%d  location:%d,%d  env:%s' % (self.id, self.energy, self.voicePower, pos.x, pos.y, env)
 
 breve.Male = Male
- 
