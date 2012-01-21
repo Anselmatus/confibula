@@ -5,34 +5,39 @@ from random import uniform, randint
 class Movement(breve.Abstract):
 
     def __init__(self):
-        breve.Abstract.__init__(self)
-        self.init()
+	breve.Abstract.__init__(self)
+	self.init()
 
     def init(self):
-        print 'movement ok'
+	print 'movement ok'
 
     def selectMovement(self, id):
-        if isinstance(self.getFrog(id), breve.Male) :
+	if isinstance(self.getFrog(id), breve.Male) :
             if self.getFrog(id).state == 'moveToSing' :
                 return self.moveToSing(id)
             elif self.getFrog(id).state == 'singing' :
                 return self.singing(id)
             elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
-        elif isinstance(self.getFrog(id), breve.Female) :
-            return self.randomMovement(id)
-        else:
-                return self.randomMovement(id)
+	if isinstance(self.getFrog(id), breve.Female) :
+		if self.getFrog(id).state == 'moveToChorus' :
+			 return self.moveToChorus(id)
+		elif self.getFrog(id).state == 'findPartener' :
+			 return self.findPartner(id)
+		else :
+			return self.randomMovement(id)
+	else :
+	    return self.randomMovement(id)
 
     def randomMovement(self, id):
         speed = 3 * (float(self.getFrog(id).energy)/1000)
         x, y = uniform(-speed, speed), uniform(-speed, speed)
         self.getFrog(id).energy -= x**2 + y**2
-        return breve.vector(x, y, 0)
+	return breve.vector(x, y, 0)
 
 
     def cheater(self):
-        return 0
+	return 0
 
     def singing(self, id):
         self.getFrog(id).energy -= 3
@@ -82,10 +87,14 @@ class Movement(breve.Abstract):
             self.getFrog(id).encounteredPreys += 1
             self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
             return env.preyEnergyBoost
-        return 0
+	return 0
 
-    def findPartner(self):
-        return 0
+	def moveToChorus(self, id):
+		return 0
+
+
+    def findPartner(self, id):
+	return 0
 
     def getEnvironment(self, id):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getFrog(id).getLocation()))

@@ -6,7 +6,6 @@ from random import uniform, randint
 
 class Male(breve.Frog):
 
-
     def __init__(self):
         breve.Frog.__init__(self)
         self.voicePower = randint(50,100)
@@ -22,7 +21,7 @@ class Male(breve.Frog):
         self.state = "moveToSing"
 		
     def iterate(self):
-        self.setVelocity( self.controller.selectMovement(self.getId()) )
+        self.setVelocity( self.controller.selectMovement(self.id) )
 
     
     def __str__(self):
@@ -31,4 +30,3 @@ class Male(breve.Frog):
         return 'Frog #%d  energy:%d  voicePower:%d  location:%d,%d  env:%s' % (self.id, self.energy, self.voicePower, pos.x, pos.y, env)
 
 breve.Male = Male
- 
