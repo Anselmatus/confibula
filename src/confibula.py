@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-__author__="Antoine et Chou"
+__author__="Confibula team"
 
 __date__ ="$23 nov. 2011 15:12:55$"
 
@@ -32,8 +32,8 @@ class Confibula(breve.Control):
         self.movememt = None
         self.map = None
         self.environment = []
+        self.frogsMale = []
         self.frogs = []
-
         self.init()
 	
 
@@ -57,7 +57,7 @@ class Confibula(breve.Control):
         # End of environment
 
         # Loading frogs
-        self.loadFrogs()
+        self.loadMaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
@@ -101,10 +101,11 @@ class Confibula(breve.Control):
         self.image.height = self.image.getHeight()
 	self.map = Map(self.image)
 
-    def loadFrogs(self):
-        frogsNumber = self.config.getValue("frogsNumber")
-        del(self.frogs[:])
-        self.frogs = breve.createInstances(breve.Male, frogsNumber)
+    def loadMaleFrogs(self):
+        frogsMaleNumber = self.config.getValue("frogsMaleNumber")
+        del(self.frogsMale[:])
+        self.frogsMale = breve.createInstances(breve.Male, frogsMaleNumber)
+        self.frogs.extend(self.frogsMale)
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)      
@@ -120,12 +121,19 @@ class Confibula(breve.Control):
         location : position in he simulation (location.x & location.y)
         '''
         SPL = 0
-        for frog in self.frogs:
-            #pos = self.worldToImage(frog.getLocation())
-            pos = frog.getLocation()
-            dist = (location.x - pos.x)**2 + (location.y - pos.y)**2
-            sndLvl = frog.voicePower - 10*log10(dist)
-            SPL += 10**(sndLvl/10) # SPL = 10 * log( 10^(SPL1/10) + 10^(SPL2/10) + ...)
+        for frog in self.frogsMale:
+            
+            if frog.state == 'singing' :
+                #pos = self.worldToImage(frog.getLocation())
+                pos = frog.getLocation()
+                dist = (location.x - pos.x)**2 + (location.y - pos.y)**2
+                if dist <= 0:
+                    sndLvl = frog.voicePower
+                else:
+                    sndLvl = frog.voicePower - 10*log10(dist)
+                SPL += 10**(sndLvl/10) # SPL = 10^(SPL1/10) + 10^(SPL2/10) + ...
+        if SPL == 0 :
+            return 0
         level = 10 * log10(SPL)  # I = 10 * log( SPL) dB
         return level
 
@@ -154,15 +162,25 @@ class Confibula(breve.Control):
         On peut généraliser ce calcul pour n points.
         '''
         xG, yG, weightSum = 0.0, 0.0, 0.0 # weightSum = a+b+c = sum of the weight of each point
-        for frog in self.frogs:
-            pos = frog.getLocation()
-            weight = frog.voicePower
-            xG += weight*pos.x # calculating the numerators, for the x coordinate
-            yG += weight*pos.y # for the y one
-            weightSum += weight # denominator (same for every coord)
+        for frog in self.frogsMale:
+            if frog.state == 'singing' :
+                pos = frog.getLocation()
+                weight = frog.voicePower
+                xG += weight*pos.x # calculating the numerators, for the x coordinate
+                yG += weight*pos.y # for the y one
+                weightSum += weight # denominator (same for every coord)
         xG /= weightSum
         yG /= weightSum
         return breve.vector(xG, yG, 0.01) # simulation coordinates
+    
+    def getNbFrogsSinging(self):
+        i = 0
+        for frog in self.frogsMale:
+            if frog.isSinging :
+                i = i+1
+        if i == 0:
+            return 1
+        return i
 
     def worldToImage(self, location):
         '''
