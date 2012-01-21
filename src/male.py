@@ -8,7 +8,7 @@ class Male(breve.Frog):
     def __init__(self):
 
         breve.Frog.__init__(self)
-        self.voicePower = randint(10,100)
+        self.voicePower = randint(50,100)
         self.voiceQuality = randint(1,10)
         self.throatColor = randint(30,50)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
@@ -17,11 +17,12 @@ class Male(breve.Frog):
     def init(self):
         self.move( breve.vector(uniform(-8, 8), uniform(-8, 8), 0.01) )
         self.setShape( breve.createInstances(breve.Cube, 1).initWith( breve.vector(0.1, 0.1, 0.1)))
-        self.setColor( breve.randomExpression( breve.vector( 1, 1, 1 ) ) )
-        self.state = "singer"
+        self.setColor(breve.vector( 1, 1, 1 ) )
+        self.state = "moveToSing"
 		
     def iterate(self):
         self.setVelocity( self.controller.selectMovement(self.id) )
+
 
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())

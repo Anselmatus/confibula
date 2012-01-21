@@ -63,6 +63,7 @@ class Confibula(breve.Control):
 
 
     def iterate(self):
+        print self.getSoundLevel( self.frogs[3].getLocation() )
         breve.Control.iterate(self)
     
     def setUpMenus(self):
@@ -121,12 +122,19 @@ class Confibula(breve.Control):
         '''
         SPL = 0
         for frog in self.frogs:
-            #pos = self.worldToImage(frog.getLocation())
-            pos = frog.getLocation()
-            dist = (location.x - pos.x)**2 + (location.y - pos.y)**2
-            sndLvl = frog.voicePower - 10*log10(dist)
-            SPL += 10**(sndLvl/10) # SPL = 10 * log( 10^(SPL1/10) + 10^(SPL2/10) + ...)
-        level = 10 * log10(SPL)  # I = 10 * log( SPL) dB
+            if isinstance(frog , breve.Male) and frog.state == 'singing' :
+                #pos = self.worldToImage(frog.getLocation())
+                pos = frog.getLocation()
+                dist = (location.x - pos.x)**2 + (location.y - pos.y)**2
+                if (dist != 0) :
+                    sndLvl = frog.voicePower - 10*log10(dist)
+                else :
+                    sndLvl = frog.voicePower
+                SPL += 10**(sndLvl/10) # SPL = 10 * log( 10^(SPL1/10) + 10^(SPL2/10) + ...)
+        if SPL != 0 :
+            level = 10 * log10(SPL)  # I = 10 * log( SPL) dB
+        else :
+            level = 0
         return level
 
     def getSoundSource(self):
@@ -155,14 +163,15 @@ class Confibula(breve.Control):
         '''
         xG, yG, weightSum = 0.0, 0.0, 0.0 # weightSum = a+b+c = sum of the weight of each point
         for frog in self.frogs:
-            pos = frog.getLocation()
-            weight = frog.voicePower
-            xG += weight*pos.x # calculating the numerators, for the x coordinate
-            yG += weight*pos.y # for the y one
-            weightSum += weight # denominator (same for every coord)
+            if isinstance(frog , breve.Male) and frog.state == 'singing' :
+                pos = frog.getLocation()
+                weight = frog.voicePower
+                xG += weight*pos.x # calculating the numerators, for the x coordinate
+                yG += weight*pos.y # for the y one
+                weightSum += weight # denominator (same for every coord)
         xG /= weightSum
         yG /= weightSum
-        return breve.vector(xG, yG, 0.01) # simulation coordinates
+        return breve.vector(xG, yG, 0) # simulation coordinates
 
     def worldToImage(self, location):
         '''

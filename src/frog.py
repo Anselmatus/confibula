@@ -21,11 +21,11 @@ class Frog(breve.Mobile):
     def init(self):
         self.move( breve.vector(uniform(-8, 8), uniform(-8, 8), 0.01) )
         self.setShape( breve.createInstances(breve.Cube, 1).initWith( breve.vector(0.1, 0.1, 0.1)))
-        self.setColor( breve.randomExpression( breve.vector( 1, 1, 1 ) ) )
+        self.setColor(breve.vector( 1, 1, 1 ) )
 		
 
-	def getId(self):
-		return self.id
+    def getId(self):
+	return self.id
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
