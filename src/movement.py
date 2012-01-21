@@ -19,6 +19,13 @@ class Movement(breve.Abstract):
                 return self.singing(id)
             elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
+	if isinstance(self.getFrog(id), breve.Female) :
+		if self.getFrog(id).state == 'moveToChorus' :
+			 return self.moveToChorus(id)
+		elif self.getFrog(id).state == 'findPartener' :
+			 return self.findPartner(id)
+		else :
+			return self.randomMovement(id)
 	else :
 	    return self.randomMovement(id)
 	
@@ -81,8 +88,12 @@ class Movement(breve.Abstract):
             self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
             return env.preyEnergyBoost
 	return 0
+
+	def moveToChorus(self, id):
+		return 0
 	
-    def findPartner(self):
+
+    def findPartner(self, id):
 	return 0
 	
     def getEnvironment(self, id):
