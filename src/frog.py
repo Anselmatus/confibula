@@ -5,14 +5,12 @@ from random import uniform, randint
 
 class Frog(breve.Mobile):
     numFrog = 0
-    sexType = ('Female','Male') 
 	
     def __init__(self):
         breve.Mobile.__init__(self)
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
         self.energy = 1000
-	self.sex = Frog.sexType[randint(0,1)]
         self.minEnergy = randint(5,20)
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
@@ -24,7 +22,10 @@ class Frog(breve.Mobile):
         self.setColor( breve.randomExpression( breve.vector( 1, 1, 1 ) ) )
 		
     def iterate(self):
-        self.setVelocity( self.controller.selectMovement(self.getId()) ) 
+        self.setVelocity( self.controller.selectMovement(self.getId()) )
+        
+    def getId(self):
+        return self.id
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
