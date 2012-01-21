@@ -118,7 +118,7 @@ class Confibula(breve.Control):
 
     def getSoundLevel(self, location):
         '''
-        location : position in he simulation (location.x & location.y)
+        location : position in he simulation (location.x & location.y)   
         '''
         SPL = 0
         for frog in self.frogs:
