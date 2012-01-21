@@ -19,8 +19,10 @@ class Movement(breve.Abstract):
                 return self.singing(id)
             elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
-	else :
+	elif isinstance(self.getFrog(id), breve.Female) :
 	    return self.randomMovement(id)
+	else:
+		return self.randomMovement(id)
 	
     def randomMovement(self, id):
 	speed = 3 * (float(self.getFrog(id).energy)/1000)
