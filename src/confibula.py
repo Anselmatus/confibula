@@ -33,6 +33,7 @@ class Confibula(breve.Control):
         self.map = None
         self.environment = []
         self.frogsMale = []
+	self.frogsFemale =[]
         self.frogs = []
         self.init()
 	
@@ -58,6 +59,7 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
+	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
@@ -107,6 +109,12 @@ class Confibula(breve.Control):
         del(self.frogsMale[:])
         self.frogsMale = breve.createInstances(breve.Male, frogsMaleNumber)
         self.frogs.extend(self.frogsMale)
+
+    def loadFemaleFrogs(self):
+	frogsMaleNumber = self.config.getValue("frogsMaleNumber")
+	del(self.frogsFemale[:])
+	self.frogsFemale = breve.createInstances(breve.Female, frogsMaleNumber)
+	self.frogs.extend(self.frogsFemale)
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)      

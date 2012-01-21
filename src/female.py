@@ -19,7 +19,7 @@ class Female(breve.Frog):
         self.setColor( breve.vector( 1, 0, 0 ) )
 		
     def iterate(self):
-	self.state = self.selectState()
+	#self.state = self.selectState()
         self.setVelocity( self.controller.selectMovement(self.id) )
 
     def __str__(self):
