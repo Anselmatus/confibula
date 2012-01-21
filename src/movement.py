@@ -100,6 +100,7 @@ class Movement(breve.Abstract):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getFrog(id).getLocation()))
 
     def getFrog(self, id):
-        return self.controller.frogs[id-1]
+			return self.controller.frogs[id-1]
+		
 
 breve.Movement = Movement
