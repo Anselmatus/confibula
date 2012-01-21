@@ -7,10 +7,10 @@ class Movement(breve.Abstract):
     def __init__(self):
 	breve.Abstract.__init__(self)
 	self.init()
-	
+
     def init(self):
 	print 'movement ok'
-	
+
     def selectMovement(self, id):
 	if isinstance(self.getFrog(id), breve.Male) :
             if self.getFrog(id).state == 'moveToSing' :
@@ -19,24 +19,29 @@ class Movement(breve.Abstract):
                 return self.singing(id)
             elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
-	elif isinstance(self.getFrog(id), breve.Female) :
+	if isinstance(self.getFrog(id), breve.Female) :
+		if self.getFrog(id).state == 'moveToChorus' :
+			 return self.moveToChorus(id)
+		elif self.getFrog(id).state == 'findPartener' :
+			 return self.findPartner(id)
+		else :
+			return self.randomMovement(id)
+	else :
 	    return self.randomMovement(id)
-	else:
-		return self.randomMovement(id)
-	
+
     def randomMovement(self, id):
 	speed = 3 * (float(self.getFrog(id).energy)/1000)
         x, y = uniform(-speed, speed), uniform(-speed, speed)
         self.getFrog(id).energy -= x**2 + y**2
 	return breve.vector(x, y, 0)
-	 
-	
+
+
     def cheater(self):
 	return 0
 
     def singing(self, id):
         self.getFrog(id).energy -= 3
-        return breve.vector(0, 0, 0) 
+        return breve.vector(0, 0, 0)
 
     def moveToSing(self, id):
         speed = 2 * (float(self.getFrog(id).energy)/1000)
@@ -72,7 +77,7 @@ class Movement(breve.Abstract):
                 if( (self.controller.getSoundLevel(point)-middle)**2 < (self.controller.getSoundLevel(min)-middle)**2 ) :
                     min = point
             return min
-	
+
     def hunter(self):
 	env = self.getEnvironment()
         if uniform(0, 1) < env.predatorProbability :
@@ -83,15 +88,19 @@ class Movement(breve.Abstract):
             self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
             return env.preyEnergyBoost
 	return 0
-	
-    def findPartner(self):
+
+	def moveToChorus(self, id):
+		return 0
+
+
+    def findPartner(self, id):
 	return 0
-	
+
     def getEnvironment(self, id):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getFrog(id).getLocation()))
-        
+
     def getFrog(self, id):
         return self.controller.frogs[id-1]
-	
+
 breve.Movement = Movement
 
