@@ -65,7 +65,6 @@ class Confibula(breve.Control):
 
 
     def iterate(self):
-        print self.getSoundLevel( self.frogs[3].getLocation() )
         breve.Control.iterate(self)
     
     def setUpMenus(self):
