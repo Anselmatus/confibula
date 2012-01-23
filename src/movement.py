@@ -38,11 +38,11 @@ class Movement(breve.Abstract):
 	return 0
 
     def singing(self, id):
-        if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100)*1000 ) :
+        if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100.)*1000 ) :
             self.getFrog(id).state = 'hunter'
         else :
             self.getFrog(id).energy -= 3
-            return breve.vector(0, 0, 0)
+        return breve.vector(0, 0, 0)
 
     def moveToSing(self, id):
         speed = float(self.getFrog(id).energy)/2000
@@ -79,7 +79,8 @@ class Movement(breve.Abstract):
                         min = point
                 return min - breve.vector(location.x, location.y, 0)
 
-    def hunter(self):
+    def hunter(self, id):
+        return self.randomMovement(id)
         env = self.getEnvironment()
         if uniform(0, 1) < env.predatorProbability :
             self.getFrog(id).encounteredPredators += 1
