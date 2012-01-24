@@ -14,6 +14,7 @@ class Frog(breve.Mobile):
 	self.id = Frog.numFrog
         self.energy = 1000
         self.minEnergy = randint(5, 20)
+        self.maxEnergy = randint(80, 95)
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.init()
@@ -24,13 +25,27 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
-        self.setVelocity(self.controller.getNearestForest(self.getLocation()))
+        move = self.controller.selectMovement(self.id)
+        location = self.getLocation();
+        if (location.x >= 8):
+            move.x = 0
+        elif location.x <= -8:
+            move.x = 0
 
+        if (location.y >= 8):
+            move.y = 0
+        elif location.y <= -8:
+            move.y = 0
+        self.setVelocity(move)
+        
     def getId(self):
         return self.id
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
+
+    def getEnergy(self):
+        return self.energy
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))

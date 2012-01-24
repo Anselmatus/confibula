@@ -60,7 +60,7 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-#	self.loadFemaleFrogs()
+	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
@@ -69,7 +69,6 @@ class Confibula(breve.Control):
 	if self.malesSingAll == 0 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
-#        print self.printFrogs()
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -143,6 +142,7 @@ class Confibula(breve.Control):
         for env in self.environment:
             if (env.getColor() == pixelColor):
                 return env
+        return Environment("No environnement", "black")
 
     def getSoundLevel(self, location):
         '''
