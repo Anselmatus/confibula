@@ -12,7 +12,7 @@ class Female(breve.Frog):
     def __init__(self):
         breve.Frog.__init__(self)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.state = self.selectState()
+        self.state = 'findPartener'
         self.init()
 
     def init(self):
@@ -21,7 +21,6 @@ class Female(breve.Frog):
         self.setColor(breve.vector(1, 0, 0))
 		
     def iterate(self):
-        self.state = self.selectState()
         self.setVelocity(self.controller.selectMovement(self.id))
 
     def __str__(self):

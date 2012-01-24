@@ -21,7 +21,6 @@ class Male(breve.Frog):
         self.setColor(breve.vector(0, 0, 0.4))
 		
     def iterate(self):
-        self.state = self.selectState()
         self.setVelocity(self.controller.selectMovement(self.id))
 
     
