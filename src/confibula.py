@@ -35,7 +35,7 @@ class Confibula(breve.Control):
         self.frogsMale = []
 	self.frogsFemale =[]
         self.frogs = []
-	self.countIt = 0
+	self.malesSingAll = 0
         self.init()
 	
 
@@ -66,10 +66,10 @@ class Confibula(breve.Control):
 
     def iterate(self):
         breve.Control.iterate(self)
-	if self.countIt == 100:
-	   self.loadFemaleFrogs()
-	self.countIt += 1
-        print self.printFrogs()
+	if self.malesSingAll == 0 :
+            if self.malesPlaced() :
+                self.loadFemaleFrogs()
+#        print self.printFrogs()
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -189,9 +189,16 @@ class Confibula(breve.Control):
         i = 0
         for frog in self.frogsMale:
             if frog.state == 'singing' :
-                i=1
-		break
+                i+=1
         return i
+
+    def malesPlaced(self):
+            self.malesSingAll = 1
+            for frog in self.frogsMale:
+                if frog.state != 'singing' :
+                    self.malesSingAll = 0
+                    break
+            return self.malesSingAll
 
     def worldToImage(self, location):
         '''

@@ -18,21 +18,22 @@ class Movement(breve.Abstract):
 
     def selectMovement(self, id):
 	if isinstance(self.getFrog(id), breve.Male):
+
             if self.getFrog(id).state == 'moveToSing':
                 return self.moveToSing(id)
             elif self.getFrog(id).state == 'singing':
                 return self.singing(id)
             elif self.getFrog(id).state == 'hunting':
                 return self.hunter(id)
+            
 	if isinstance(self.getFrog(id), breve.Female) :
+
             if self.getFrog(id).state == 'findPartener' :
                 return self.findPartner(id)
 	    elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
             else :
 		return self.randomMovement(id)
-	else :
-	    return self.randomMovement(id)
 
     def randomMovement(self, id):
         speed = float(self.getFrog(id).energy)/2000
@@ -46,13 +47,13 @@ class Movement(breve.Abstract):
 
     def singing(self, id):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100.)*1000 ) :
-            self.getFrog(id).state = 'hunter'
+            self.getFrog(id).state = 'hunting'
         else :
-            self.getFrog(id).energy -= 3
+            self.getFrog(id).energy -= 1
         return breve.vector(0, 0, 0)
 
     def moveToSing(self, id):
-        speed = float(self.getFrog(id).energy)/2000
+        speed = float(self.getFrog(id).energy)/1000
         location = self.getFrog(id).getLocation()
         soundLevel = self.controller.getSoundLevel(location)
         dbMaxToSing = self.controller.config.getValue("dbMaxToSing")
@@ -62,14 +63,15 @@ class Movement(breve.Abstract):
             self.getFrog(id).state = 'singing'
             return breve.vector(0, 0, 0)
 
-        else :
-            self.getFrog(id).energy -= speed**2
+        else : # deplacements
+        
+            self.getFrog(id).energy -= speed/2
             if(soundLevel < dbMaxToSing) :
                 return self.moveToChorus(location, speed)
 
-            elif(soundLevel > dbMaxToSing-5) :
+            elif(soundLevel > dbMaxToSing-5) : # to close to sing
 
-                moveField = []
+                moveField = [] # array of point around the frog
                 moveField.append( breve.vector(location.x + speed, location.y, 0) )
                 moveField.append( breve.vector(location.x - speed, location.y, 0) )
                 moveField.append( breve.vector(location.x, location.y + speed, 0) )
@@ -101,8 +103,7 @@ class Movement(breve.Abstract):
 	return breve.vector(0, 0, 0)
 
     def moveToChorus(self, location, speed):
-	soundSource = self.controller.getSoundSource()
-        direction = soundSource - location
+        direction = self.controller.getSoundSource() - location
         distance = sqrt( direction.x**2 +  direction.y**2  )
         return (direction/distance)*speed
 
