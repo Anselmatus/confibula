@@ -1,0 +1,544 @@
+$ Loading 2 environments.
+	Env Eau, color breve.vector( 0.000000, 0.000000, 1.000000 ), ease 3
+	Env Forêt, color breve.vector( 0.176471, 0.419608, 0.141176 ), ease 2
+$ Environment loading complete.
+$ Listing all frogs :
+	Frog #1  energy:1000 location:460,93  env:Eau  state:moveToSing
+	Frog #2  energy:1000 location:467,351  env:Eau  state:moveToSing
+	Frog #3  energy:1000 location:191,190  env:Eau  state:moveToSing
+	Frog #4  energy:1000 location:121,233  env:Eau  state:moveToSing
+	Frog #5  energy:1000 location:495,471  env:Eau  state:moveToSing
+$ Listing all frogs :
+	Frog #1  energy:1000 location:460,93  env:Eau  state:singing
+	Frog #2  energy:999 location:467,352  env:Eau  state:moveToSing
+	Frog #3  energy:999 location:190,190  env:Eau  state:moveToSing
+	Frog #4  energy:1000 location:121,233  env:Eau  state:singing
+	Frog #5  energy:1000 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:998 location:467,353  env:Eau  state:moveToSing
+	Frog #3  energy:998 location:189,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:997 location:467,354  env:Eau  state:moveToSing
+	Frog #3  energy:997 location:188,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:996 location:467,355  env:Eau  state:moveToSing
+	Frog #3  energy:996 location:188,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:995 location:467,355  env:Eau  state:moveToSing
+	Frog #3  energy:995 location:187,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:994 location:467,356  env:Eau  state:moveToSing
+	Frog #3  energy:994 location:186,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:993 location:467,357  env:Eau  state:moveToSing
+	Frog #3  energy:993 location:185,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:992 location:467,358  env:Eau  state:moveToSing
+	Frog #3  energy:992 location:184,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:991 location:467,359  env:Eau  state:moveToSing
+	Frog #3  energy:991 location:183,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:999 location:460,93  env:Eau  state:singing
+	Frog #2  energy:990 location:467,360  env:Eau  state:moveToSing
+	Frog #3  energy:990 location:182,190  env:Eau  state:moveToSing
+	Frog #4  energy:999 location:121,233  env:Eau  state:singing
+	Frog #5  energy:999 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:989 location:467,361  env:Eau  state:moveToSing
+	Frog #3  energy:989 location:182,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:988 location:467,361  env:Eau  state:moveToSing
+	Frog #3  energy:988 location:181,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:987 location:467,362  env:Eau  state:moveToSing
+	Frog #3  energy:987 location:180,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:986 location:467,363  env:Eau  state:moveToSing
+	Frog #3  energy:986 location:179,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:985 location:467,364  env:Eau  state:moveToSing
+	Frog #3  energy:985 location:178,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:984 location:467,365  env:Eau  state:moveToSing
+	Frog #3  energy:984 location:177,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:983 location:467,366  env:Eau  state:moveToSing
+	Frog #3  energy:983 location:177,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:982 location:467,366  env:Eau  state:moveToSing
+	Frog #3  energy:982 location:176,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:981 location:467,367  env:Eau  state:moveToSing
+	Frog #3  energy:981 location:175,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:998 location:460,93  env:Eau  state:singing
+	Frog #2  energy:980 location:467,368  env:Eau  state:moveToSing
+	Frog #3  energy:980 location:174,190  env:Eau  state:moveToSing
+	Frog #4  energy:998 location:121,233  env:Eau  state:singing
+	Frog #5  energy:998 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:979 location:467,369  env:Eau  state:moveToSing
+	Frog #3  energy:979 location:173,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:978 location:467,370  env:Eau  state:moveToSing
+	Frog #3  energy:978 location:172,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:977 location:467,371  env:Eau  state:moveToSing
+	Frog #3  energy:977 location:172,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:976 location:467,371  env:Eau  state:moveToSing
+	Frog #3  energy:976 location:171,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:975 location:467,372  env:Eau  state:moveToSing
+	Frog #3  energy:975 location:170,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:974 location:467,373  env:Eau  state:moveToSing
+	Frog #3  energy:974 location:169,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:973 location:467,374  env:Eau  state:moveToSing
+	Frog #3  energy:973 location:168,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:972 location:467,375  env:Eau  state:moveToSing
+	Frog #3  energy:972 location:167,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:971 location:467,376  env:Eau  state:moveToSing
+	Frog #3  energy:971 location:167,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:997 location:460,93  env:Eau  state:singing
+	Frog #2  energy:970 location:467,376  env:Eau  state:moveToSing
+	Frog #3  energy:970 location:166,190  env:Eau  state:moveToSing
+	Frog #4  energy:997 location:121,233  env:Eau  state:singing
+	Frog #5  energy:997 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:969 location:467,377  env:Eau  state:moveToSing
+	Frog #3  energy:969 location:165,190  env:Eau  state:moveToSing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:968 location:467,378  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:moveToSing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:967 location:467,379  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:966 location:467,380  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:965 location:467,381  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:964 location:467,381  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:963 location:467,382  env:Eau  state:moveToSing
+	Frog #3  energy:968 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:962 location:467,383  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:961 location:467,384  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:996 location:460,93  env:Eau  state:singing
+	Frog #2  energy:960 location:467,385  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:996 location:121,233  env:Eau  state:singing
+	Frog #5  energy:996 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:959 location:467,385  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:958 location:467,386  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:957 location:467,387  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:956 location:467,388  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:955 location:467,389  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:955 location:467,390  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:954 location:467,390  env:Eau  state:moveToSing
+	Frog #3  energy:967 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:953 location:467,391  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:952 location:467,392  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:995 location:460,93  env:Eau  state:singing
+	Frog #2  energy:951 location:467,393  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:995 location:121,233  env:Eau  state:singing
+	Frog #5  energy:995 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:950 location:467,394  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:949 location:467,394  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:948 location:466,395  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:947 location:466,396  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:946 location:465,396  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:945 location:465,397  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:944 location:464,397  env:Eau  state:moveToSing
+	Frog #3  energy:966 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:943 location:463,398  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:942 location:463,398  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:994 location:460,93  env:Eau  state:singing
+	Frog #2  energy:941 location:462,399  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:994 location:121,233  env:Eau  state:singing
+	Frog #5  energy:994 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:940 location:462,400  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:939 location:461,400  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:938 location:461,401  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:937 location:460,401  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:937 location:459,402  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:936 location:459,402  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:935 location:458,403  env:Eau  state:moveToSing
+	Frog #3  energy:965 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:934 location:458,404  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:933 location:457,404  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:993 location:460,93  env:Eau  state:singing
+	Frog #2  energy:932 location:457,405  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:993 location:121,233  env:Eau  state:singing
+	Frog #5  energy:993 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:931 location:456,405  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:930 location:455,406  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:929 location:455,406  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:928 location:454,407  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:927 location:454,407  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:926 location:453,408  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:925 location:453,409  env:Eau  state:moveToSing
+	Frog #3  energy:964 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:924 location:452,409  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:924 location:452,410  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:992 location:460,93  env:Eau  state:singing
+	Frog #2  energy:923 location:451,410  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:992 location:121,233  env:Eau  state:singing
+	Frog #5  energy:992 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:922 location:450,411  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:921 location:450,411  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:920 location:449,412  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:919 location:449,412  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:918 location:448,413  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:917 location:448,414  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:916 location:447,414  env:Eau  state:moveToSing
+	Frog #3  energy:963 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:915 location:447,415  env:Eau  state:moveToSing
+	Frog #3  energy:962 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
+$ Listing all frogs :
+	Frog #1  energy:991 location:460,93  env:Eau  state:singing
+	Frog #2  energy:914 location:446,415  env:Eau  state:moveToSing
+	Frog #3  energy:962 location:164,190  env:Eau  state:singing
+	Frog #4  energy:991 location:121,233  env:Eau  state:singing
+	Frog #5  energy:991 location:495,471  env:Eau  state:singing
