@@ -67,7 +67,7 @@ class Movement(breve.Abstract):
         
             self.getFrog(id).energy -= speed/2
             if(soundLevel < dbMaxToSing) :
-                return self.moveToChorus(location, speed)
+                return self.moveTo(location, self.controller.getSoundSource(), speed)
 
             elif(soundLevel > dbMaxToSing-5) : # to close to sing
 
@@ -98,11 +98,11 @@ class Movement(breve.Abstract):
 #            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
 #            return env.preyEnergyBoost
 	if isinstance(self.getFrog(id), breve.Female) :
-	    self.getFrog(id).sate = 'findPartener'
+	    self.getFrog(id).state = 'findPartener'
 	return self.randomMovement(id)
 
-    def moveToChorus(self, location, speed):
-        direction = self.controller.getSoundSource() - location
+    def moveTo(self, location, destination, speed):
+	direction = destination - location
         distance = sqrt( direction.x**2 +  direction.y**2  )
         return (direction/distance)*speed
 
@@ -113,9 +113,9 @@ class Movement(breve.Abstract):
 		viewMale =female.viewMale()
 		if self.controller.getSoundLevel(location):
 			if viewMale != 0 :
-				return self.partnerChoice(viewMale,id)
+				return self.partnerChoice(viewMale,id,speed)
 			else:
-				return self.moveToChorus(location, speed)
+				return self.moveTo(location, self.controller.getSoundSource(), speed)
 		else:
 			female.state = 'hunter'
 			return self.hunter(id)
@@ -126,12 +126,13 @@ class Movement(breve.Abstract):
     def getFrog(self, id):
 	return self.controller.frogs[id-1]
 		
-    def partnerChoice(self,listPartner,id):#choisis un partner en fonction du tableau de male passé en parametre
+    def partnerChoice(self, listPartner, id, speed):#choisis un partner en fonction du tableau de male passé en parametre
 	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
 		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
 			malePower = male.voicePower + male.voiceQuality + male.throatColor
 			maleChoice = male
-	return maleChoice.getLocation() - self.getFrog(id).getLocation()
+	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
+
 breve.Movement = Movement
