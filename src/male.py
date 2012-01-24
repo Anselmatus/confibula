@@ -22,7 +22,13 @@ class Male(breve.Frog):
         self.move(breve.vector(uniform(-8, 8), uniform(-8, 8), 0.01))
         self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
         self.setColor(breve.vector(1, 1, 1))
-		
+
+    def iterate(self):
+        breve.Frog.iterate(self)
+        if self.state == 'singing':
+            self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.15, 0.15, 0.15)))
+        else:
+            self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
 
     def turnCheater(self):
         if (self.voicePower < 75 or self.voiceQuality < 5 or self.throatColor < 40) :
