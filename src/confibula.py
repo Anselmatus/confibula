@@ -120,7 +120,23 @@ class Confibula(breve.Control):
 	self.frogs.extend(self.frogsFemale)
 
     def selectMovement(self, id):
-        return self.movement.selectMovement(id)      
+        return self.movement.selectMovement(id)
+
+    def getNearestForest(self, location):
+        Forest = self.config.getValue("forestCenter")
+        nearest = (Forest[0],Forest[1])
+        for i in range(2, len(Forest), 2):
+            if( sqrt((Forest[i]-location.x)**2 + (Forest[i+1]-location.y)**2) < sqrt((nearest[0]-location.x)**2 + (nearest[1]-location.y)**2)) :
+                nearest = (Forest[i],Forest[i+1])
+        return breve.vector(nearest[0], nearest[1], 0)
+
+    def getNearestWater(self, location):
+        water = self.config.getValue("waterCenter")
+        nearest = (water[0],water[1])
+        for i in range(2, len(water), 2):
+            if( sqrt(water[i]**2 + water[i+1]**2) < sqrt(nearest[0]**2 + nearest[1]**2)) :
+                nearest = (water[i],water[i+1])
+        return breve.vector(nearest[0], nearest[1], 0)
 
     def getEnvironment(self, location):
         pixelColor = self.image.getRgbPixel(location.x, location.y)
