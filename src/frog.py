@@ -14,6 +14,7 @@ class Frog(breve.Mobile):
 	self.id = Frog.numFrog
         self.energy = 1000
         self.minEnergy = randint(5, 20)
+        self.maxEnergy = randint(80, 95)
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.init()
@@ -31,6 +32,9 @@ class Frog(breve.Mobile):
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
+
+    def getEnergy(self):
+        return self.energy
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
