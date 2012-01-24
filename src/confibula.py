@@ -190,6 +190,12 @@ class Confibula(breve.Control):
             return 1
         return i
 
+    def malesPlaced(self):
+        for frog in self.frogsMale:
+            if frog.state != 'singing' :
+                return false
+        return true
+
     def worldToImage(self, location):
         '''
         Changes the coordinates of a breve.vector from simulation's world to image coordinates.
