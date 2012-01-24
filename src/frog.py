@@ -25,17 +25,18 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
+        speed = float(self.energy)/1000
         move = self.controller.selectMovement(self.id)
         location = self.getLocation();
         if (location.x >= 8):
-            move.x = 0
+            move.x = move.x-speed
         elif location.x <= -8:
-            move.x = 0
+            move.x = move.x+speed
 
         if (location.y >= 8):
-            move.y = 0
+            move.y = move.x-speed
         elif location.y <= -8:
-            move.y = 0
+            move.y = move.x+speed
         self.setVelocity(move)
         
     def getId(self):

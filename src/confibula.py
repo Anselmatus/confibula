@@ -60,7 +60,7 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-	self.loadFemaleFrogs()
+	#self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
