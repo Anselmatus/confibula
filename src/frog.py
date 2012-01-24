@@ -14,7 +14,7 @@ class Frog(breve.Mobile):
 	self.id = Frog.numFrog
         self.energy = 1000
         self.minEnergy = randint(5, 20)
-        self.state = self.selectState()
+        self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.init()
 
@@ -39,17 +39,5 @@ class Frog(breve.Mobile):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s  state:%s' % (self.id, self.energy, pos.x, pos.y, env, self.state)
-
-    def selectState(self):
-	if isinstance(self, breve.Male):
-            return 'moveToSing'
-            #pour les males
-	if isinstance(self, breve.Female):
-            if (self.energy <= (self.minEnergy/100.)*1000):
-                return 'hunter'
-            elif (self.energy <= (self.minEnergy/100.)*1000):
-		return 'findPartener'
-	else:
-            return 'none'
 
 breve.Frog = Frog
