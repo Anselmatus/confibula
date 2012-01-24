@@ -68,7 +68,6 @@ class Movement(breve.Abstract):
                 moveField = self.getMoveField(location, speed)
 
             if(env != 'Eau') :
-                print env
                 return breve.vector(0, 0, 0)
             elif(soundLevel < dbMaxToSing) :
                 return self.moveTo(location, self.controller.getSoundSource(), speed)

@@ -192,6 +192,7 @@ class Confibula(breve.Control):
                 i+=1
         return i
 
+
     def malesPlaced(self):
             self.malesSingAll = 1
             for frog in self.frogsMale:
