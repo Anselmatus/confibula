@@ -23,8 +23,6 @@ class Male(breve.Frog):
         self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
         self.setColor(breve.vector(1, 1, 1))
 		
-    def iterate(self):
-        self.setVelocity(self.controller.selectMovement(self.id))
 
     def turnCheater(self):
         if (self.voicePower < 75 or self.voiceQuality < 5 or self.throatColor < 40) :
