@@ -24,8 +24,8 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
-        self.setVelocity(self.controller.selectMovement(self.getId()))
-        
+        self.setVelocity(self.controller.getNearestForest(self.getLocation()))
+
     def getId(self):
         return self.id
 
