@@ -121,6 +121,6 @@ class Movement(breve.Abstract):
     def getFrog(self, id):
 	return self.controller.frogs[id-1]
 		
-    def partnerChoice(self,listPartener,id):
+    def partnerChoice(self,listPartener,id):#choisis un partener en fonction du tableau de male passé en parametre
 	return breve.vector(0, 0, 0)
 breve.Movement = Movement
