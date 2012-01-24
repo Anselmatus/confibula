@@ -30,7 +30,7 @@ class Movement(breve.Abstract):
 
             if self.getFrog(id).state == 'findPartener' :
                 return self.findPartner(id)
-	    elif self.getFrog(id).state == 'hunting' :
+            elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
             else :
 		return self.randomMovement(id)
@@ -38,7 +38,7 @@ class Movement(breve.Abstract):
     def randomMovement(self, id):
         speed = float(self.getFrog(id).energy)/2000
         x, y = uniform(-speed, speed), uniform(-speed, speed)
-        self.getFrog(id).energy -= x ** 2 + y ** 2
+        self.getFrog(id).energy -= (x ** 2 + y ** 2)/2
 	return breve.vector(x, y, 0)
 
 
@@ -112,6 +112,7 @@ class Movement(breve.Abstract):
 		speed = float(female.energy)/2000
 		viewMale =female.viewMale()
 		if self.controller.getSoundLevel(location):
+            self.getFrog(id).energy -= speed/2
 			if viewMale != 0 :
 				return self.partnerChoice(viewMale,id)
 			else:
@@ -126,7 +127,7 @@ class Movement(breve.Abstract):
     def getFrog(self, id):
 	return self.controller.frogs[id-1]
 		
-    def partnerChoice(self,listPartner,id):#choisis un partner en fonction du tableau de male passé en parametre
+    def partnerChoice(self,listPartner,id): #choisis un partner en fonction du tableau de male passé en parametre
 	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
