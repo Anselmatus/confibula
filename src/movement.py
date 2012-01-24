@@ -36,7 +36,40 @@ class Movement(breve.Abstract):
 		return self.randomMovement(id)
 
     def hunter(self, id):
-#        env = self.getEnvironment()
+        env = self.getEnvironment(id)
+        
+        if (self.getFrog(id).energy > (self.getFrog(id).maxEnergy / 100.) * 1000):
+            if isinstance(self.getFrog(id), breve.Female) :
+                self.getFrog(id).state = 'findPartener'
+            elif isinstance(self.getFrog(id), breve.Male) :
+                self.getFrog(id).state = 'moveToSing'
+
+
+        elif isinstance(self.getFrog(id), breve.Female):
+            self.getFrog(id).energy += 10
+            self.getFrog(id).state == 'hunting'
+
+        elif isinstance(self.getFrog(id), breve.Male) :
+            self.getFrog(id).energy += 1
+            self.getFrog(id).state == 'hunting'
+
+        return self.randomMovement(id)
+
+
+#        elif env == 'Eau':
+#            self.getFrog(id).state == 'hunting'
+#        elif env == 'Foret':
+#            self.getFrog(id).state == 'hunting'
+#            if uniform(0, 1) < env.preyProbability:
+#                self.getFrog(id).energy += 500
+
+#        return self.randomMovement(id)
+
+#                self.getFrog(id).encounteredPreys += 1
+#                self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
+#                return env.preyEnergyBoost
+
+
 #        if uniform(0, 1) < env.predatorProbability:
 #            self.getFrog(id).encounteredPredators += 1
 #            return -100
@@ -44,9 +77,11 @@ class Movement(breve.Abstract):
 #            self.getFrog(id).encounteredPreys += 1
 #            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
 #            return env.preyEnergyBoost
-	if isinstance(self.getFrog(id), breve.Female) :
-	    self.getFrog(id).sate = 'findPartener'
-	return self.randomMovement(id)
+
+
+#	if isinstance(self.getFrog(id), breve.Female) :
+#	    self.getFrog(id).state = 'findPartener'
+#	return self.randomMovement(id)
 
     def moveToSing(self, id):
         speed = float(self.getFrog(id).energy)/1000
@@ -54,7 +89,6 @@ class Movement(breve.Abstract):
         soundLevel = self.controller.getSoundLevel(location)
         dbMaxToSing = self.controller.config.getValue("dbMaxToSing")
         env = self.getEnvironment(id).getName()
-
         if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
 
             self.getFrog(id).state = 'singing'
@@ -89,11 +123,18 @@ class Movement(breve.Abstract):
 	location = female.getLocation()
 	speed = float(female.energy)/2000
 	viewMale =female.viewMale()
+	moveField = self.getMoveField(location, speed)
 	if self.controller.getSoundLevel(location):
             if viewMale != 0 :
 		return self.partnerChoice(viewMale,id,speed)
             else:
-		return self.moveTo(location, self.controller.getSoundSource(), speed)
+		maxDB= 0
+		dot = None
+		for dot in moveField:
+			if maxDB < self.controller.getSoundLevel(dot):
+				maxDB = self.controller.getSoundLevel(dot)
+				dotChoice = dot
+		return dot
         else:
 		female.state = 'hunter'
 		return self.hunter(id)
@@ -118,6 +159,8 @@ class Movement(breve.Abstract):
 	return 0
 
     def moveTo(self, location, destination, speed):
+        
+            
         direction = destination - location
         distance = sqrt( direction.x**2 +  direction.y**2  )
         return (direction/distance)*speed
@@ -140,5 +183,9 @@ class Movement(breve.Abstract):
         moveField.append( breve.vector(location.x - cos(pi/4)*speed, location.y - sin(pi/4)*speed, 0) )
         return moveField
 
+
+    def energyCost(self):
+        energy = 3
+        return(energy)
 
 breve.Movement = Movement
