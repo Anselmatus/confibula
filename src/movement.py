@@ -22,7 +22,7 @@ class Movement(breve.Abstract):
             if self.getFrog(id).state == 'moveToSing':
                 return self.moveToSing(id)
             elif self.getFrog(id).state == 'singing':
-                return self.singing(id)
+                return self.singer(id)
             elif self.getFrog(id).state == 'hunting':
                 return self.hunter(id)
             
@@ -45,7 +45,7 @@ class Movement(breve.Abstract):
     def cheater(self):
 	return 0
 
-    def singing(self, id):
+    def singer(self, id):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100.)*1000 ) :
             self.getFrog(id).state = 'hunting'
         else :
