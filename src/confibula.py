@@ -216,6 +216,29 @@ class Confibula(breve.Control):
                     self.malesSingAll = 0
                     break
             return self.malesSingAll
+        
+    def onBorder(self, location):
+        tooMuch = [] #array( left, right, top, bottom)
+        if (location.x >= 8):
+            tooMuch.append(False)
+            tooMuch.append(True)
+        elif location.x <= -8:
+            tooMuch.append(True)
+            tooMuch.append(False)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+
+        if (location.y >= 8):
+            tooMuch.append(True)
+            tooMuch.append(False)
+        elif location.y <= -8:
+            tooMuch.append(False)
+            tooMuch.append(True)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+        return tooMuch
 
     def worldToImage(self, location):
         '''
