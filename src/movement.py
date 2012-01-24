@@ -55,14 +55,15 @@ class Movement(breve.Abstract):
             self.getFrog(id).state = 'singing'
             return breve.vector(0, 0, 0)
 
-        else :
+        else : # deplacements
+        
             self.getFrog(id).energy -= speed**2
             if(soundLevel < dbMaxToSing) :
                 return self.moveToChorus(location, speed)
 
-            elif(soundLevel > dbMaxToSing-5) :
+            elif(soundLevel > dbMaxToSing-5) : # to close to sing
 
-                moveField = []
+                moveField = [] # array of point around the frog
                 moveField.append( breve.vector(location.x + speed, location.y, 0) )
                 moveField.append( breve.vector(location.x - speed, location.y, 0) )
                 moveField.append( breve.vector(location.x, location.y + speed, 0) )
