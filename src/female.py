@@ -20,8 +20,6 @@ class Female(breve.Frog):
         self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
         self.setColor(breve.vector(1, 0, 0))
 		
-    def iterate(self):
-        self.setVelocity(self.controller.selectMovement(self.id))
 
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
