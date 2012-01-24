@@ -46,29 +46,9 @@ class Frog(breve.Mobile):
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
 
-    def onBorder(self):
+    def onBorder(self, location):
         location = self.getLocation();
-        tooMuch = [] #array( left, right, top, bottom)
-        if (location.x >= 8):
-            tooMuch.append(False)
-            tooMuch.append(True)
-        elif location.x <= -8:
-            tooMuch.append(True)
-            tooMuch.append(False)
-        else:
-            tooMuch.append(False)
-            tooMuch.append(False)
-
-        if (location.y >= 8):
-            tooMuch.append(True)
-            tooMuch.append(False)
-        elif location.y <= -8:
-            tooMuch.append(False)
-            tooMuch.append(True)
-        else:
-            tooMuch.append(False)
-            tooMuch.append(False)
-        return tooMuch
+        return self.controller.onBorder(location)
 
     def getEnergy(self):
         return self.energy
