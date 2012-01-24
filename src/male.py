@@ -9,7 +9,7 @@ class Male(breve.Frog):
 
     def __init__(self):
         breve.Frog.__init__(self)
-        self.voicePower = randint(50, 100)
+        self.voicePower = randint(50, 80)
         self.voiceQuality = randint(1, 10)
         self.throatColor = randint(30, 50)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0

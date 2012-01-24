@@ -60,15 +60,14 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
     def iterate(self):
-        breve.Control.iterate(self)
 	if self.malesSingAll == 0 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
+        breve.Control.iterate(self)
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -210,12 +209,12 @@ class Confibula(breve.Control):
 
 
     def malesPlaced(self):
-            self.malesSingAll = 1
-            for frog in self.frogsMale:
-                if frog.state != 'singing' :
-                    self.malesSingAll = 0
-                    break
-            return self.malesSingAll
+        self.malesSingAll = 1
+        for frog in self.frogsMale:
+            if frog.state != 'singing' :
+                self.malesSingAll = 0
+                break
+        return self.malesSingAll
 
     def worldToImage(self, location):
         '''

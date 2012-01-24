@@ -98,18 +98,15 @@ class Movement(breve.Abstract):
             self.getFrog(id).energy -= speed/2
             if (env != 'Eau' or soundLevel >= dbMaxToSing) :
                 moveField = self.getMoveField(location, speed)
-
-            if(env != 'Eau') :
-                return breve.vector(0, 0, 0)
-            elif(soundLevel < dbMaxToSing) :
-                return self.moveTo(location, self.controller.getSoundSource(), speed)
-            else : # to close to sing
                 min = moveField[0]
                 middle = dbMaxToSing-2.5
                 for point in moveField[1:] :
                     if( (self.controller.getSoundLevel(point)-middle)**2 < (self.controller.getSoundLevel(min)-middle)**2 ) :
                         min = point
                 return min - breve.vector(location.x, location.y, 0)
+            
+            elif(soundLevel < dbMaxToSing) :
+                return self.moveTo(location, self.controller.getSoundSource(), speed)
 
     def singer(self, id):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100.)*1000 ) :
@@ -159,8 +156,6 @@ class Movement(breve.Abstract):
 	return 0
 
     def moveTo(self, location, destination, speed):
-        
-            
         direction = destination - location
         distance = sqrt( direction.x**2 +  direction.y**2  )
         return (direction/distance)*speed
