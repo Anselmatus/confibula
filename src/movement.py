@@ -89,18 +89,17 @@ class Movement(breve.Abstract):
                 return min - breve.vector(location.x, location.y, 0)
 
     def hunter(self, id):
-        return self.randomMovement(id)
-        env = self.getEnvironment()
-        if uniform(0, 1) < env.predatorProbability:
-            self.getFrog(id).encounteredPredators += 1
-            return -100
-        if uniform(0, 1) < env.preyProbability:
-            self.getFrog(id).encounteredPreys += 1
-            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
-            return env.preyEnergyBoost
+#        env = self.getEnvironment()
+#        if uniform(0, 1) < env.predatorProbability:
+#            self.getFrog(id).encounteredPredators += 1
+#            return -100
+#        if uniform(0, 1) < env.preyProbability:
+#            self.getFrog(id).encounteredPreys += 1
+#            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
+#            return env.preyEnergyBoost
 	if isinstance(self.getFrog(id), breve.Female) :
 	    self.getFrog(id).sate = 'findPartener'
-	return breve.vector(0, 0, 0)
+	return self.randomMovement(id)
 
     def moveToChorus(self, location, speed):
         direction = self.controller.getSoundSource() - location
@@ -127,6 +126,12 @@ class Movement(breve.Abstract):
     def getFrog(self, id):
 	return self.controller.frogs[id-1]
 		
-    def partnerChoice(self,listPartener,id):#choisis un partener en fonction du tableau de male passé en parametre
-	return breve.vector(0, 0, 0)
+    def partnerChoice(self,listPartner,id):#choisis un partner en fonction du tableau de male passé en parametre
+	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
+	maleChoice = listPartner[0]
+	for male in listPartner[1:]:
+		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
+			malePower = male.voicePower + male.voiceQuality + male.throatColor
+			maleChoice = male
+	return maleChoice.getLocation() - self.getFrog(id).getLocation()
 breve.Movement = Movement
