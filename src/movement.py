@@ -94,21 +94,21 @@ class Movement(breve.Abstract):
 	viewMale =female.viewMale()
 	if self.controller.getSoundLevel(location):
             if viewMale != 0 :
-		return self.partnerChoice(viewMale,id)
+		return self.partnerChoice(viewMale,id,speed)
             else:
 		return self.moveTo(location, self.controller.getSoundSource(), speed)
         else:
 		female.state = 'hunter'
 		return self.hunter(id)
 
-    def partnerChoice(self,listPartner,id):#choisis un partner en fonction du tableau de male passé en parametre
+    def partnerChoice(self,listPartner,id, speed):#choisis un partner en fonction du tableau de male passé en parametre
 	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
             if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
                 malePower = male.voicePower + male.voiceQuality + male.throatColor
 		maleChoice = male
-	return maleChoice.getLocation() - self.getFrog(id).getLocation()
+	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
 
     def randomMovement(self, id):
         speed = float(self.getFrog(id).energy)/2000
