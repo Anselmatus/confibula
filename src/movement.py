@@ -92,11 +92,18 @@ class Movement(breve.Abstract):
 	location = female.getLocation()
 	speed = float(female.energy)/2000
 	viewMale =female.viewMale()
+	moveField = self.getMoveField(location, speed)
 	if self.controller.getSoundLevel(location):
             if viewMale != 0 :
 		return self.partnerChoice(viewMale,id,speed)
             else:
-		return self.moveTo(location, self.controller.getSoundSource(), speed)
+		maxDB= 0
+		dot = None
+		for dot in moveField:
+			if maxDB < self.controller.getSoundLevel(dot):
+				maxDB = self.controller.getSoundLevel(dot)
+				dotChoice = dot
+		return dot
         else:
 		female.state = 'hunter'
 		return self.hunter(id)
