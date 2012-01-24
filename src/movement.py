@@ -89,7 +89,40 @@ class Movement(breve.Abstract):
                 return min - breve.vector(location.x, location.y, 0)
 
     def hunter(self, id):
-#        env = self.getEnvironment()
+        env = self.getEnvironment(id)
+        
+        if (self.getFrog(id).energy > (self.getFrog(id).maxEnergy / 100.) * 1000):
+            if isinstance(self.getFrog(id), breve.Female) :
+                self.getFrog(id).state = 'findPartener'
+            elif isinstance(self.getFrog(id), breve.Male) :
+                self.getFrog(id).state = 'moveToSing'
+
+
+        elif isinstance(self.getFrog(id), breve.Female):
+            self.getFrog(id).energy += 10
+            self.getFrog(id).state == 'hunting'
+
+        elif isinstance(self.getFrog(id), breve.Male) :
+            self.getFrog(id).energy += 1
+            self.getFrog(id).state == 'hunting'
+
+        return self.randomMovement(id)
+
+
+#        elif env == 'Eau':
+#            self.getFrog(id).state == 'hunting'
+#        elif env == 'Foret':
+#            self.getFrog(id).state == 'hunting'
+#            if uniform(0, 1) < env.preyProbability:
+#                self.getFrog(id).energy += 500
+
+#        return self.randomMovement(id)
+
+#                self.getFrog(id).encounteredPreys += 1
+#                self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
+#                return env.preyEnergyBoost
+
+
 #        if uniform(0, 1) < env.predatorProbability:
 #            self.getFrog(id).encounteredPredators += 1
 #            return -100
@@ -97,9 +130,11 @@ class Movement(breve.Abstract):
 #            self.getFrog(id).encounteredPreys += 1
 #            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
 #            return env.preyEnergyBoost
-	if isinstance(self.getFrog(id), breve.Female) :
-	    self.getFrog(id).state = 'findPartener'
-	return self.randomMovement(id)
+
+
+#	if isinstance(self.getFrog(id), breve.Female) :
+#	    self.getFrog(id).state = 'findPartener'
+#	return self.randomMovement(id)
 
     def moveTo(self, location, destination, speed):
 	direction = destination - location
@@ -131,8 +166,12 @@ class Movement(breve.Abstract):
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
 		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
-			malePower = male.voicePower + male.voiceQuality + male.throatColor
-			maleChoice = male
+                    malePower = male.voicePower + male.voiceQuality + male.throatColor
+                    maleChoice = male
 	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
+
+    def energyCost(self):
+        energy = 3
+        return(energy)
 
 breve.Movement = Movement

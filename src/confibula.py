@@ -69,7 +69,9 @@ class Confibula(breve.Control):
 	if self.malesSingAll == 0 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
-#        print self.printFrogs()
+        print self.frogs[1].getEnergy()
+        print self.frogs[1].state
+        print self.frogs[1].getEnvironment()
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
