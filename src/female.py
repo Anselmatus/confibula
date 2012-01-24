@@ -10,7 +10,7 @@ class Female(breve.Frog):
     def __init__(self):
         breve.Frog.__init__(self)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.state = 'nimp'
+        self.state = 'findPartener'
 	self.init()
 
     def init(self):
@@ -19,7 +19,6 @@ class Female(breve.Frog):
         self.setColor( breve.vector( 1, 0, 0 ) )
 		
     def iterate(self):
-	#self.state = self.selectState()
         self.setVelocity( self.controller.selectMovement(self.id) )
 
     def __str__(self):
@@ -27,10 +26,17 @@ class Female(breve.Frog):
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s' % (self.id, self.energy, pos.x, pos.y, env)
 
-	def selectState(self):
-		#selectioné le choix de stratégie de la femelle
-		# si elle est loin des males elle ce dirige vers le chorus et la fonction retourne 'moveToChorus'
-		# si elle "voit" au moins un male elle retourne 'findPartner'
-		return 'nimp'
-
+    def viewMale(self):
+	visionDistance= self.controller.config.getValue("visionDistance")
+	viewMale = []
+	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
+	for male in self.controller.frogsMale:
+		if self.getDistance(male) < visionDistance:
+			viewMale.append(male)
+	#si il y a des males "vu"
+	if len(viewMale) != 0:
+		return viewMale
+	else:
+		return 0;
+	
 breve.Female = Female

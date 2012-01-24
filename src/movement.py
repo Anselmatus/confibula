@@ -22,6 +22,8 @@ class Movement(breve.Abstract):
 	if isinstance(self.getFrog(id), breve.Female) :
             if self.getFrog(id).state == 'findPartener' :
                 return self.findPartner(id)
+	    elif self.getFrog(id).state == 'hunting' :
+                return self.hunter(id)
             else :
 		return self.randomMovement(id)
 	else :
@@ -89,7 +91,9 @@ class Movement(breve.Abstract):
             self.getFrog(id).encounteredPreys += 1
             self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
             return env.preyEnergyBoost
-	return 0
+	if isinstance(self.getFrog(id), breve.Female) :
+	    self.getFrog(id).sate = 'findPartener'
+	return breve.vector(0, 0, 0)
 
     def moveToChorus(self, location, speed):
 	soundSource = self.controller.getSoundSource()
@@ -98,7 +102,18 @@ class Movement(breve.Abstract):
         return (direction/distance)*speed
 
     def findPartner(self, id):
-	return 0
+		female = self.getFrog(id)
+		location = female.getLocation()
+		speed = float(female.energy)/2000
+		viewMale =female.viewMale()
+		if self.controller.getNbFrogsSinging():
+			if viewMale != 0 :
+				return self.partnerChoice(viewMale,id)
+			else:
+				return self.moveToChorus(location, speed)
+		else:
+			female.state = 'hunting'
+			return self.hunter(id)
 
     def getEnvironment(self, id):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getFrog(id).getLocation()))
@@ -106,5 +121,6 @@ class Movement(breve.Abstract):
     def getFrog(self, id):
 	return self.controller.frogs[id-1]
 		
-
+    def partnerChoice(self,listPartener,id):
+	return breve.vector(0, 0, 0)
 breve.Movement = Movement

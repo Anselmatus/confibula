@@ -35,6 +35,7 @@ class Confibula(breve.Control):
         self.frogsMale = []
 	self.frogsFemale =[]
         self.frogs = []
+	self.countIt = 0
         self.init()
 	
 
@@ -59,13 +60,15 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-	self.loadFemaleFrogs()
+#	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
 
-
     def iterate(self):
         breve.Control.iterate(self)
+	if self.countIt == 100:
+	   self.loadFemaleFrogs()
+	self.countIt += 1
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -110,9 +113,9 @@ class Confibula(breve.Control):
         self.frogs.extend(self.frogsMale)
 
     def loadFemaleFrogs(self):
-	frogsMaleNumber = self.config.getValue("frogsMaleNumber")
+	frogsFemaleNumber = self.config.getValue("frogsFemaleNumber")
 	del(self.frogsFemale[:])
-	self.frogsFemale = breve.createInstances(breve.Female, frogsMaleNumber)
+	self.frogsFemale = breve.createInstances(breve.Female, frogsFemaleNumber)
 	self.frogs.extend(self.frogsFemale)
 
     def selectMovement(self, id):
@@ -126,7 +129,7 @@ class Confibula(breve.Control):
 
     def getSoundLevel(self, location):
         '''
-        location : position in he simulation (location.x & location.y)   
+        location : position in the simulation (location.x & location.y)
         '''
         SPL = 0
         for frog in self.frogsMale:
@@ -184,10 +187,9 @@ class Confibula(breve.Control):
     def getNbFrogsSinging(self):
         i = 0
         for frog in self.frogsMale:
-            if frog.isSinging :
-                i = i+1
-        if i == 0:
-            return 1
+            if frog.state == 'singing' :
+                i=1
+		break
         return i
 
     def worldToImage(self, location):
