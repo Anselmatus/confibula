@@ -56,7 +56,6 @@ class Movement(breve.Abstract):
         soundLevel = self.controller.getSoundLevel(location)
         dbMaxToSing = self.controller.config.getValue("dbMaxToSing")
         env = self.getEnvironment(id).getName()
-
         if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
 
             self.getFrog(id).state = 'singing'
@@ -68,7 +67,6 @@ class Movement(breve.Abstract):
                 moveField = self.getMoveField(location, speed)
 
             if(env != 'Eau') :
-                print env
                 return breve.vector(0, 0, 0)
             elif(soundLevel < dbMaxToSing) :
                 return self.moveTo(location, self.controller.getSoundSource(), speed)
@@ -121,6 +119,8 @@ class Movement(breve.Abstract):
 	return 0
 
     def moveTo(self, location, destination, speed):
+        
+            
         direction = destination - location
         distance = sqrt( direction.x**2 +  direction.y**2  )
         return (direction/distance)*speed
