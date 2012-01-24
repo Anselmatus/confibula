@@ -69,6 +69,7 @@ class Confibula(breve.Control):
 	if self.countIt == 100:
 	   self.loadFemaleFrogs()
 	self.countIt += 1
+        print self.printFrogs()
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
