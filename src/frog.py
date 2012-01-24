@@ -25,18 +25,19 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
-        speed = float(self.energy)/1000
         move = self.controller.selectMovement(self.id)
-        location = self.getLocation();
-        if (location.x >= 8):
-            move.x = move.x-speed
-        elif location.x <= -8:
+        #exemple utilisation methode onBorder()
+        speed = float(self.energy)/1000
+        onBorder = self.onBorder()
+        if onBorder[0]:
             move.x = move.x+speed
-
-        if (location.y >= 8):
-            move.y = move.x-speed
-        elif location.y <= -8:
-            move.y = move.x+speed
+        if onBorder[1]:
+            move.x = move.x-speed
+        if onBorder[2]:
+            move.y = move.y-speed
+        if onBorder[3]:
+            move.y = move.y+speed
+        # fin exemple
         self.setVelocity(move)
         
     def getId(self):
@@ -44,6 +45,30 @@ class Frog(breve.Mobile):
 
     def getEnvironment(self):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
+
+    def onBorder(self):
+        location = self.getLocation();
+        tooMuch = [] #array( left, right, top, bottom)
+        if (location.x >= 8):
+            tooMuch.append(False)
+            tooMuch.append(True)
+        elif location.x <= -8:
+            tooMuch.append(True)
+            tooMuch.append(False)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+
+        if (location.y >= 8):
+            tooMuch.append(True)
+            tooMuch.append(False)
+        elif location.y <= -8:
+            tooMuch.append(False)
+            tooMuch.append(True)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+        return tooMuch
 
     def getEnergy(self):
         return self.energy
