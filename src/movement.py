@@ -65,9 +65,9 @@ class Movement(breve.Abstract):
 
         else: # deplacements
         
-            self.getFrog(id).energy -= speed / 2
-            if(soundLevel < dbMaxToSing):
-                return self.moveToChorus(location, speed)
+            self.getFrog(id).energy -= speed/2
+            if(soundLevel < dbMaxToSing) :
+                return self.moveTo(location, self.controller.getSoundSource(), speed)
 
             elif(soundLevel > dbMaxToSing-5): # to close to sing
 
@@ -97,43 +97,42 @@ class Movement(breve.Abstract):
 #            self.getFrog(id).encounteredPreys += 1
 #            self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
 #            return env.preyEnergyBoost
-        if isinstance(self.getFrog(id), breve.Female):
-            self.getFrog(id).sate = 'findPartener'
-        return self.randomMovement(id)
+	if isinstance(self.getFrog(id), breve.Female) :
+	    self.getFrog(id).state = 'findPartener'
+	return self.randomMovement(id)
 
-    def moveToChorus(self, location, speed):
-        direction = self.controller.getSoundSource() - location
-        distance = sqrt(direction.x ** 2 + direction.y ** 2)
-        return (direction / distance) * speed
+    def moveTo(self, location, destination, speed):
+	direction = destination - location
+        distance = sqrt( direction.x**2 +  direction.y**2  )
+        return (direction/distance)*speed
 
     def findPartner(self, id):
-        female = self.getFrog(id)
-        location = female.getLocation()
-        speed = float(female.energy) / 2000
-        viewMale = female.viewMale()
-        if self.controller.getSoundLevel(location):
-            self.getFrog(id).energy -= speed / 2
-            if viewMale != 0:
-                return self.partnerChoice(viewMale, id)
-            else:
-                return self.moveToChorus(location, speed)
-        else:
-            female.state = 'hunter'
-            return self.hunter(id)
+		female = self.getFrog(id)
+		location = female.getLocation()
+		speed = float(female.energy)/2000
+		viewMale =female.viewMale()
+		if self.controller.getSoundLevel(location):
+			if viewMale != 0 :
+				return self.partnerChoice(viewMale,id,speed)
+			else:
+				return self.moveTo(location, self.controller.getSoundSource(), speed)
+		else:
+			female.state = 'hunter'
+			return self.hunter(id)
 
     def getEnvironment(self, id):
         return self.controller.getEnvironment(self.controller.worldToImage(self.getFrog(id).getLocation()))
 
     def getFrog(self, id):
-        return self.controller.frogs[id-1]
-
-    def partnerChoice(self, listPartner, id): #choisis un partner en fonction du tableau de male passé en parametre
-        malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
-        maleChoice = listPartner[0]
-        for male in listPartner[1:]:
-            if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
-                malePower = male.voicePower + male.voiceQuality + male.throatColor
-                maleChoice = male
-        return maleChoice.getLocation() - self.getFrog(id).getLocation()
+	return self.controller.frogs[id-1]
+		
+    def partnerChoice(self, listPartner, id, speed):#choisis un partner en fonction du tableau de male passé en parametre
+	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
+	maleChoice = listPartner[0]
+	for male in listPartner[1:]:
+		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
+			malePower = male.voicePower + male.voiceQuality + male.throatColor
+			maleChoice = male
+	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
 
 breve.Movement = Movement
