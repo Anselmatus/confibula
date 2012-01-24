@@ -1,0 +1,550 @@
+$ Loading 2 environments.
+	Env Eau, color breve.vector( 0.000000, 0.000000, 1.000000 ), ease 3
+	Env Forêt, color breve.vector( 0.176471, 0.419608, 0.141176 ), ease 2
+$ Environment loading complete.
+$ Listing all frogs :
+	Frog #1  energy:1000  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:1000  voicePower:78  location:36,76  env:Eau
+	Frog #3  energy:1000  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:1000  voicePower:71  location:297,481  env:Forêt
+	Frog #5  energy:1000  voicePower:95  location:19,262  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:1000  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:999  voicePower:78  location:35,76  env:Eau
+	Frog #3  energy:1000  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:999  voicePower:71  location:297,481  env:Forêt
+	Frog #5  energy:999  voicePower:95  location:19,262  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:997  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:999  voicePower:78  location:35,77  env:Eau
+	Frog #3  energy:997  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:999  voicePower:71  location:296,481  env:Forêt
+	Frog #5  energy:999  voicePower:95  location:19,263  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:994  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:999  voicePower:78  location:35,78  env:Eau
+	Frog #3  energy:994  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:999  voicePower:71  location:295,481  env:Forêt
+	Frog #5  energy:999  voicePower:95  location:19,264  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:991  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:999  voicePower:78  location:35,79  env:Eau
+	Frog #3  energy:991  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:999  voicePower:71  location:294,481  env:Forêt
+	Frog #5  energy:999  voicePower:95  location:19,265  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:988  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:998  voicePower:78  location:35,80  env:Eau
+	Frog #3  energy:988  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:998  voicePower:71  location:293,481  env:Forêt
+	Frog #5  energy:998  voicePower:95  location:19,266  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:985  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:998  voicePower:78  location:35,81  env:Eau
+	Frog #3  energy:985  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:998  voicePower:71  location:292,481  env:Forêt
+	Frog #5  energy:998  voicePower:95  location:19,267  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:982  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:998  voicePower:78  location:35,81  env:Eau
+	Frog #3  energy:982  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:998  voicePower:71  location:291,481  env:Forêt
+	Frog #5  energy:998  voicePower:95  location:19,267  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:979  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:998  voicePower:78  location:35,82  env:Eau
+	Frog #3  energy:979  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:998  voicePower:71  location:291,481  env:Forêt
+	Frog #5  energy:998  voicePower:95  location:19,268  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:976  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:997  voicePower:78  location:35,83  env:Eau
+	Frog #3  energy:976  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:997  voicePower:71  location:290,481  env:Forêt
+	Frog #5  energy:997  voicePower:95  location:19,269  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:973  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:997  voicePower:78  location:35,84  env:Eau
+	Frog #3  energy:973  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:997  voicePower:71  location:289,481  env:Forêt
+	Frog #5  energy:997  voicePower:95  location:19,270  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:970  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:997  voicePower:78  location:35,85  env:Eau
+	Frog #3  energy:970  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:997  voicePower:71  location:288,481  env:Forêt
+	Frog #5  energy:997  voicePower:95  location:19,271  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:967  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:997  voicePower:78  location:35,86  env:Eau
+	Frog #3  energy:967  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:997  voicePower:71  location:287,481  env:Forêt
+	Frog #5  energy:997  voicePower:95  location:19,272  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:964  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:996  voicePower:78  location:35,87  env:Eau
+	Frog #3  energy:964  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:996  voicePower:71  location:286,481  env:Forêt
+	Frog #5  energy:996  voicePower:95  location:20,273  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:961  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:996  voicePower:78  location:35,87  env:Eau
+	Frog #3  energy:961  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:996  voicePower:71  location:286,481  env:Forêt
+	Frog #5  energy:996  voicePower:95  location:20,273  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:958  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:996  voicePower:78  location:35,88  env:Eau
+	Frog #3  energy:958  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:996  voicePower:71  location:285,481  env:Forêt
+	Frog #5  energy:996  voicePower:95  location:20,274  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:955  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:996  voicePower:78  location:35,89  env:Eau
+	Frog #3  energy:955  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:996  voicePower:71  location:284,481  env:Forêt
+	Frog #5  energy:996  voicePower:95  location:20,275  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:952  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:995  voicePower:78  location:35,90  env:Eau
+	Frog #3  energy:952  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:995  voicePower:71  location:283,481  env:Forêt
+	Frog #5  energy:995  voicePower:95  location:20,276  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:949  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:995  voicePower:78  location:35,91  env:Eau
+	Frog #3  energy:949  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:995  voicePower:71  location:282,481  env:Forêt
+	Frog #5  energy:995  voicePower:95  location:20,277  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:946  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:995  voicePower:78  location:35,92  env:Eau
+	Frog #3  energy:946  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:995  voicePower:71  location:281,481  env:Forêt
+	Frog #5  energy:995  voicePower:95  location:20,278  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:943  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:995  voicePower:78  location:35,93  env:Eau
+	Frog #3  energy:943  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:995  voicePower:71  location:280,481  env:Forêt
+	Frog #5  energy:995  voicePower:95  location:20,279  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:940  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:994  voicePower:78  location:35,93  env:Eau
+	Frog #3  energy:940  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:994  voicePower:71  location:280,481  env:Forêt
+	Frog #5  energy:994  voicePower:95  location:20,279  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:937  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:994  voicePower:78  location:35,94  env:Eau
+	Frog #3  energy:937  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:994  voicePower:71  location:279,481  env:Forêt
+	Frog #5  energy:994  voicePower:95  location:20,280  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:934  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:994  voicePower:78  location:35,95  env:Eau
+	Frog #3  energy:934  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:994  voicePower:71  location:278,481  env:Forêt
+	Frog #5  energy:994  voicePower:95  location:20,281  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:931  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:994  voicePower:78  location:35,96  env:Eau
+	Frog #3  energy:931  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:994  voicePower:71  location:277,481  env:Forêt
+	Frog #5  energy:994  voicePower:95  location:20,282  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:928  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:993  voicePower:78  location:35,97  env:Eau
+	Frog #3  energy:928  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:993  voicePower:71  location:276,481  env:Forêt
+	Frog #5  energy:993  voicePower:95  location:20,283  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:925  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:993  voicePower:78  location:35,98  env:Eau
+	Frog #3  energy:925  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:993  voicePower:71  location:275,481  env:Forêt
+	Frog #5  energy:993  voicePower:95  location:20,284  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:922  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:993  voicePower:78  location:35,98  env:Eau
+	Frog #3  energy:922  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:993  voicePower:71  location:275,481  env:Forêt
+	Frog #5  energy:993  voicePower:95  location:20,284  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:919  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:993  voicePower:78  location:35,99  env:Eau
+	Frog #3  energy:919  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:993  voicePower:71  location:274,481  env:Forêt
+	Frog #5  energy:993  voicePower:95  location:20,285  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:916  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:992  voicePower:78  location:35,100  env:Eau
+	Frog #3  energy:916  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:992  voicePower:71  location:273,481  env:Forêt
+	Frog #5  energy:992  voicePower:95  location:20,286  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:913  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:992  voicePower:78  location:35,101  env:Eau
+	Frog #3  energy:913  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:992  voicePower:71  location:272,480  env:Forêt
+	Frog #5  energy:992  voicePower:95  location:20,287  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:910  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:992  voicePower:78  location:35,102  env:Eau
+	Frog #3  energy:910  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:992  voicePower:71  location:271,480  env:Forêt
+	Frog #5  energy:992  voicePower:95  location:20,288  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:907  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:992  voicePower:78  location:35,103  env:Eau
+	Frog #3  energy:907  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:992  voicePower:71  location:270,480  env:Forêt
+	Frog #5  energy:992  voicePower:95  location:21,289  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:904  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:991  voicePower:78  location:35,104  env:Eau
+	Frog #3  energy:904  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:991  voicePower:71  location:269,480  env:Forêt
+	Frog #5  energy:991  voicePower:95  location:21,289  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:901  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:991  voicePower:78  location:35,104  env:Eau
+	Frog #3  energy:901  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:991  voicePower:71  location:269,480  env:Forêt
+	Frog #5  energy:991  voicePower:95  location:21,290  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:898  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:991  voicePower:78  location:35,105  env:Eau
+	Frog #3  energy:898  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:991  voicePower:71  location:268,480  env:Forêt
+	Frog #5  energy:991  voicePower:95  location:21,291  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:895  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:991  voicePower:78  location:35,106  env:Eau
+	Frog #3  energy:895  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:991  voicePower:71  location:267,480  env:Forêt
+	Frog #5  energy:991  voicePower:95  location:21,292  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:892  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:990  voicePower:78  location:35,107  env:Eau
+	Frog #3  energy:892  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:990  voicePower:71  location:266,480  env:Forêt
+	Frog #5  energy:990  voicePower:95  location:21,293  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:889  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:990  voicePower:78  location:35,108  env:Eau
+	Frog #3  energy:889  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:990  voicePower:71  location:265,480  env:Forêt
+	Frog #5  energy:990  voicePower:95  location:21,294  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:886  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:990  voicePower:78  location:35,109  env:Eau
+	Frog #3  energy:886  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:990  voicePower:71  location:264,480  env:Forêt
+	Frog #5  energy:990  voicePower:95  location:21,295  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:883  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:990  voicePower:78  location:35,109  env:Eau
+	Frog #3  energy:883  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:990  voicePower:71  location:264,480  env:Forêt
+	Frog #5  energy:990  voicePower:95  location:21,295  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:880  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:989  voicePower:78  location:35,110  env:Eau
+	Frog #3  energy:880  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:989  voicePower:71  location:263,480  env:Forêt
+	Frog #5  energy:989  voicePower:95  location:21,296  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:877  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:989  voicePower:78  location:35,111  env:Eau
+	Frog #3  energy:877  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:989  voicePower:71  location:262,480  env:Forêt
+	Frog #5  energy:989  voicePower:95  location:21,297  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:874  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:989  voicePower:78  location:35,112  env:Eau
+	Frog #3  energy:874  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:989  voicePower:71  location:261,480  env:Forêt
+	Frog #5  energy:989  voicePower:95  location:21,298  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:871  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:989  voicePower:78  location:35,113  env:Eau
+	Frog #3  energy:871  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:989  voicePower:71  location:260,480  env:Forêt
+	Frog #5  energy:989  voicePower:95  location:21,299  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:868  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:988  voicePower:78  location:35,114  env:Eau
+	Frog #3  energy:868  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:988  voicePower:71  location:259,480  env:Forêt
+	Frog #5  energy:988  voicePower:95  location:21,300  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:865  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:988  voicePower:78  location:35,114  env:Eau
+	Frog #3  energy:865  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:988  voicePower:71  location:258,480  env:Forêt
+	Frog #5  energy:988  voicePower:95  location:21,300  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:862  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:988  voicePower:78  location:35,115  env:Eau
+	Frog #3  energy:862  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:988  voicePower:71  location:258,480  env:Forêt
+	Frog #5  energy:988  voicePower:95  location:21,301  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:859  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:988  voicePower:78  location:35,116  env:Eau
+	Frog #3  energy:859  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:988  voicePower:71  location:257,480  env:Forêt
+	Frog #5  energy:988  voicePower:95  location:21,302  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:856  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:987  voicePower:78  location:35,117  env:Eau
+	Frog #3  energy:856  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:987  voicePower:71  location:256,480  env:Forêt
+	Frog #5  energy:987  voicePower:95  location:21,303  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:853  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:987  voicePower:78  location:35,118  env:Eau
+	Frog #3  energy:853  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:987  voicePower:71  location:255,480  env:Forêt
+	Frog #5  energy:987  voicePower:95  location:21,304  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:850  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:987  voicePower:78  location:35,119  env:Eau
+	Frog #3  energy:850  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:987  voicePower:71  location:254,480  env:Forêt
+	Frog #5  energy:987  voicePower:95  location:22,305  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:847  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:987  voicePower:78  location:35,120  env:Eau
+	Frog #3  energy:847  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:987  voicePower:71  location:253,480  env:Forêt
+	Frog #5  energy:987  voicePower:95  location:22,305  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:844  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:986  voicePower:78  location:35,120  env:Eau
+	Frog #3  energy:844  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:986  voicePower:71  location:253,480  env:Forêt
+	Frog #5  energy:986  voicePower:95  location:22,306  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:841  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:986  voicePower:78  location:35,121  env:Eau
+	Frog #3  energy:841  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:986  voicePower:71  location:252,480  env:Forêt
+	Frog #5  energy:986  voicePower:95  location:22,307  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:838  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:986  voicePower:78  location:35,122  env:Eau
+	Frog #3  energy:838  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:986  voicePower:71  location:251,480  env:Forêt
+	Frog #5  energy:986  voicePower:95  location:22,308  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:835  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:986  voicePower:78  location:35,123  env:Eau
+	Frog #3  energy:835  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:986  voicePower:71  location:250,480  env:Forêt
+	Frog #5  energy:986  voicePower:95  location:22,309  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:832  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:985  voicePower:78  location:35,124  env:Eau
+	Frog #3  energy:832  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:985  voicePower:71  location:249,480  env:Forêt
+	Frog #5  energy:985  voicePower:95  location:22,310  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:829  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:985  voicePower:78  location:35,125  env:Eau
+	Frog #3  energy:829  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:985  voicePower:71  location:248,480  env:Forêt
+	Frog #5  energy:985  voicePower:95  location:22,311  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:826  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:985  voicePower:78  location:35,125  env:Eau
+	Frog #3  energy:826  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:985  voicePower:71  location:248,480  env:Forêt
+	Frog #5  energy:985  voicePower:95  location:22,311  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:823  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:985  voicePower:78  location:35,126  env:Eau
+	Frog #3  energy:823  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:985  voicePower:71  location:247,480  env:Forêt
+	Frog #5  energy:985  voicePower:95  location:22,312  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:820  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:984  voicePower:78  location:35,127  env:Eau
+	Frog #3  energy:820  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:984  voicePower:71  location:246,480  env:Forêt
+	Frog #5  energy:984  voicePower:95  location:22,313  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:817  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:984  voicePower:78  location:35,128  env:Eau
+	Frog #3  energy:817  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:984  voicePower:71  location:245,480  env:Forêt
+	Frog #5  energy:984  voicePower:95  location:22,314  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:814  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:984  voicePower:78  location:35,129  env:Eau
+	Frog #3  energy:814  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:984  voicePower:71  location:244,480  env:Forêt
+	Frog #5  energy:984  voicePower:95  location:22,315  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:811  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:984  voicePower:78  location:35,130  env:Eau
+	Frog #3  energy:811  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:984  voicePower:71  location:243,480  env:Forêt
+	Frog #5  energy:984  voicePower:95  location:22,316  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:808  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:984  voicePower:78  location:35,130  env:Eau
+	Frog #3  energy:808  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:984  voicePower:71  location:243,480  env:Forêt
+	Frog #5  energy:984  voicePower:95  location:22,316  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:805  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:983  voicePower:78  location:35,131  env:Eau
+	Frog #3  energy:805  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:983  voicePower:71  location:242,480  env:Forêt
+	Frog #5  energy:983  voicePower:95  location:22,317  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:802  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:983  voicePower:78  location:35,132  env:Eau
+	Frog #3  energy:802  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:983  voicePower:71  location:241,480  env:Forêt
+	Frog #5  energy:983  voicePower:95  location:22,318  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:799  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:983  voicePower:78  location:35,133  env:Eau
+	Frog #3  energy:799  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:983  voicePower:71  location:240,480  env:Forêt
+	Frog #5  energy:983  voicePower:95  location:22,319  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:796  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:983  voicePower:78  location:35,134  env:Eau
+	Frog #3  energy:796  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:983  voicePower:71  location:239,479  env:Forêt
+	Frog #5  energy:983  voicePower:95  location:22,320  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:793  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:982  voicePower:78  location:35,135  env:Eau
+	Frog #3  energy:793  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:982  voicePower:71  location:238,479  env:Forêt
+	Frog #5  energy:982  voicePower:95  location:23,321  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:790  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:982  voicePower:78  location:35,136  env:Eau
+	Frog #3  energy:790  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:982  voicePower:71  location:237,479  env:Forêt
+	Frog #5  energy:982  voicePower:95  location:23,321  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:787  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:982  voicePower:78  location:35,136  env:Eau
+	Frog #3  energy:787  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:982  voicePower:71  location:237,479  env:Forêt
+	Frog #5  energy:982  voicePower:95  location:23,322  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:784  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:982  voicePower:78  location:35,137  env:Eau
+	Frog #3  energy:784  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:982  voicePower:71  location:236,479  env:Forêt
+	Frog #5  energy:982  voicePower:95  location:23,323  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:781  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:981  voicePower:78  location:35,138  env:Eau
+	Frog #3  energy:781  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:981  voicePower:71  location:235,479  env:Forêt
+	Frog #5  energy:981  voicePower:95  location:23,324  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:778  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:981  voicePower:78  location:35,139  env:Eau
+	Frog #3  energy:778  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:981  voicePower:71  location:234,479  env:Forêt
+	Frog #5  energy:981  voicePower:95  location:23,325  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:775  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:981  voicePower:78  location:35,140  env:Eau
+	Frog #3  energy:775  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:981  voicePower:71  location:233,479  env:Forêt
+	Frog #5  energy:981  voicePower:95  location:23,326  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:772  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:981  voicePower:78  location:35,141  env:Eau
+	Frog #3  energy:772  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:981  voicePower:71  location:232,479  env:Forêt
+	Frog #5  energy:981  voicePower:95  location:23,326  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:769  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:980  voicePower:78  location:35,141  env:Eau
+	Frog #3  energy:769  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:980  voicePower:71  location:232,479  env:Forêt
+	Frog #5  energy:980  voicePower:95  location:23,327  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:766  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:980  voicePower:78  location:35,142  env:Eau
+	Frog #3  energy:766  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:980  voicePower:71  location:231,479  env:Forêt
+	Frog #5  energy:980  voicePower:95  location:23,328  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:763  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:980  voicePower:78  location:35,143  env:Eau
+	Frog #3  energy:763  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:980  voicePower:71  location:230,479  env:Forêt
+	Frog #5  energy:980  voicePower:95  location:23,329  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:760  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:980  voicePower:78  location:35,144  env:Eau
+	Frog #3  energy:760  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:980  voicePower:71  location:229,479  env:Forêt
+	Frog #5  energy:980  voicePower:95  location:23,330  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:757  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:979  voicePower:78  location:35,145  env:Eau
+	Frog #3  energy:757  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:979  voicePower:71  location:228,479  env:Forêt
+	Frog #5  energy:979  voicePower:95  location:23,331  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:754  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:979  voicePower:78  location:35,146  env:Eau
+	Frog #3  energy:754  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:979  voicePower:71  location:227,479  env:Forêt
+	Frog #5  energy:979  voicePower:95  location:23,331  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:751  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:979  voicePower:78  location:35,146  env:Eau
+	Frog #3  energy:751  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:979  voicePower:71  location:227,479  env:Forêt
+	Frog #5  energy:979  voicePower:95  location:23,332  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:748  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:979  voicePower:78  location:35,147  env:Eau
+	Frog #3  energy:748  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:979  voicePower:71  location:226,479  env:Forêt
+	Frog #5  energy:979  voicePower:95  location:23,333  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:745  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:978  voicePower:78  location:35,148  env:Eau
+	Frog #3  energy:745  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:978  voicePower:71  location:225,479  env:Forêt
+	Frog #5  energy:978  voicePower:95  location:23,334  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:742  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:978  voicePower:78  location:35,149  env:Eau
+	Frog #3  energy:742  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:978  voicePower:71  location:224,479  env:Forêt
+	Frog #5  energy:978  voicePower:95  location:23,335  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:739  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:978  voicePower:78  location:35,150  env:Eau
+	Frog #3  energy:739  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:978  voicePower:71  location:223,479  env:Forêt
+	Frog #5  energy:978  voicePower:95  location:23,336  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:736  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:978  voicePower:78  location:35,151  env:Eau
+	Frog #3  energy:736  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:978  voicePower:71  location:222,479  env:Forêt
+	Frog #5  energy:978  voicePower:95  location:24,336  env:Eau
+$ Listing all frogs :
+	Frog #1  energy:733  voicePower:88  location:6,494  env:Eau
+	Frog #2  energy:977  voicePower:78  location:35,151  env:Eau
+	Frog #3  energy:733  voicePower:61  location:70,443  env:Eau
+	Frog #4  energy:977  voicePower:71  location:222,479  env:Forêt
+	Frog #5  energy:977  voicePower:95  location:24,337  env:Eau

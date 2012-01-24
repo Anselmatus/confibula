@@ -1,6 +1,11 @@
-from math import sin, cos, pi, sqrt
+from math import cos
+from math import pi
+from math import sin
+from math import sqrt
+from random import randint
+from random import uniform
+
 import breve
-from random import uniform, randint
 
 class Movement(breve.Abstract):
 
@@ -12,12 +17,12 @@ class Movement(breve.Abstract):
 	print 'movement ok'
 
     def selectMovement(self, id):
-	if isinstance(self.getFrog(id), breve.Male) :
-            if self.getFrog(id).state == 'moveToSing' :
+	if isinstance(self.getFrog(id), breve.Male):
+            if self.getFrog(id).state == 'moveToSing':
                 return self.moveToSing(id)
-            elif self.getFrog(id).state == 'singing' :
+            elif self.getFrog(id).state == 'singing':
                 return self.singing(id)
-            elif self.getFrog(id).state == 'hunting' :
+            elif self.getFrog(id).state == 'hunting':
                 return self.hunter(id)
 	if isinstance(self.getFrog(id), breve.Female) :
             if self.getFrog(id).state == 'findPartener' :
@@ -32,7 +37,7 @@ class Movement(breve.Abstract):
     def randomMovement(self, id):
         speed = float(self.getFrog(id).energy)/2000
         x, y = uniform(-speed, speed), uniform(-speed, speed)
-        self.getFrog(id).energy -= x**2 + y**2
+        self.getFrog(id).energy -= x ** 2 + y ** 2
 	return breve.vector(x, y, 0)
 
 
@@ -84,10 +89,10 @@ class Movement(breve.Abstract):
     def hunter(self, id):
         return self.randomMovement(id)
         env = self.getEnvironment()
-        if uniform(0, 1) < env.predatorProbability :
+        if uniform(0, 1) < env.predatorProbability:
             self.getFrog(id).encounteredPredators += 1
             return -100
-        if uniform(0, 1) < env.preyProbability :
+        if uniform(0, 1) < env.preyProbability:
             self.getFrog(id).encounteredPreys += 1
             self.getFrog(id).totalEnergyBoost += env.preyEnergyBoost
             return env.preyEnergyBoost
@@ -112,7 +117,7 @@ class Movement(breve.Abstract):
 			else:
 				return self.moveToChorus(location, speed)
 		else:
-			female.state = 'hunting'
+			female.state = 'none'
 			return self.hunter(id)
 
     def getEnvironment(self, id):
