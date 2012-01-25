@@ -116,7 +116,7 @@ class Confibula(breve.Control):
 	frogsFemaleNumber = self.config.getValue("frogsFemaleNumber")
 	del(self.frogsFemale[:])
 	self.frogsFemale = breve.createInstances(breve.Female, frogsFemaleNumber)
-	self.frogs.extend(self.frogsFemale)
+	self.frogs.append(self.frogsFemale)
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)
