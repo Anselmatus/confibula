@@ -31,7 +31,7 @@ class Female(breve.Frog):
 	viewMale = []
 	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
 	for male in self.controller.frogsMale:
-            if self.getDistance(male) < visionDistance:
+            if self.getDistance(male) < visionDistance and male.state == 'singing':
                 viewMale.append(male)
 	#si il y a des males "vu"
 	if len(viewMale) != 0:
