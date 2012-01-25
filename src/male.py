@@ -44,7 +44,7 @@ class Male(breve.Frog):
                 becomeCheaterProbability += addProbability
 
             if uniform(0, 1) < becomeCheaterProbability:
-                self.isCheater
+                self.isCheater = True
     
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())

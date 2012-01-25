@@ -25,10 +25,13 @@ class Movement(breve.Abstract):
                 return self.singer(id)
             elif self.getFrog(id).state == 'hunting':
                 return self.hunter(id)
+            elif self.getFrog(id).state == 'coupling':
+                return self.coupling(id)
 
 	if isinstance(self.getFrog(id), breve.Female) :
-
-            if self.getFrog(id).state == 'findPartener' :
+            if self.getFrog(id).state == 'coupling':
+                return self.coupling(id)
+            elif self.getFrog(id).state == 'findPartener' :
                 return self.findPartner(id)
 	    elif self.getFrog(id).state == 'hunting' :
                 return self.hunter(id)
@@ -143,9 +146,16 @@ class Movement(breve.Abstract):
 	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
-            if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
+            if malePower > (male.voicePower + male.voiceQuality + male.throatColor) and male.state == 'singing':
                 malePower = male.voicePower + male.voiceQuality + male.throatColor
 		maleChoice = male
+        femeleX = int(self.getFrog(id).getLocation().x * 10)
+        femeleY = int(self.getFrog(id).getLocation().y * 10)
+        maleX = int(maleChoice.getLocation().x * 10)
+        maleY = int(maleChoice.getLocation().y * 10)
+        if(femeleX == maleX and femeleY == maleY):
+            maleChoice.state = "coupling"
+            self.getFrog(id).state = "coupling"
 	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
 
     def randomMovement(self, id):
@@ -183,6 +193,12 @@ class Movement(breve.Abstract):
         moveField.append( breve.vector(location.x - cos(pi/4)*speed, location.y - sin(pi/4)*speed, 0) )
         return moveField
 
+    def coupling(self, id):
+        if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy/100.)*1000 ) :
+            self.getFrog(id).state = 'hunting'
+        else :
+            self.getFrog(id).energy -= self.controller.config.getValue("couplingEnergyCost")
+        return breve.vector(0, 0, 0)
 
     def energyCost(self):
         energy = 3
