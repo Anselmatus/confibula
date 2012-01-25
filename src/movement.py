@@ -131,8 +131,8 @@ class Movement(breve.Abstract):
             if viewMale != 0 :
 		return self.partnerChoice(viewMale,id,speed)
             else:
-		maxDB= 0
-		dot = None
+		maxDB= self.controller.getSoundLevel(moveField[0])
+		dot = moveField[0]
 		for dot in moveField:
 			if maxDB < self.controller.getSoundLevel(dot):
 				maxDB = self.controller.getSoundLevel(dot)
@@ -146,7 +146,7 @@ class Movement(breve.Abstract):
 	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
 	maleChoice = listPartner[0]
 	for male in listPartner[1:]:
-            if malePower > (male.voicePower + male.voiceQuality + male.throatColor) and male.state == 'singing':
+            if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
                 malePower = male.voicePower + male.voiceQuality + male.throatColor
 		maleChoice = male
         femeleX = int(self.getFrog(id).getLocation().x * 10)
