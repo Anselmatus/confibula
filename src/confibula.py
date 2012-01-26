@@ -13,7 +13,6 @@ import breve
 from math import sqrt, log10
 
 #modules imports
-from tokenize import tabsize
 from utils import config
 from utils import logger
 
@@ -118,7 +117,7 @@ class Confibula(breve.Control):
 	frogsFemaleNumber = self.config.getValue("frogsFemaleNumber")
 	del(self.frogsFemale[:])
 	self.frogsFemale = breve.createInstances(breve.Female, frogsFemaleNumber)
-	self.frogs.append(self.frogsFemale)
+	self.frogs.extend(self.frogsFemale)
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)

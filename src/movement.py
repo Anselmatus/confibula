@@ -33,7 +33,6 @@ class Movement(breve.Abstract):
                 return self.hunter(id)
 
 	elif isinstance(self.getFrog(id), breve.Female):
-
             if self.getFrog(id).state == 'findPartener':
 		return self.findPartner(id)
             elif self.getFrog(id).state == 'hunting':
@@ -170,7 +169,7 @@ class Movement(breve.Abstract):
 	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
 
     def randomMovement(self, id):
-        speed = float(self.getFrog(id).energy) / 2000
+        speed = float(self.getFrog(id).energy) / 1000
         x, y = uniform(-speed, speed), uniform(-speed, speed)
         self.getFrog(id).energy -= (x ** 2 + y ** 2) / 2
 	return breve.vector(x, y, 0)
