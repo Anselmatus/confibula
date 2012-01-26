@@ -184,7 +184,21 @@ class Movement(breve.Abstract):
 	return breve.vector(x, y, 0)
 
     def cheater(self, id):
-	return self.findBestMale(id, 0.5)
+        cheater = self.getFrog(id) 
+        viewFemale = cheater.viewFemale()
+        speed = float(cheater.energy)/1000
+        if viewFemale != 0:
+            femaleChoice = cheater.getBestFemale(viewFemale)
+            cheaterX = int(cheater.getLocation().x * 10)
+            cheaterY = int(cheater.getLocation().y * 10)
+            femaleX = int(femaleChoice.getLocation().x * 10)
+            femaleY = int(femaleChoice.getLocation().y * 10)
+            if(cheaterX == femaleX and cheaterY == femaleY):
+                femaleChoice.state = "coupling"
+                cheater.state = "coupling"
+            return self.moveTo(cheater.getLocation(), femaleChoice.getLocation(), speed)
+        else:
+            return self.findBestMale(id, 0.5)
     
     def unLockFrog(self, direction):
         pointReturned = self.rotation(120, direction)
