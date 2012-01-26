@@ -34,7 +34,6 @@ class Movement(breve.Abstract):
                 return self.hunter(id)
 
 	elif isinstance(self.getFrog(id), breve.Female):
-
             if self.getFrog(id).state == 'findPartener':
 		return self.findPartner(id)
             elif self.getFrog(id).state == 'hunting':

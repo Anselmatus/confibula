@@ -13,7 +13,6 @@ import breve
 from math import sqrt, log10
 
 #modules imports
-from tokenize import tabsize
 from utils import config
 from utils import logger
 from utils import color
