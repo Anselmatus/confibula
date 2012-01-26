@@ -39,10 +39,11 @@ class Male(breve.Frog):
 
 
     def turnCheater(self):
-        if (self.voicePower < 75 or self.voiceQuality < 5 or self.throatColor < 40) :
+        power = self.voicePower + self.voiceQuality + self.throatColor
+        if (power < 85) :
             becomeCheaterProbability = self.controller.config.getValue("becomeCheaterProbability")
             addProbability = becomeCheaterProbability*35/100
-            if self.voicePower < 60:
+            if self.voicePower < 45:
                 becomeCheaterProbability += addProbability
 
             if self.voiceQuality < 3:
