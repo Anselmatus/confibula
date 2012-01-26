@@ -107,10 +107,11 @@ class Movement(breve.Abstract):
             male.energy -= speed/2
             if (env != 'Eau' or soundLevel >= dbMaxToSing) :
                 moveField = self.getMoveField(location, speed)
-
-            if(env != 'Eau') :
-                return self.randomMovement(id) # a ameliorer parce que ça ne le fait pas trop trop
-            elif(soundLevel < dbMaxToSing) :
+            if(env != 'Eau' and soundLevel == 0):
+                direction = self.moveTo(location, self.controller.getNearestWater(location), speed)
+                if soundLevel >= dbMaxToSing:
+                    self.unLockFrog(direction)
+            elif(soundLevel < dbMaxToSing):
                 return self.moveTo(location, self.controller.getSoundSource(), speed)
             else: # to close to sing
                 min = moveField[0]
@@ -179,12 +180,27 @@ class Movement(breve.Abstract):
 	return breve.vector(x, y, 0)
 
     def cheater(self):
-	return breve.vector(0, 0, 0)
+	return 0
+    
+    def unLockFrog(self, direction):
+        pointReturned = self.rotation(120, direction)
+        if self.controller.getSoundLevel(pointReturned) >= dbMaxToSing:
+            return self.unLockFrog(pointReturned)
+        else:
+            return pointReturned
 
-    def moveTo(self, location, destination, speed):
+    def rotation(self, angle, direction):
+        cosAngle = cos(80)
+        sinAngle = sin(80)
+        newX = direction.x * cosAngle-direction.y * sinAngle
+        newY = direction.y * cosAngle + direction.x * sinAngle
+        direction.x = newX
+        direction.y = newY
+        return direction
+        
+    def moveTo(self, location, destination, speed):    
         direction = destination - location
-	direction.x = direction.x
-	direction.y = direction.y
+
         distance = sqrt(direction.x ** 2 + direction.y ** 2)
         return (direction / distance) * speed
 
