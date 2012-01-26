@@ -18,11 +18,12 @@ class Movement(breve.Abstract):
 	print 'movement ok'
 
     def selectMovement(self, id):
-	if self.getFrog(id).state == 'coupling':
+        frog = self.getFrog(id)
+	if frog.state == 'coupling':
             return self.coupling(id)
-        elif self.getFrog(id).state == 'sleeping':
-            self.getFrog(id).sleepTime +=1
-            return self.sleeping(id,self.getFrog(id).sleepTime)
+        elif frog.state == 'sleeping':
+            frog.sleepTime +=1
+            return self.sleeping(id,frog.sleepTime)
 
 	elif isinstance(self.getFrog(id), breve.Male):
             if self.getFrog(id).state == 'moveToSing':
@@ -32,8 +33,10 @@ class Movement(breve.Abstract):
                     return self.moveToSing(id)
             elif self.getFrog(id).state == 'singing':
                 return self.singer(id)
-            elif self.getFrog(id).state == 'hunting':
+            elif frog.state == 'hunting':
                 return self.hunter(id)
+            elif frog.state == 'unLockFromForest' :
+                return self.unLockFrog(id)
 
 	elif isinstance(self.getFrog(id), breve.Female):
             if self.getFrog(id).state == 'findPartener':
@@ -56,13 +59,13 @@ class Movement(breve.Abstract):
                 frog.state = self.controller.config.getValue('standartMaleState')
 
         # quoi faire quand l'energie n'est toujours pas pleine
-        if isinstance(self.getFrog(id), breve.Female):
-            self.getFrog(id).energy += 10
-            self.getFrog(id).state == 'hunting'
+        if isinstance(frog, breve.Female):
+            frog.energy += 10
+            frog.state == 'hunting'
 
-        elif isinstance(self.getFrog(id), breve.Male):
-            self.getFrog(id).energy += 10
-            self.getFrog(id).state == 'hunting'
+        elif isinstance(frog, breve.Male):
+            frog.energy += 10
+            frog.state == 'hunting'
 
         return self.randomMovement(id)
 
@@ -101,26 +104,39 @@ class Movement(breve.Abstract):
         soundLevel = self.controller.getSoundLevel(location)
         dbMaxToSing = self.controller.config.getValue("dbMaxToSing")
         env = self.getEnvironment(id).getName()
+
         if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
             male.state = 'singing'
             return breve.vector(0, 0, 0)
-        else : # deplacements  PAS FINI JE GÉRE PAS TOUT C NORMAL !!!
+        else : # deplacements
             male.energy -= speed/2
-            if (env != 'Eau' or soundLevel >= dbMaxToSing) :
-                moveField = self.getMoveField(location, speed)
-            if(env != 'Eau' and soundLevel == 0):
-                direction = self.moveTo(location, self.controller.getNearestWater(location), speed)
-                if soundLevel >= dbMaxToSing:
-                    self.unLockFrog(direction)
+            
+            if(env != 'Eau'):
+                if( soundLevel == 0 ) :
+                    return self.moveTo(location, self.controller.getNearestWater(location), speed)
+                elif soundLevel >= dbMaxToSing:
+                    self.state = 'unLockFromForest'
+                    return self.unLockFrog(location,speed)
+                else :
+                    return self.moveTo(location, self.controller.getSoundSource(), speed)
             elif(soundLevel < dbMaxToSing):
-                return self.moveTo(location, self.controller.getSoundSource(), speed)
-            else: # to close to sing
-                min = moveField[0]
-                middle = dbMaxToSing-2.5
-                for point in moveField[1:]:
-                    if((self.controller.getSoundLevel(point)-middle) ** 2 < (self.controller.getSoundLevel(min)-middle) ** 2):
-                        min = point
-                return min - breve.vector(location.x, location.y, 0)
+                
+                direction = self.moveTo(location, self.controller.getSoundSource(), speed)
+                if( self.controller.getEnvironment(self.controller.worldToImage(direction)).getName() == 'Eau' ) :
+                    return direction
+                else :
+
+                    moveField = self.getMoveField(location, speed)
+                    min = moveField[0]
+                    for point in moveField[1:]:
+                        envPoint = self.controller.getEnvironment(self.controller.worldToImage(point)).getName()
+                        if((self.controller.getSoundLevel(point)-dbMaxToSing) ** 2 < (self.controller.getSoundLevel(min)-dbMaxToSing) ** 2 and envPoint == 'Eau'):
+                            min = point
+                    return min - breve.vector(location.x, location.y, 0)
+            else: # if Sound is too high 
+                return self.moveToLevelSong(location, speed, dbMaxToSing-2.5)
+
+
 
     def singer(self, id):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy / 100.) * 1000):
@@ -136,31 +152,20 @@ class Movement(breve.Abstract):
 	viewMale = frog.viewMale()
 	
 	if self.controller.getSoundLevel(location):
-		if viewMale != 0:
-                        maleChoice = self.partnerChoice(viewMale, id)
-                        distanceToMale = frog.getDistance(maleChoice)
-                        if(distanceToStop <= 0):
-                            return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
-                        else:
-                            if(float(distanceToMale)>float(distanceToStop)):
-                                return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
-                            else:
-                                return breve.vector(0, 0, 0)
-		else:
-			moveField = self.getMoveField(location, speed)
-			maxDB = self.controller.getSoundLevel(moveField[0])
-#			print maxDB
-			dotChoice = moveField[0]
-#			print dotChoice
-		for dot in moveField[1:]:
-#			print self.controller.getSoundLevel(dot)
-			if maxDB <= self.controller.getSoundLevel(dot):
-				maxDB = self.controller.getSoundLevel(dot)
-				dotChoice = dot
-#				print 'up',maxDB
-#		print 'location :',self.getFrog(id).getLocation()
-#		print dotChoice, '    ', maxDB
-		return dotChoice - breve.vector(location.x,location.y,0)
+            if viewMale != 0:
+                maleChoice = self.partnerChoice(viewMale, id)
+                distanceToMale = frog.getDistance(maleChoice)
+                if(distanceToStop <= 0):
+                    return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
+                else:
+                    if(float(distanceToMale) > float(distanceToStop)):
+                        return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
+                    else:
+                        return breve.vector(0, 0, 0)
+            else:
+                levelSong = 1000
+                return self.moveToLevelSong(location, speed, levelSong)
+
         else:
 		frog.state = 'hunting'
 		return self.hunter(id)
@@ -183,27 +188,49 @@ class Movement(breve.Abstract):
 	return breve.vector(x, y, 0)
 
     def cheater(self, id):
-	return self.findBestMale(id, 0.5)
-    
-    def unLockFrog(self, direction):
-        pointReturned = self.rotation(120, direction)
-        if self.controller.getSoundLevel(pointReturned) >= dbMaxToSing:
-            return self.unLockFrog(pointReturned)
+        cheater = self.getFrog(id) 
+        viewFemale = cheater.viewFemale()
+        speed = float(cheater.energy)/1000
+        if viewFemale != 0:
+            femaleChoice = cheater.getBestFemale(viewFemale)
+            cheaterX = int(cheater.getLocation().x * 10)
+            cheaterY = int(cheater.getLocation().y * 10)
+            femaleX = int(femaleChoice.getLocation().x * 10)
+            femaleY = int(femaleChoice.getLocation().y * 10)
+            if(cheaterX == femaleX and cheaterY == femaleY):
+                femaleChoice.state = "coupling"
+                cheater.state = "coupling"
+            return self.moveTo(cheater.getLocation(), femaleChoice.getLocation(), speed)
         else:
-            return pointReturned
+            return self.findBestMale(id, 0.5)
+    
+    def moveToLevelSong(self, location, speed, levelSong):
+        moveField = self.getMoveField(location, speed)
+        min = moveField[0]
+        for point in moveField[1:]:
+            if((self.controller.getSoundLevel(point)-levelSong) ** 2 < (self.controller.getSoundLevel(min)-levelSong) ** 2):
+                min = point
+        return min - breve.vector(location.x, location.y, 0)
 
-    def rotation(self, angle, direction):
-        cosAngle = cos(80)
-        sinAngle = sin(80)
-        newX = direction.x * cosAngle-direction.y * sinAngle
-        newY = direction.y * cosAngle + direction.x * sinAngle
-        direction.x = newX
-        direction.y = newY
-        return direction
+    def unLockFrog(self, location, speed):
+        levelSong = 0
+        unlockVector = self.moveToLevelSong(location, speed, levelSong)
+        if ( self.controller.getEnvironment(self.controller.worldToImage(unlockVector)).getName() == 'Eau') :
+            self.state = 'moveToSing'
+        return unlockVector
+
+
+ #   def rotation(self, angle, direction):
+ #       cosAngle = cos(angle)
+ #       sinAngle = sin(angle)
+ #       newX = direction.x * cosAngle-direction.y * sinAngle
+ #       newY = direction.y * cosAngle + direction.x * sinAngle
+ #       direction.x = newX
+ #       direction.y = newY
+ #       return direction
         
     def moveTo(self, location, destination, speed):    
         direction = destination - location
-
         distance = sqrt(direction.x ** 2 + direction.y ** 2)
         return (direction / distance) * speed
 
