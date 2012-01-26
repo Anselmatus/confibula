@@ -25,6 +25,7 @@ class Male(breve.Frog):
 
     def iterate(self):
         breve.Frog.iterate(self)
+        
         if self.state == 'singing':
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.15, 0.15, 0.15)))
         elif self.state == 'hunting':
@@ -36,6 +37,8 @@ class Male(breve.Frog):
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 1, 1))
+        if self.isCheater:
+            self.setColor(breve.vector(0, 0, 0))
 
 
     def turnCheater(self):
@@ -54,6 +57,7 @@ class Male(breve.Frog):
 
             if uniform(0, 1) < becomeCheaterProbability:
                 self.isCheater = True
+                self.setColor(breve.vector(0, 0, 0))
     
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())

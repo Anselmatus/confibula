@@ -141,11 +141,12 @@ class Movement(breve.Abstract):
                         maleChoice = self.partnerChoice(viewMale, id)
                         distanceToMale = frog.getDistance(maleChoice)
                         if(distanceToStop <= 0):
-                            if(distanceToMale>distanceToStop):
+                            return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
+                        else:
+                            if(float(distanceToMale)>float(distanceToStop)):
                                 return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
                             else:
                                 return breve.vector(0, 0, 0)
-			return self.moveTo(frog.getLocation(), vectorToMale, speed)
 		else:
 			moveField = self.getMoveField(location, speed)
 			maxDB = self.controller.getSoundLevel(moveField[0])
@@ -183,7 +184,7 @@ class Movement(breve.Abstract):
 	return breve.vector(x, y, 0)
 
     def cheater(self, id):
-	return 0
+	return self.findBestMale(id, 0.5)
     
     def unLockFrog(self, direction):
         pointReturned = self.rotation(120, direction)
