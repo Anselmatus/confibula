@@ -59,7 +59,19 @@ class Frog(breve.Mobile):
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
+    
+    def getBestMale(self, listMale=[]):
+        if len(listMale) == 0:
+            listMale = self.viewMale()
+        malePower = listMale[0].voicePower + listMale[0].voiceQuality + listMale[0].throatColor
+	maleChoice = listMale[0]
 
+	for male in listMale[1:]:
+		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
+			malePower = male.voicePower + male.voiceQuality + male.throatColor
+			maleChoice = male
+        return maleChoice
+    
     def viewMale(self):
 	visionDistance = self.controller.config.getValue("visionDistance")
 	viewMale = []
