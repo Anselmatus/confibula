@@ -25,11 +25,13 @@ class Movement(breve.Abstract):
             frog.sleepTime +=1
             return self.sleeping(id,frog.sleepTime)
 
-	elif isinstance(frog, breve.Male):
-
-            if frog.state == 'moveToSing':
-                return self.moveToSing(id)
-            elif frog.state == 'singing':
+	elif isinstance(self.getFrog(id), breve.Male):
+            if self.getFrog(id).state == 'moveToSing':
+                if self.getFrog(id).isCheater == True:
+                    return self.cheater(id)
+                else:
+                    return self.moveToSing(id)
+            elif self.getFrog(id).state == 'singing':
                 return self.singer(id)
             elif frog.state == 'hunting':
                 return self.hunter(id)
@@ -38,9 +40,9 @@ class Movement(breve.Abstract):
 
 	elif isinstance(self.getFrog(id), breve.Female):
 
-            if frog.state == 'findPartener':
-		return self.findPartner(id)
-            elif frog.state == 'hunting':
+            if self.getFrog(id).state == 'findPartener':
+		return self.findBestMale(id)
+            elif self.getFrog(id).state == 'hunting':
 		return self.hunter(id)
 
         return self.randomMovement(id)
@@ -107,7 +109,7 @@ class Movement(breve.Abstract):
         if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
             male.state = 'singing'
             return breve.vector(0, 0, 0)
-        else : # deplacements  PAS FINI JE GÉRE PAS TOUT C NORMAL !!!
+        else : # deplacements
             male.energy -= speed/2
             
             if(env != 'Eau'):
@@ -144,23 +146,32 @@ class Movement(breve.Abstract):
             self.getFrog(id).energy -= self.controller.config.getValue('singingEnergyCost')
         return breve.vector(0, 0, 0)
 
-    def findPartner(self, id):
-	female = self.getFrog(id)
-	location = female.getLocation()
-	speed = float(female.energy) / 2000
-	viewMale = female.viewMale()
+    def findBestMale(self, id, distanceToStop=0):
+	frog = self.getFrog(id)
+	location = frog.getLocation()
+	speed = float(frog.energy) / 1000
+	viewMale = frog.viewMale()
 	
 	if self.controller.getSoundLevel(location):
             if viewMale != 0:
-		return self.partnerChoice(viewMale, id, speed)
+                maleChoice = self.partnerChoice(viewMale, id)
+                distanceToMale = frog.getDistance(maleChoice)
+                if(distanceToStop <= 0):
+                    return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
+                else:
+                    if(float(distanceToMale) > float(distanceToStop)):
+                        return self.moveTo(frog.getLocation(), maleChoice.getLocation(), speed)
+                    else:
+                        return breve.vector(0, 0, 0)
             else:
-                levelSong = 10000
+                levelSong = 1000
                 return self.moveToLevelSong(location, speed, levelSong)
-        else:
-            female.state = 'hunting'
-            return self.hunter(id)
 
-    def partnerChoice(self,listPartner,id, speed): # choisis un partner en fonction du tableau de male passé en parametre
+        else:
+		frog.state = 'hunting'
+		return self.hunter(id)
+
+    def partnerChoice(self,listPartner,id): # choisis un partner en fonction du tableau de male passé en parametre
 	maleChoice = self.getFrog(id).getBestMale(listPartner)
         femeleX = int(self.getFrog(id).getLocation().x * 10)
         femeleY = int(self.getFrog(id).getLocation().y * 10)
@@ -169,7 +180,7 @@ class Movement(breve.Abstract):
         if(femeleX == maleX and femeleY == maleY):
             maleChoice.state = "coupling"
             self.getFrog(id).state = "coupling"
-	return self.moveTo(self.getFrog(id).getLocation(), maleChoice.getLocation(), speed)
+	return maleChoice
 
     def randomMovement(self, id):
         speed = float(self.getFrog(id).energy) / 1000
@@ -177,9 +188,23 @@ class Movement(breve.Abstract):
         self.getFrog(id).energy -= ( x ** 2 + y ** 2 ) / 2 # perte d'energie specifique
 	return breve.vector(x, y, 0)
 
-    def cheater(self):
-	return 0
-
+    def cheater(self, id):
+        cheater = self.getFrog(id) 
+        viewFemale = cheater.viewFemale()
+        speed = float(cheater.energy)/1000
+        if viewFemale != 0:
+            femaleChoice = cheater.getBestFemale(viewFemale)
+            cheaterX = int(cheater.getLocation().x * 10)
+            cheaterY = int(cheater.getLocation().y * 10)
+            femaleX = int(femaleChoice.getLocation().x * 10)
+            femaleY = int(femaleChoice.getLocation().y * 10)
+            if(cheaterX == femaleX and cheaterY == femaleY):
+                femaleChoice.state = "coupling"
+                cheater.state = "coupling"
+            return self.moveTo(cheater.getLocation(), femaleChoice.getLocation(), speed)
+        else:
+            return self.findBestMale(id, 0.5)
+    
     def moveToLevelSong(self, location, speed, levelSong):
         moveField = self.getMoveField(location, speed)
         min = moveField[0]
