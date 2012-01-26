@@ -84,7 +84,31 @@ class Frog(breve.Mobile):
             return viewMale
 	else:
             return 0;
-        
+
+    def viewFemale(self):
+	visionDistance = self.controller.config.getValue("visionDistanceMale")
+	viewFemale = []
+	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
+	for female in self.controller.frogsFemale:
+            if self.getDistance(female) < visionDistance:
+                viewFemale.append(female)
+	#si il y a des males "vu"
+	if len(viewFemale) != 0:
+            return viewFemale
+	else:
+            return 0;
+
+    def getBestFemale(self, listFemale=[]):
+        if len(listFemale) == 0:
+            listFemale = self.viewFemale()
+	femaleChoice = listFemale[0]
+        femaleId = listFemale[0].getId()
+	for female in listFemale[1:]:
+		if femaleId > female.getId() and (female.state == 'hunting' or female.state == 'findPartener'):
+			femaleId = female.getId()
+			femaleChoice = female
+        return femaleChoice
+
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()

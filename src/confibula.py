@@ -215,12 +215,12 @@ class Confibula(breve.Control):
 
 
     def malesPlaced(self):
-            self.malesSingAll = 1
-            for frog in self.frogsMale:
-                if frog.state != 'singing' and frog.isCheater == False :
-                    self.malesSingAll = 0
-                    break
-            return self.malesSingAll
+        self.malesSingAll = 1
+        for frog in self.frogsMale:
+            if frog.state != 'singing' and frog.isCheater == False :
+                self.malesSingAll = 0
+                break
+        return self.malesSingAll
         
     def onBorder(self, location):
         tooMuch = [] #array( left, right, top, bottom)
@@ -251,9 +251,9 @@ class Confibula(breve.Control):
         '''
         Changes the coordinates of a breve.vector from simulation's world to image coordinates.
         '''
-        location.x = int((location.x + 8) * (self.image.width/16))
-        location.y = int((location.y + 8) * (self.image.height/16))
-        return location
+        x = int((location.x + 8) * (self.image.width/16))
+        y = int((location.y + 8) * (self.image.height/16))
+        return breve.vector(x, y, 0)
 
     def writeLogFile(self):
         logger.write()
