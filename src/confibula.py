@@ -61,15 +61,16 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
 #        self.setUpMenus()
 
     def iterate(self):
         breve.Control.iterate(self)
-	if self.malesSingAll == -1 :
+	if self.malesSingAll == 0 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
+
+        
 
     
     def setUpMenus(self):
@@ -139,7 +140,7 @@ class Confibula(breve.Control):
                 nearest = (water[i],water[i+1])
         return breve.vector(nearest[0], nearest[1], 0)
 
-# je propose de fusionner les diff�rents getNearest en fonction du fichier de config ?
+# je propose de fusionner les diff�rents getNearest en fonction du fichier de config ?
 
     def getEnvironment(self, location):
         pixelColor = self.image.getRgbPixel(location.x, location.y)
@@ -153,7 +154,7 @@ class Confibula(breve.Control):
         location : position in the simulation (location.x & location.y)
         '''
         SPL = 0
-        for frog in self.frogsMale:
+        for frog in self.frogs:
             
             if frog.state == 'singing' :
                 #pos = self.worldToImage(frog.getLocation())
@@ -194,7 +195,7 @@ class Confibula(breve.Control):
         On peut généraliser ce calcul pour n points.
         '''
         xG, yG, weightSum = 0.0, 0.0, 0.0 # weightSum = a+b+c = sum of the weight of each point
-        for frog in self.frogsMale:
+        for frog in self.frogs:
             if frog.state == 'singing' :
                 pos = frog.getLocation()
                 weight = frog.voicePower
@@ -216,7 +217,7 @@ class Confibula(breve.Control):
     def malesPlaced(self):
             self.malesSingAll = 1
             for frog in self.frogsMale:
-                if frog.state != 'singing' :
+                if frog.state != 'singing' and frog.isCheater == False :
                     self.malesSingAll = 0
                     break
             return self.malesSingAll
