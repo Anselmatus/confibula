@@ -29,14 +29,16 @@ class Frog(breve.Mobile):
         #exemple utilisation methode onBorder()
         speed = float(self.energy) / 1000
         onBorder = self.onBorder()
+        borderRight = self.controller.config.getValue("mapWidth")/2
+        borderTop = self.controller.config.getValue("mapHeight")/2
         if onBorder[0]:
-            self.move(breve.vector(self.controller.config.getValue("borderRight"), self.getLocation().y, 0.01))
+            self.move(breve.vector(borderRight, self.getLocation().y, 0.01))
         if onBorder[1]:
-            self.move(breve.vector(-self.controller.config.getValue("borderRight"), self.getLocation().y, 0.01))
+            self.move(breve.vector(-borderRight, self.getLocation().y, 0.01))
         if onBorder[2]:
-            self.move(breve.vector(self.getLocation().x, -self.controller.config.getValue("borderRight"), 0.01))
+            self.move(breve.vector(self.getLocation().x, -borderTop, 0.01))
         if onBorder[3]:
-            self.move(breve.vector(self.getLocation().x, self.controller.config.getValue("borderRight"), 0.01))
+            self.move(breve.vector(self.getLocation().x, borderTop, 0.01))
         # fin exemple
         if (onBorder[0]==False and onBorder[1]==False and onBorder[2]==False and onBorder[3]==False):
             self.setVelocity(move)
