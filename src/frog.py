@@ -59,7 +59,20 @@ class Frog(breve.Mobile):
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
-	
+
+    def viewMale(self):
+	visionDistance = self.controller.config.getValue("visionDistance")
+	viewMale = []
+	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
+	for male in self.controller.frogsMale:
+            if self.getDistance(male) < visionDistance and male.state == 'singing':
+                viewMale.append(male)
+	#si il y a des males "vu"
+	if len(viewMale) != 0:
+            return viewMale
+	else:
+            return 0;
+        
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
