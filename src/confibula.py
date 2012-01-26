@@ -219,7 +219,7 @@ class Confibula(breve.Control):
     def malesPlaced(self):
             self.malesSingAll = 1
             for frog in self.frogsMale:
-                if frog.state != 'singing' :
+                if frog.state != 'singing' and frog.isCheater == False :
                     self.malesSingAll = 0
                     break
             return self.malesSingAll
