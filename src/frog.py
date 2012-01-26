@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
+import breve
 from random import randint
 from random import uniform
-
-import breve
 
 class Frog(breve.Mobile):
     numFrog = 0
@@ -28,18 +27,19 @@ class Frog(breve.Mobile):
     def iterate(self):
         move = self.controller.selectMovement(self.id)
         #exemple utilisation methode onBorder()
-        speed = float(self.energy)/1000
+        speed = float(self.energy) / 1000
         onBorder = self.onBorder()
         if onBorder[0]:
-            move.x = move.x+speed
+            self.move(breve.vector(self.controller.config.getValue("borderRight"), self.getLocation().y, 0.01))
         if onBorder[1]:
-            move.x = move.x-speed
+            self.move(breve.vector(-self.controller.config.getValue("borderRight"), self.getLocation().y, 0.01))
         if onBorder[2]:
-            move.y = move.y-speed
+            self.move(breve.vector(self.getLocation().x, -self.controller.config.getValue("borderRight"), 0.01))
         if onBorder[3]:
-            move.y = move.y+speed
+            self.move(breve.vector(self.getLocation().x, self.controller.config.getValue("borderRight"), 0.01))
         # fin exemple
-        self.setVelocity(move)
+        if (onBorder[0]==False and onBorder[1]==False and onBorder[2]==False and onBorder[3]==False):
+            self.setVelocity(move)
 
 
 
@@ -67,9 +67,9 @@ class Frog(breve.Mobile):
 	maleChoice = listMale[0]
 
 	for male in listMale[1:]:
-		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
-			malePower = male.voicePower + male.voiceQuality + male.throatColor
-			maleChoice = male
+            if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
+                malePower = male.voicePower + male.voiceQuality + male.throatColor
+                maleChoice = male
         return maleChoice
     
     def viewMale(self):
