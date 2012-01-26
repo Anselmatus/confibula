@@ -132,7 +132,7 @@ class Movement(breve.Abstract):
     def findBestMale(self, id, distanceToStop=0):
 	frog = self.getFrog(id)
 	location = frog.getLocation()
-	speed = float(frog.energy) / 2000
+	speed = float(frog.energy) / 1000
 	viewMale = frog.viewMale()
 	
 	if self.controller.getSoundLevel(location):
