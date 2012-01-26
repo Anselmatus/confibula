@@ -50,9 +50,9 @@ class Movement(breve.Abstract):
         # quoi faire si l'energie est retrouvee
         if (frog.energy > recoveryEnergyLevel):
             if isinstance(frog, breve.Female) :
-                frog.state = self.controller.config.getValue('standartMaleState')
-            elif isinstance(self.getFrog(id), breve.Male) :
                 frog.state = self.controller.config.getValue('standartFemaleState')
+            elif isinstance(self.getFrog(id), breve.Male) :
+                frog.state = self.controller.config.getValue('standartMaleState')
 
         # quoi faire quand l'energie n'est toujours pas pleine
         if isinstance(self.getFrog(id), breve.Female):
@@ -60,7 +60,7 @@ class Movement(breve.Abstract):
             self.getFrog(id).state == 'hunting'
 
         elif isinstance(self.getFrog(id), breve.Male):
-            self.getFrog(id).energy += 1
+            self.getFrog(id).energy += 10
             self.getFrog(id).state == 'hunting'
 
         return self.randomMovement(id)
