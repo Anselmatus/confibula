@@ -13,8 +13,10 @@ import breve
 from math import sqrt, log10
 
 #modules imports
+from tokenize import tabsize
 from utils import config
 from utils import logger
+from utils import color
 
 import environment
 import frog
@@ -33,7 +35,7 @@ class Confibula(breve.Control):
         self.map = None
         self.environment = []
         self.frogsMale = []
-	self.frogsFemale =[]
+	self.frogsFemale = []
         self.frogs = []
 	self.malesSingAll = 0
         self.init()
@@ -55,19 +57,23 @@ class Confibula(breve.Control):
         # /!\ ------------ RESERVED to Chou & Antoine ------------ /!\
         # Initialisation of the environment
         self.loadEnvironment()
-	self.offsetCamera( breve.vector( 0, 0, 22) )
+	self.offsetCamera( breve.vector( 0, 0, 22) ) # (0, 0, z) depends on the picture's size
         # End of environment
 
         # Loading frogs
         self.loadMaleFrogs()
+	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
-        self.setUpMenus()
+#        self.setUpMenus()
 
     def iterate(self):
-	if self.malesSingAll == 0 :
+        breve.Control.iterate(self)
+	if self.malesSingAll == -1 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
-        breve.Control.iterate(self)
+
+        print self.frogs[5].state
+
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -81,7 +87,7 @@ class Confibula(breve.Control):
         self.loadMap()
         
         myEnv = None
-        envNames = self.config.getValue("envNames")
+        envNames = self.config.getValue("envNames") #envNames is a tuple
         envColors = self.config.getValue("envColors")
         envEase = self.config.getValue("envEase")
         preyProbability = self.config.getValue("preyEncounterProbability")
@@ -135,6 +141,8 @@ class Confibula(breve.Control):
             if( sqrt(water[i]**2 + water[i+1]**2) < sqrt(nearest[0]**2 + nearest[1]**2)) :
                 nearest = (water[i],water[i+1])
         return breve.vector(nearest[0], nearest[1], 0)
+
+# je propose de fusionner les diff�rents getNearest en fonction du fichier de config ?
 
     def getEnvironment(self, location):
         pixelColor = self.image.getRgbPixel(location.x, location.y)
@@ -209,12 +217,35 @@ class Confibula(breve.Control):
 
 
     def malesPlaced(self):
-        self.malesSingAll = 1
-        for frog in self.frogsMale:
-            if frog.state != 'singing' :
-                self.malesSingAll = 0
-                break
-        return self.malesSingAll
+            self.malesSingAll = 1
+            for frog in self.frogsMale:
+                if frog.state != 'singing' :
+                    self.malesSingAll = 0
+                    break
+            return self.malesSingAll
+        
+    def onBorder(self, location):
+        tooMuch = [] #array( left, right, top, bottom)
+        if (location.x >= 8):
+            tooMuch.append(False)
+            tooMuch.append(True)
+        elif location.x <= -8:
+            tooMuch.append(True)
+            tooMuch.append(False)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+
+        if (location.y >= 8):
+            tooMuch.append(True)
+            tooMuch.append(False)
+        elif location.y <= -8:
+            tooMuch.append(False)
+            tooMuch.append(True)
+        else:
+            tooMuch.append(False)
+            tooMuch.append(False)
+        return tooMuch
 
     def worldToImage(self, location):
         '''
@@ -255,6 +286,22 @@ class Confibula(breve.Control):
         logger.title('Encountered preys :')
         for frog in self.frogs:
             logger.log('Frog #%d, preys : %d, energy : %d, predators : %d' % (frog.id, frog.encounteredPreys, frog.totalEnergyBoost, frog.encounteredPredators))
+
+#    def debugSound(self):
+#        test = breve.createInstances(breve.Mobile, 1)
+#        test.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+#        tab = self.movement.getMoveField(test.getLocation(), 0.3)
+#        maxDB = 0
+#	for i in range(len(tab)) :
+#		gog = breve.createInstances(breve.Mobile, 1)
+#                gog.move(tab[i])
+#                gog.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+#                if maxDB <= self.controller.getSoundLevel(gog.getLocation()):
+#                    maxDB = self.controller.getSoundLevel(gog.getLocation())
+#                    dotChoice = gog
+#                    iChoice = i
+#        dotChoice.setColor(breve.vector(1, 0, 0))
+#        print iChoice
 
 breve.Confibula = Confibula
 

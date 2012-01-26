@@ -12,11 +12,12 @@ class Frog(breve.Mobile):
         breve.Mobile.__init__(self)
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
-        self.energy = 1000
+        self.energy = self.controller.config.getValue('energy')
         self.minEnergy = randint(5, 20)
         self.maxEnergy = randint(80, 95)
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
+        self.sleepTime = 0
         self.init()
 
     def init(self):
@@ -39,6 +40,9 @@ class Frog(breve.Mobile):
             move.y = move.y+speed
         # fin exemple
         self.setVelocity(move)
+
+
+
         
     def getId(self):
         return self.id
@@ -48,34 +52,27 @@ class Frog(breve.Mobile):
 
     def onBorder(self):
         location = self.getLocation();
-        tooMuch = [] #array( left, right, top, bottom)
-        if (location.x >= 8):
-            tooMuch.append(False)
-            tooMuch.append(True)
-        elif location.x <= -8:
-            tooMuch.append(True)
-            tooMuch.append(False)
-        else:
-            tooMuch.append(False)
-            tooMuch.append(False)
-
-        if (location.y >= 8):
-            tooMuch.append(True)
-            tooMuch.append(False)
-        elif location.y <= -8:
-            tooMuch.append(False)
-            tooMuch.append(True)
-        else:
-            tooMuch.append(False)
-            tooMuch.append(False)
-        return tooMuch
+        return self.controller.onBorder(location)
 
     def getEnergy(self):
         return self.energy
 
     def getSoundLevel(self):
         return self.controller.getSoundLevel(self.controller.worldToImage(self.getLocation()))
-	
+
+    def viewMale(self):
+	visionDistance = self.controller.config.getValue("visionDistance")
+	viewMale = []
+	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
+	for male in self.controller.frogsMale:
+            if self.getDistance(male) < visionDistance and male.state == 'singing':
+                viewMale.append(male)
+	#si il y a des males "vu"
+	if len(viewMale) != 0:
+            return viewMale
+	else:
+            return 0;
+        
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
