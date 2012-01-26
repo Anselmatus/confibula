@@ -39,8 +39,8 @@ class Movement(breve.Abstract):
 		return self.findPartner(id)
             elif self.getFrog(id).state == 'hunting':
 		return self.hunter(id)
-	else:
-		return self.randomMovement(id)
+
+        return self.randomMovement(id)
 
     def hunter(self, id):
         frog = self.getFrog(id)

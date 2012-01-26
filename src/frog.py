@@ -40,6 +40,9 @@ class Frog(breve.Mobile):
             move.y = move.y+speed
         # fin exemple
         self.setVelocity(move)
+
+
+
         
     def getId(self):
         return self.id
