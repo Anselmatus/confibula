@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__author__= "antoine"
+__author__= "Confibula team"
 
 from utils import color
 
