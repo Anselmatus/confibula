@@ -224,20 +224,22 @@ class Confibula(breve.Control):
         
     def onBorder(self, location):
         tooMuch = [] #array( left, right, top, bottom)
-        if (location.x >= 8):
+        borderRight = self.config.getValue("borderRight")
+        borderTop = self.config.getValue("borderTop")
+        if (location.x >= borderRight):
             tooMuch.append(False)
             tooMuch.append(True)
-        elif location.x <= -8:
+        elif location.x <= -borderRight:
             tooMuch.append(True)
             tooMuch.append(False)
         else:
             tooMuch.append(False)
             tooMuch.append(False)
 
-        if (location.y >= 8):
+        if (location.y >= borderTop):
             tooMuch.append(True)
             tooMuch.append(False)
-        elif location.y <= -8:
+        elif location.y <= -borderTop:
             tooMuch.append(False)
             tooMuch.append(True)
         else:
