@@ -103,7 +103,7 @@ class Movement(breve.Abstract):
         if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
             male.state = 'singing'
             return breve.vector(0, 0, 0)
-        else : # deplacements
+        else : # deplacements  PAS FINI JE GÉRE PAS TOUT C NORMAL !!!
             male.energy -= speed/2
             if (env != 'Eau' or soundLevel >= dbMaxToSing) :
                 moveField = self.getMoveField(location, speed)
