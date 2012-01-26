@@ -156,13 +156,7 @@ class Movement(breve.Abstract):
 		return self.hunter(id)
 
     def partnerChoice(self,listPartner,id, speed): # choisis un partner en fonction du tableau de male passé en parametre
-	malePower = listPartner[0].voicePower + listPartner[0].voiceQuality + listPartner[0].throatColor
-	maleChoice = listPartner[0]
-	
-	for male in listPartner[1:]:
-		if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
-			malePower = male.voicePower + male.voiceQuality + male.throatColor
-			maleChoice = male
+	maleChoice = self.getFrog(id).getBestMale(listPartner)
         femeleX = int(self.getFrog(id).getLocation().x * 10)
         femeleY = int(self.getFrog(id).getLocation().y * 10)
         maleX = int(maleChoice.getLocation().x * 10)
