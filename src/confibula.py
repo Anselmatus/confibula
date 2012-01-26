@@ -71,7 +71,7 @@ class Confibula(breve.Control):
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
 
-        print self.frogs[5].state
+        
 
     
     def setUpMenus(self):
