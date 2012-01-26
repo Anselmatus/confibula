@@ -18,24 +18,25 @@ class Movement(breve.Abstract):
 
     def selectMovement(self, id):
 	if self.getFrog(id).state == 'coupling':
-		return self.coupling(id)
-	if isinstance(self.getFrog(id), breve.Male):
+            return self.coupling(id)
+        elif self.getFrog(id).state == 'sleeping':
+            self.getFrog(id).sleepTime +=1
+            return self.sleeping(id,self.getFrog(id).sleepTime)
 
-		if self.getFrog(id).state == 'moveToSing':
-			return self.moveToSing(id)
-		elif self.getFrog(id).state == 'singing':
-			return self.singer(id)
-		elif self.getFrog(id).state == 'hunting':
-			return self.hunter(id)
-		elif self.getFrog(id).state == 'coupling':
-			return self.coupling(id)
+	elif isinstance(self.getFrog(id), breve.Male):
 
-	if isinstance(self.getFrog(id), breve.Female):
-		if self.getFrog(id).state == 'coupling':
-			return self.coupling(id)
-		elif self.getFrog(id).state == 'findPartener':
-			return self.findPartner(id)
-	elif self.getFrog(id).state == 'hunting':
+            if self.getFrog(id).state == 'moveToSing':
+                return self.moveToSing(id)
+            elif self.getFrog(id).state == 'singing':
+                return self.singer(id)
+            elif self.getFrog(id).state == 'hunting':
+                return self.hunter(id)
+
+	elif isinstance(self.getFrog(id), breve.Female):
+
+            if self.getFrog(id).state == 'findPartener':
+		return self.findPartner(id)
+            elif self.getFrog(id).state == 'hunting':
 		return self.hunter(id)
 	else:
 		return self.randomMovement(id)
@@ -126,23 +127,27 @@ class Movement(breve.Abstract):
     def findPartner(self, id):
 	female = self.getFrog(id)
 	location = female.getLocation()
-	speed = float(female.energy) / 2000
+	speed = float(female.energy) / 1000
 	viewMale = female.viewMale()
-	moveField = self.getMoveField(location, speed)
+	
 	if self.controller.getSoundLevel(location):
 		if viewMale != 0:
 			return self.partnerChoice(viewMale, id, speed)
 		else:
+			moveField = self.getMoveField(location, speed)
 			maxDB = self.controller.getSoundLevel(moveField[0])
+#			print maxDB
 			dotChoice = moveField[0]
+#			print dotChoice
 		for dot in moveField[1:]:
-			print self.controller.getSoundLevel(dot)
+#			print self.controller.getSoundLevel(dot)
 			if maxDB <= self.controller.getSoundLevel(dot):
 				maxDB = self.controller.getSoundLevel(dot)
 				dotChoice = dot
-				print 'up',maxDB
-		print dotChoice, '    ', maxDB
-		return dotChoice
+#				print 'up',maxDB
+#		print 'location :',self.getFrog(id).getLocation()
+#		print dotChoice, '    ', maxDB
+		return dotChoice - breve.vector(location.x,location.y,0)
         else:
 		female.state = 'hunting'
 		return self.hunter(id)
@@ -176,8 +181,8 @@ class Movement(breve.Abstract):
 
     def moveTo(self, location, destination, speed):
         direction = destination - location
-	direction.x = uniform(-1, 1) + direction.x
-	direction.y = uniform(-1, 1) + direction.y
+	direction.x = direction.x
+	direction.y = direction.y
         distance = sqrt(direction.x ** 2 + direction.y ** 2)
         return (direction / distance) * speed
 
@@ -200,12 +205,28 @@ class Movement(breve.Abstract):
         return moveField
 
     def coupling(self, id):
-        if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy / 100.) * 1000):
-            self.getFrog(id).state = 'hunting'
+        if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy / 100.0) * 1000):
+            self.getFrog(id).state = 'sleeping'
         else:
             self.getFrog(id).energy -= self.controller.config.getValue("couplingEnergyCost")
         return breve.vector(0, 0, 0)
 
+    def sleeping(self,id,sleepTime):
+        if isinstance(self.getFrog(id), breve.Female):
+            if sleepTime >= self.controller.config.getValue("timeToSleepFemale"):
+                self.getFrog(id).sleepTime = 0
+                self.getFrog(id).state = 'hunting'
+#            print self.controller.config.getValue("timeToSleepFemale")
+
+        if isinstance(self.getFrog(id), breve.Male):
+            if sleepTime >= self.controller.config.getValue("timeToSleepMale"):
+                self.getFrog(id).sleepTime = 0
+                self.getFrog(id).state = 'hunting'
+#            print self.controller.config.getValue("timeToSleepMale")
+        
+#        print sleepTime
+        return breve.vector(0,0,0)
+    
     def energyCost(self):
         energy = 3
         return(energy)

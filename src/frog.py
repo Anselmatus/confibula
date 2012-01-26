@@ -17,6 +17,7 @@ class Frog(breve.Mobile):
         self.maxEnergy = randint(80, 95)
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
+        self.sleepTime = 0
         self.init()
 
     def init(self):

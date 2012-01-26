@@ -13,6 +13,7 @@ import breve
 from math import sqrt, log10
 
 #modules imports
+from tokenize import tabsize
 from utils import config
 from utils import logger
 
@@ -60,15 +61,16 @@ class Confibula(breve.Control):
 
         # Loading frogs
         self.loadMaleFrogs()
-	#self.loadFemaleFrogs()
+		#self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
         self.setUpMenus()
-
+	
     def iterate(self):
         breve.Control.iterate(self)
 	if self.malesSingAll == 0 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
+
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -279,6 +281,22 @@ class Confibula(breve.Control):
         logger.title('Encountered preys :')
         for frog in self.frogs:
             logger.log('Frog #%d, preys : %d, energy : %d, predators : %d' % (frog.id, frog.encounteredPreys, frog.totalEnergyBoost, frog.encounteredPredators))
+
+#    def debugSound(self):
+#        test = breve.createInstances(breve.Mobile, 1)
+#        test.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+#        tab = self.movement.getMoveField(test.getLocation(), 0.3)
+#        maxDB = 0
+#	for i in range(len(tab)) :
+#		gog = breve.createInstances(breve.Mobile, 1)
+#                gog.move(tab[i])
+#                gog.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+#                if maxDB <= self.controller.getSoundLevel(gog.getLocation()):
+#                    maxDB = self.controller.getSoundLevel(gog.getLocation())
+#                    dotChoice = gog
+#                    iChoice = i
+#        dotChoice.setColor(breve.vector(1, 0, 0))
+#        print iChoice
 
 breve.Confibula = Confibula
 
