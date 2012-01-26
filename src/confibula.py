@@ -251,9 +251,10 @@ class Confibula(breve.Control):
         '''
         Changes the coordinates of a breve.vector from simulation's world to image coordinates.
         '''
-        
-        x = int((location.x + 8) * (self.image.width/16))
-        y = int((location.y + 8) * (self.image.height/16))
+        width = self.config.getValue("mapWidth")
+        height = self.config.getValue("mapHeight")
+        x = int((location.x + (width/2)) * (self.image.width/width))
+        y = int((location.y + (height/2)) * (self.image.height/height))
         return breve.vector(x, y, 0)
 
     def writeLogFile(self):
