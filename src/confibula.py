@@ -16,6 +16,7 @@ from math import sqrt, log10
 from tokenize import tabsize
 from utils import config
 from utils import logger
+from utils import color
 
 import environment
 import frog
@@ -34,7 +35,7 @@ class Confibula(breve.Control):
         self.map = None
         self.environment = []
         self.frogsMale = []
-	self.frogsFemale =[]
+	self.frogsFemale = []
         self.frogs = []
 	self.malesSingAll = 0
         self.init()
@@ -56,18 +57,18 @@ class Confibula(breve.Control):
         # /!\ ------------ RESERVED to Chou & Antoine ------------ /!\
         # Initialisation of the environment
         self.loadEnvironment()
-	self.offsetCamera( breve.vector( 0, 0, 22) )
+	self.offsetCamera( breve.vector( 0, 0, 22) ) # (0, 0, z) depends on the picture's size
         # End of environment
 
         # Loading frogs
         self.loadMaleFrogs()
-		#self.loadFemaleFrogs()
+	self.loadFemaleFrogs()
 	self.movement = breve.createInstances(breve.Movement, 1)
-        self.setUpMenus()
-	
+#        self.setUpMenus()
+
     def iterate(self):
         breve.Control.iterate(self)
-	if self.malesSingAll == 0 :
+	if self.malesSingAll == -1 :
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
 
@@ -84,7 +85,7 @@ class Confibula(breve.Control):
         self.loadMap()
         
         myEnv = None
-        envNames = self.config.getValue("envNames")
+        envNames = self.config.getValue("envNames") #envNames is a tuple
         envColors = self.config.getValue("envColors")
         envEase = self.config.getValue("envEase")
         preyProbability = self.config.getValue("preyEncounterProbability")
@@ -138,6 +139,8 @@ class Confibula(breve.Control):
             if( sqrt(water[i]**2 + water[i+1]**2) < sqrt(nearest[0]**2 + nearest[1]**2)) :
                 nearest = (water[i],water[i+1])
         return breve.vector(nearest[0], nearest[1], 0)
+
+# je propose de fusionner les diffŽrents getNearest en fonction du fichier de config ?
 
     def getEnvironment(self, location):
         pixelColor = self.image.getRgbPixel(location.x, location.y)

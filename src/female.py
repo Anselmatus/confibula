@@ -20,6 +20,14 @@ class Female(breve.Frog):
         self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
         self.setColor(breve.vector(1, 0, 0))
 
+    def iterate(self):
+        breve.Frog.iterate(self)
+        if self.state == 'coupling' :
+            self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.15, 0.15, 0.15)))
+            self.setColor(breve.vector(0, 1, 1))
+        else :
+            self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+            self.setColor(breve.vector(1, 0, 0))
 
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())

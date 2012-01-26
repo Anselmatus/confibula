@@ -12,7 +12,7 @@ class Frog(breve.Mobile):
         breve.Mobile.__init__(self)
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
-        self.energy = 1000
+        self.energy = self.controller.config.getValue('energy')
         self.minEnergy = randint(5, 20)
         self.maxEnergy = randint(80, 95)
         self.state = None
