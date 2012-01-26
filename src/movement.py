@@ -182,7 +182,7 @@ class Movement(breve.Abstract):
         self.getFrog(id).energy -= ( x ** 2 + y ** 2 ) / 2 # perte d'energie specifique
 	return breve.vector(x, y, 0)
 
-    def cheater(self):
+    def cheater(self, id):
 	return 0
     
     def unLockFrog(self, direction):
