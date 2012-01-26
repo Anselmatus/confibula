@@ -19,8 +19,8 @@ class Male(breve.Frog):
         self.turnCheater()
 
     def init(self):
-        width = self.config.getValue("mapWidth")/2
-        height = self.config.getValue("mapHeight")/2
+        width = self.controller.config.getValue("mapWidth")/2
+        height = self.controller.config.getValue("mapHeight")/2
         self.move(breve.vector(uniform(-width, width), uniform(-height, height), 0.01))
         self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
         self.setColor(breve.vector(1, 1, 1))
