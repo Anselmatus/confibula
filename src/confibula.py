@@ -224,8 +224,8 @@ class Confibula(breve.Control):
         
     def onBorder(self, location):
         tooMuch = [] #array( left, right, top, bottom)
-        borderRight = self.config.getValue("borderRight")
-        borderTop = self.config.getValue("borderTop")
+        borderRight = self.config.getValue("mapWidth")/2
+        borderTop = self.config.getValue("mapHeight")/2
         if (location.x >= borderRight):
             tooMuch.append(False)
             tooMuch.append(True)
@@ -251,6 +251,7 @@ class Confibula(breve.Control):
         '''
         Changes the coordinates of a breve.vector from simulation's world to image coordinates.
         '''
+        
         x = int((location.x + 8) * (self.image.width/16))
         y = int((location.y + 8) * (self.image.height/16))
         return breve.vector(x, y, 0)
