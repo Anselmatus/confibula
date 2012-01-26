@@ -148,7 +148,7 @@ class Confibula(breve.Control):
         location : position in the simulation (location.x & location.y)
         '''
         SPL = 0
-        for frog in self.frogsMale:
+        for frog in self.frogs:
             
             if frog.state == 'singing' :
                 #pos = self.worldToImage(frog.getLocation())
@@ -189,7 +189,7 @@ class Confibula(breve.Control):
         On peut généraliser ce calcul pour n points.
         '''
         xG, yG, weightSum = 0.0, 0.0, 0.0 # weightSum = a+b+c = sum of the weight of each point
-        for frog in self.frogsMale:
+        for frog in self.frogs:
             if frog.state == 'singing' :
                 pos = frog.getLocation()
                 weight = frog.voicePower
