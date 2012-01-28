@@ -36,6 +36,7 @@ class Confibula(breve.Control):
         self.frogsMale = []
 	self.frogsFemale = []
         self.frogs = []
+        self.femaleIsLoad = False
 	self.malesSingAll = 0
         self.init()
 	
@@ -66,8 +67,9 @@ class Confibula(breve.Control):
 
     def iterate(self):
         breve.Control.iterate(self)
+        time = int(self.getTime())
 	if self.malesSingAll == 0 :
-            if self.malesPlaced() :
+            if (self.malesPlaced() or time >= self.config.getValue("femaleLoadTimeDefault")) and self.femaleIsLoad == False:
                 self.loadFemaleFrogs()
 
         
@@ -120,6 +122,7 @@ class Confibula(breve.Control):
 	del(self.frogsFemale[:])
 	self.frogsFemale = breve.createInstances(breve.Female, frogsFemaleNumber)
 	self.frogs.extend(self.frogsFemale)
+        self.femaleIsLoad = True
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)
