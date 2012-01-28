@@ -356,9 +356,7 @@ class SongFieldTexture(breve.Image):
         self.initWith(self.width, self.height)
 
     def iterate(self):
-        print 'it'
         if(self.nbFrogSinging != self.controller.getNbFrogsSinging()) :
-            print 'eheh'
             for x in range(self.width) :
                 for y in range(self.height) :
                     xInMap = ((x-(self.width/2))/self.width)*16
