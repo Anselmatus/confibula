@@ -125,15 +125,9 @@ class Movement(breve.Abstract):
                 if( self.controller.getEnvironment(self.controller.worldToImage(direction + location)).getName() == 'Eau' ) :
                     return direction
                 else :
-                    moveField = self.getMoveField(location, speed)
-                    min = moveField[0]
-                    for point in moveField[1:]:
-                        envPoint = self.controller.getEnvironment(self.controller.worldToImage(point)).getName()
-                        if(((self.controller.getSoundLevel(point)-dbMaxToSing) ** 2 < (self.controller.getSoundLevel(min)-dbMaxToSing) ** 2) and envPoint == 'Eau'):
-                            min = point
-                    return min - breve.vector(location.x, location.y, 0)
+                    return self.moveToLevelSong(location, speed, 0, 1)
             else: # if Sound is too high 
-                return self.moveToLevelSong(location, speed, dbMaxToSing-2.5)
+                return self.moveToLevelSong(location, speed, 0, 1)
 
 
 
@@ -199,11 +193,15 @@ class Movement(breve.Abstract):
         else:
             return self.findBestMale(id, location, speed, 0.5)
     
-    def moveToLevelSong(self, location, speed, levelSong):
+    def moveToLevelSong(self, location, speed, levelSong, water=0):
         moveField = self.getMoveField(location, speed)
         min = moveField[0]
         for point in moveField[1:]:
-            if((self.controller.getSoundLevel(point)-levelSong) ** 2 < (self.controller.getSoundLevel(min)-levelSong) ** 2):
+            if (water != 0) : # param to say if we avoid water or not
+                envPoint = self.controller.getEnvironment(self.controller.worldToImage(point)).getName()
+            else :
+                envPoint = 'Eau'
+            if((((self.controller.getSoundLevel(point)-levelSong ) ** 2) < ((self.controller.getSoundLevel(min)-levelSong) ** 2) ) and envPoint == 'Eau'):
                 min = point
         return min - breve.vector(location.x, location.y, 0)
 

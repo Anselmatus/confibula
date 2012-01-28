@@ -32,6 +32,7 @@ class Confibula(breve.Control):
         self.config = None
         self.movememt = None
         self.map = None
+        self.songField = None
         self.environment = []
         self.frogsMale = []
 	self.frogsFemale = []
@@ -70,19 +71,18 @@ class Confibula(breve.Control):
             if self.malesPlaced() :
                 self.loadFemaleFrogs()
 
-        
 
-    
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
         self.addMenu('''Afficher les environements''', 'printEnvironments') # debug purpose
         self.addMenu('''Afficher le niveau sonore''', 'printSoundLevel') # debug purpose
-        self.addMenu('''Afficher les grenouilles''', 'printFrogs') # debug purpose
+        self.addMenu('''Afficher les grenosuilles''', 'printFrogs') # debug purpose
         self.addMenu('''Afficher barycentre du son''', 'printSoundSource') # debug purpose
         self.addMenu('''Afficher les proies''', 'printEncounteredPreys') # debug purpose
 
     def loadEnvironment(self):
         self.loadMap()
+        self.loadSongField()
         
         myEnv = None
         envNames = self.config.getValue("envNames") #envNames is a tuple
@@ -108,6 +108,10 @@ class Confibula(breve.Control):
         self.image.width = self.image.getWidth()
         self.image.height = self.image.getHeight()
 	self.map = Map(self.image)
+
+    def loadSongField(self):
+        imageFile = self.config.getValue("songFieldFile")
+	self.songField = SongField()
 
     def loadMaleFrogs(self):
         frogsMaleNumber = self.config.getValue("frogsMaleNumber")
@@ -318,9 +322,49 @@ class Map(breve.Stationary):
 	self.move( breve.vector( 0, 0, 0 ) )
         self.setRotation( breve.vector(0,0,1),1.5708)
 
-
-
 breve.Map = Map
+
+class SongField(breve.Stationary):
+    def __init__(self):
+	breve.Stationary.__init__( self )
+	self.setShape( breve.createInstances( breve.Cube, 1 ).initWith( breve.vector( 16, 16, 0.0001 )) )
+	self.setTextureImage( breve.createInstances( breve.SongFieldTexture, 1 ) )
+        self.setColor(breve.vector(0,0,0))
+        self.setTransparency(1.)
+	self.move( breve.vector( 0, 0, 0.006 ) )
+        self.setRotation( breve.vector(0,0,1),1.5708)
+
+breve.SongField = SongField
+
+class SongFieldTexture(breve.Image):
+    def __init__(self):
+	breve.Image.__init__( self )
+        self.width = 16.
+        self.height = 16.
+        self.nbFrogSinging = self.controller.getNbFrogsSinging()
+        self.init()
+	
+    def init(self):
+        self.initWith(self.width, self.height)
+
+    def iterate(self):
+        print 'it'
+        if(self.nbFrogSinging != self.controller.getNbFrogsSinging()) :
+            print 'eheh'
+            for x in range(self.width) :
+                for y in range(self.height) :
+                    xInMap = ((x-(self.width/2))/self.width)*16
+                    yInMap = ((y-(self.width/2))/self.height)*16
+                    print breve.vector(xInMap, yInMap, 0)
+                    sound = self.controller.getSoundLevel(breve.vector(xInMap, yInMap, 0))
+                    if(sound >= self.controller.config.getValue("dbMaxToSing")) :
+                        self.setAlphaPixel( (sound/100), x, y )
+                    else :
+                        self.setAlphaPixel( 0., x, y )
+            self.nbFrogSinging = self.controller.getNbFrogsSinging()
+        breve.Image.iterate(self)
+
+breve.SongFieldTexture = SongFieldTexture
 
 
 Confibula()
