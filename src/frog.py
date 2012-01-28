@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 
 import breve
 from random import randint
@@ -12,11 +12,12 @@ class Frog(breve.Mobile):
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
         self.energy = self.controller.config.getValue('energy')
-        self.minEnergy = randint(5, 20)
-        self.maxEnergy = randint(80, 95)
-        self.state = None
+        self.minEnergy = randint(self.controller.config.getValue('lowLimitMinEnergy'), self.controller.config.getValue('highLimitMinEnergy'))
+        self.maxEnergy = randint(self.controller.config.getValue('lowLimitMaxEnergy'), self.controller.config.getValue('lowLimitMaxEnergy'))
+        self.state = None # initialization
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.sleepTime = 0
+        self.timeLastCoupling = 0
         self.init()
 
     def init(self):
@@ -29,7 +30,6 @@ class Frog(breve.Mobile):
     def iterate(self):
         move = self.controller.selectMovement(self.id)
         #exemple utilisation methode onBorder()
-        speed = float(self.energy) / 1000
         onBorder = self.onBorder()
         borderRight = self.controller.config.getValue("mapWidth")/2
         borderTop = self.controller.config.getValue("mapHeight")/2
@@ -44,9 +44,6 @@ class Frog(breve.Mobile):
         # fin exemple
         if (onBorder[0]==False and onBorder[1]==False and onBorder[2]==False and onBorder[3]==False):
             self.setVelocity(move)
-
-
-
         
     def getId(self):
         return self.id
@@ -68,12 +65,12 @@ class Frog(breve.Mobile):
     def getBestMale(self, listMale=[]):
         if len(listMale) == 0:
             listMale = self.viewMale()
-        malePower = listMale[0].voicePower + listMale[0].voiceQuality + listMale[0].throatColor
+        malePower = listMale[0].getPower()
 	maleChoice = listMale[0]
 
 	for male in listMale[1:]:
-            if malePower > (male.voicePower + male.voiceQuality + male.throatColor):
-                malePower = male.voicePower + male.voiceQuality + male.throatColor
+            if malePower > male.getPower():
+                malePower = male.getPower()
                 maleChoice = male
         return maleChoice
     
@@ -95,7 +92,7 @@ class Frog(breve.Mobile):
 	viewFemale = []
 	#parcour la liste des males présent et les met dans un tableau pour recencer les male "vu" par la femelle
 	for female in self.controller.frogsFemale:
-            if self.getDistance(female) < visionDistance:
+            if self.getDistance(female) < visionDistance and (female.state == 'hunting' or female.state == 'findPartener'):
                 viewFemale.append(female)
 	#si il y a des males "vu"
 	if len(viewFemale) != 0:
@@ -109,7 +106,7 @@ class Frog(breve.Mobile):
 	femaleChoice = listFemale[0]
         femaleId = listFemale[0].getId()
 	for female in listFemale[1:]:
-		if femaleId > female.getId() and (female.state == 'hunting' or female.state == 'findPartener'):
+		if femaleId > female.getId():
 			femaleId = female.getId()
 			femaleChoice = female
         return femaleChoice

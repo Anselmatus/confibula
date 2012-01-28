@@ -1,4 +1,3 @@
- 
 # -*- coding: utf-8 -*-
 
 from random import randint
@@ -12,7 +11,7 @@ class Female(breve.Frog):
     def __init__(self):
         breve.Frog.__init__(self)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.state = 'findPartener'
+        self.state = self.controller.config.getValue('standartFemaleState')
         self.init()
 
     def init(self):
@@ -27,6 +26,9 @@ class Female(breve.Frog):
         if self.state == 'coupling' :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.15, 0.15, 0.15)))
             self.setColor(breve.vector(0, 1, 1))
+        elif self.state == 'hunting':
+            self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+            self.setColor(breve.vector(1, 1, 0))
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 0, 0))
