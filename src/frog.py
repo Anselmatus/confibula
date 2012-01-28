@@ -17,6 +17,7 @@ class Frog(breve.Mobile):
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.sleepTime = 0
+        self.timeLastCoupling = 0
         self.init()
 
     def init(self):
@@ -29,7 +30,6 @@ class Frog(breve.Mobile):
     def iterate(self):
         move = self.controller.selectMovement(self.id)
         #exemple utilisation methode onBorder()
-        speed = float(self.energy) / 1000
         onBorder = self.onBorder()
         borderRight = self.controller.config.getValue("mapWidth")/2
         borderTop = self.controller.config.getValue("mapHeight")/2
