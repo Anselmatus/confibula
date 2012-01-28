@@ -44,7 +44,7 @@ class Male(breve.Frog):
 
 
     def turnCheater(self):
-        power = self.voicePower + self.voiceQuality + self.throatColor
+        power = self.getPower()
         if (power < 85) :
             becomeCheaterProbability = self.controller.config.getValue("becomeCheaterProbability")
             addProbability = becomeCheaterProbability*35/100
@@ -60,6 +60,9 @@ class Male(breve.Frog):
             if uniform(0, 1) < becomeCheaterProbability:
                 self.isCheater = True
                 self.setColor(breve.vector(0, 0, 0))
+
+    def getPower(self):
+        return self.voicePower + self.voiceQuality + self.throatColor
     
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
