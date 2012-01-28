@@ -14,9 +14,9 @@ class Frog(breve.Mobile):
         self.energy = self.controller.config.getValue('energy')
         self.minEnergy = randint(self.controller.config.getValue('lowLimitMinEnergy'), self.controller.config.getValue('highLimitMinEnergy'))
         self.maxEnergy = randint(self.controller.config.getValue('lowLimitMaxEnergy'), self.controller.config.getValue('lowLimitMaxEnergy'))
-        self.state = None
+        self.state = None # initialization
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.sleepTime = 0
+        self.sleepTime = 0 # initialization
         self.init()
 
     def init(self):

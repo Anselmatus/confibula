@@ -71,9 +71,6 @@ class Confibula(breve.Control):
 	if self.malesSingAll == 0 :
             if (self.malesPlaced() or time >= self.config.getValue("femaleLoadTimeDefault")) and self.femaleIsLoad == False:
                 self.loadFemaleFrogs()
-
-        
-
     
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
@@ -92,14 +89,20 @@ class Confibula(breve.Control):
         envEase = self.config.getValue("envEase")
         preyProbability = self.config.getValue("preyEncounterProbability")
         preyEnergyBoost = self.config.getValue("preyEnergyBoost")
+        preyProteinBoost = self.config.getValue("preyProteinBoost")
         predatorProbability = self.config.getValue("predatorEncounterProbability")
+        predatorEnergyLost = self.config.getValue("predatorEnergyLost")
+        predatorProteinLost = self.config.getValue("predatorProteinLost")
         logger.title("Loading %d environments." % len(envNames))
         for i in range(0, len(envNames)):
             myEnv = Environment(envNames[i], envColors[i])
             myEnv.ease = envEase[i]
             myEnv.preyProbability = preyProbability[i]
             myEnv.preyEnergyBoost = preyEnergyBoost[i]
+            myEnv.preyProteinBoost = preyProteinBoost[i]
             myEnv.predatorProbability = predatorProbability[i]
+            myEnv.predatorEnergyLost = predatorEnergyLost[i]
+            myEnv.predatorProteinLost = predatorProteinLost[i]
             self.environment.append(myEnv)
             logger.log(myEnv)
         logger.title("Environment loading complete.")
