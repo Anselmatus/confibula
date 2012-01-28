@@ -5,6 +5,7 @@ from math import sqrt
 from random import randint
 from random import uniform
 
+
 import breve
 
 class Movement(breve.Abstract):
@@ -250,6 +251,9 @@ class Movement(breve.Abstract):
     def coupling(self, id):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy / 100.0) * 1000):
             self.getFrog(id).state = 'sleeping'
+            self.getFrog(id).timeLastCoupling = self.controller.getTime()
+            if isinstance(self.getFrog(id), breve.Male) and self.getFrog(id).isCheater == True:
+                self.getFrog(id).isCheater = False
         else:
             self.getFrog(id).energy -= self.controller.config.getValue("couplingEnergyCost")
         return breve.vector(0, 0, 0)
