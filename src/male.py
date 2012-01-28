@@ -9,12 +9,12 @@ class Male(breve.Frog):
 
     def __init__(self):
         breve.Frog.__init__(self)
-        self.voicePower = randint(40, 60)
-        self.voiceQuality = randint(1, 10)
-        self.throatColor = randint(30, 50)
+        self.voicePower = randint(self.controller.config.getValue('lowVoicePower'), self.controller.config.getValue('highVoicePower'))
+        self.voiceQuality = randint(self.controller.config.getValue('lowVoiceQuality'), self.controller.config.getValue('highVoiceQuality'))
+        self.throatColor = randint(self.controller.config.getValue('lowThroatColor'), self.controller.config.getValue('highThroatColor'))
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.state = 'moveToSing'
-        self.isCheater = False
+        self.state = self.controller.config.getValue('standartMaleState')
+        self.isCheater = self.controller.config.getValue('isCheater')
         self.init()
         self.turnCheater()
 
@@ -39,6 +39,7 @@ class Male(breve.Frog):
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 1, 1))
+
         if self.isCheater:
             self.setColor(breve.vector(0, 0, 0))
 

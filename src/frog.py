@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+ # -*- coding: utf-8 -*-
 
 import breve
 from random import randint
@@ -12,8 +12,8 @@ class Frog(breve.Mobile):
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
         self.energy = self.controller.config.getValue('energy')
-        self.minEnergy = randint(5, 20)
-        self.maxEnergy = randint(80, 95)
+        self.minEnergy = randint(self.controller.config.getValue('lowLimitMinEnergy'), self.controller.config.getValue('highLimitMinEnergy'))
+        self.maxEnergy = randint(self.controller.config.getValue('lowLimitMaxEnergy'), self.controller.config.getValue('lowLimitMaxEnergy'))
         self.state = None
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.sleepTime = 0
