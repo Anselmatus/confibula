@@ -9,14 +9,17 @@ class Male(breve.Frog):
 
     def __init__(self):
         breve.Frog.__init__(self)
-        self.voicePower = randint(40, 60)
-        self.voiceQuality = randint(1, 10)
-        self.throatColor = randint(30, 50)
+        self.voicePower = randint(self.controller.config.getValue('lowVoicePower'), self.controller.config.getValue('highVoicePower'))
+        self.voiceQuality = randint(self.controller.config.getValue('lowVoiceQuality'), self.controller.config.getValue('highVoiceQuality'))
+        self.throatColor = randint(self.controller.config.getValue('lowThroatColor'), self.controller.config.getValue('highThroatColor'))
+        self.patience = randint(80, 100)
+        timeFemaleLoad = self.controller.config.getValue("femaleLoadTimeDefault")*3
+        patienceTimeToCoupling = int(self.controller.config.getValue("patienceTimeToCoupling"))
+        self.patienceTimeMax = randint(int(timeFemaleLoad), patienceTimeToCoupling)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
-        self.state = 'moveToSing'
+        self.state = self.controller.config.getValue('standartMaleState')
         self.isCheater = False
         self.init()
-        self.turnCheater()
 
     def init(self):
         width = self.controller.config.getValue("mapWidth")/2
@@ -27,8 +30,11 @@ class Male(breve.Frog):
 
     def iterate(self):
         breve.Frog.iterate(self)
-        
-        if self.state == 'singing':
+        self.losePatience()
+        if self.isCheater == True:
+                self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
+                self.setColor(breve.vector(0, 0, 0))
+        elif self.state == 'singing':
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.15, 0.15, 0.15)))
         elif self.state == 'hunting':
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
@@ -39,12 +45,10 @@ class Male(breve.Frog):
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 1, 1))
-        if self.isCheater:
-            self.setColor(breve.vector(0, 0, 0))
 
-
-    def turnCheater(self):
-        power = self.voicePower + self.voiceQuality + self.throatColor
+    def turnCheater(self, power=0):
+        if power == 0:
+            power = self.getPower()
         if (power < 85) :
             becomeCheaterProbability = self.controller.config.getValue("becomeCheaterProbability")
             addProbability = becomeCheaterProbability*35/100
@@ -60,6 +64,20 @@ class Male(breve.Frog):
             if uniform(0, 1) < becomeCheaterProbability:
                 self.isCheater = True
                 self.setColor(breve.vector(0, 0, 0))
+                return True
+        return False
+
+
+    def losePatience(self):
+        timeNoCoupling = int(self.controller.getTime() - self.timeLastCoupling)
+        timeNoCouplingPercent = int(timeNoCoupling*100/self.patienceTimeMax)
+        if timeNoCouplingPercent > self.patience and self.isCheater == False:
+            power = self.getPower()*(100-timeNoCouplingPercent)/100
+            if self.turnCheater(power) == True:
+                self.state = "moveToSing"
+
+    def getPower(self):
+        return self.voicePower + self.voiceQuality + self.throatColor
     
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())

@@ -37,6 +37,7 @@ class Confibula(breve.Control):
         self.frogsMale = []
 	self.frogsFemale = []
         self.frogs = []
+        self.femaleIsLoad = False
 	self.malesSingAll = 0
         self.init()
 	
@@ -67,11 +68,11 @@ class Confibula(breve.Control):
 
     def iterate(self):
         breve.Control.iterate(self)
+        time = int(self.getTime())
 	if self.malesSingAll == 0 :
-            if self.malesPlaced() :
+            if (self.malesPlaced() or time >= self.config.getValue("femaleLoadTimeDefault")) and self.femaleIsLoad == False:
                 self.loadFemaleFrogs()
-
-
+    
     def setUpMenus(self):
         self.addMenu('''Redistribuer les grenouilles''', 'loadFrogs') # not working
         self.addMenu('''Afficher les environements''', 'printEnvironments') # debug purpose
@@ -90,14 +91,20 @@ class Confibula(breve.Control):
         envEase = self.config.getValue("envEase")
         preyProbability = self.config.getValue("preyEncounterProbability")
         preyEnergyBoost = self.config.getValue("preyEnergyBoost")
+        preyProteinBoost = self.config.getValue("preyProteinBoost")
         predatorProbability = self.config.getValue("predatorEncounterProbability")
+        predatorEnergyLost = self.config.getValue("predatorEnergyLost")
+        predatorProteinLost = self.config.getValue("predatorProteinLost")
         logger.title("Loading %d environments." % len(envNames))
         for i in range(0, len(envNames)):
             myEnv = Environment(envNames[i], envColors[i])
             myEnv.ease = envEase[i]
             myEnv.preyProbability = preyProbability[i]
             myEnv.preyEnergyBoost = preyEnergyBoost[i]
+            myEnv.preyProteinBoost = preyProteinBoost[i]
             myEnv.predatorProbability = predatorProbability[i]
+            myEnv.predatorEnergyLost = predatorEnergyLost[i]
+            myEnv.predatorProteinLost = predatorProteinLost[i]
             self.environment.append(myEnv)
             logger.log(myEnv)
         logger.title("Environment loading complete.")
@@ -124,6 +131,7 @@ class Confibula(breve.Control):
 	del(self.frogsFemale[:])
 	self.frogsFemale = breve.createInstances(breve.Female, frogsFemaleNumber)
 	self.frogs.extend(self.frogsFemale)
+        self.femaleIsLoad = True
 
     def selectMovement(self, id):
         return self.movement.selectMovement(id)
