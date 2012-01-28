@@ -122,10 +122,9 @@ class Movement(breve.Abstract):
             elif(soundLevel < dbMaxToSing):
                 
                 direction = self.moveTo(location, self.controller.getSoundSource(), speed)
-                if( self.controller.getEnvironment(self.controller.worldToImage(direction)).getName() == 'Eau' ) :
+                if( self.controller.getEnvironment(self.controller.worldToImage(direction + location)).getName() == 'Eau' ) :
                     return direction
                 else :
-
                     moveField = self.getMoveField(location, speed)
                     min = moveField[0]
                     for point in moveField[1:]:
@@ -211,7 +210,7 @@ class Movement(breve.Abstract):
     def unLockFrog(self, location, speed):
         levelSong = 0
         unlockVector = self.moveToLevelSong(location, speed, levelSong)
-        if ( self.controller.getEnvironment(self.controller.worldToImage(unlockVector)).getName() == 'Eau') :
+        if ( self.controller.getEnvironment(self.controller.worldToImage(unlockVector-location)).getName() == 'Eau') :
             self.state = 'moveToSing'
         return unlockVector
 

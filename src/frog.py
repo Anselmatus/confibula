@@ -52,6 +52,7 @@ class Frog(breve.Mobile):
         return self.id
 
     def getEnvironment(self):
+        print self.controller.worldToImage(self.getLocation())
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
 
     def onBorder(self):
