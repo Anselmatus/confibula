@@ -235,29 +235,23 @@ class Confibula(breve.Control):
         return self.malesSingAll
         
     def onBorder(self, location):
-        tooMuch = [] #array( left, right, top, bottom)
         borderRight = self.config.getValue("mapWidth")/2
         borderTop = self.config.getValue("mapHeight")/2
+        vector = breve.vector(0, 0, 0)
         if (location.x >= borderRight):
-            tooMuch.append(False)
-            tooMuch.append(True)
+            breve.vector(-borderRight, 0, 0.01)
         elif location.x <= -borderRight:
-            tooMuch.append(True)
-            tooMuch.append(False)
+            vector = breve.vector(borderRight, 0, 0.01)
         else:
-            tooMuch.append(False)
-            tooMuch.append(False)
+            vector.x = location.x
 
         if (location.y >= borderTop):
-            tooMuch.append(True)
-            tooMuch.append(False)
+            vector = breve.vector(vector.x, -borderTop, 0.01)
         elif location.y <= -borderTop:
-            tooMuch.append(False)
-            tooMuch.append(True)
+            vector = breve.vector(vector.x, borderTop, 0.01)
         else:
-            tooMuch.append(False)
-            tooMuch.append(False)
-        return tooMuch
+            vector = breve.vector(vector.x, location.y, 0.01)
+        return vector
 
     def worldToImage(self, location):
         '''
@@ -347,8 +341,8 @@ breve.SongField = SongField
 class SongFieldTexture(breve.Image):
     def __init__(self):
 	breve.Image.__init__( self )
-        self.width = 64.
-        self.height = 64.
+        self.width = 32.
+        self.height = 32.
         self.nbFrogSinging = self.controller.getNbFrogsSinging()
         self.init()
 	

@@ -29,20 +29,9 @@ class Frog(breve.Mobile):
 		
     def iterate(self):
         move = self.controller.selectMovement(self.id)
-        #exemple utilisation methode onBorder()
         onBorder = self.onBorder()
-        borderRight = self.controller.config.getValue("mapWidth")/2
-        borderTop = self.controller.config.getValue("mapHeight")/2
-        if onBorder[0]:
-            self.move(breve.vector(borderRight, self.getLocation().y, 0.01))
-        if onBorder[1]:
-            self.move(breve.vector(-borderRight, self.getLocation().y, 0.01))
-        if onBorder[2]:
-            self.move(breve.vector(self.getLocation().x, -borderTop, 0.01))
-        if onBorder[3]:
-            self.move(breve.vector(self.getLocation().x, borderTop, 0.01))
-        # fin exemple
-        if (onBorder[0]==False and onBorder[1]==False and onBorder[2]==False and onBorder[3]==False):
+        self.move(onBorder)
+        if (onBorder.x==self.getLocation().x and onBorder.y==self.getLocation().y):
             self.setVelocity(move)
         
     def getId(self):
