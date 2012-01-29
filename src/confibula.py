@@ -347,8 +347,8 @@ breve.SongField = SongField
 class SongFieldTexture(breve.Image):
     def __init__(self):
 	breve.Image.__init__( self )
-        self.width = 16.
-        self.height = 16.
+        self.width = 64.
+        self.height = 64.
         self.nbFrogSinging = self.controller.getNbFrogsSinging()
         self.init()
 	
