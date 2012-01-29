@@ -94,7 +94,7 @@ class Movement(breve.Abstract):
         dbMaxToSing = self.controller.config.getValue("dbMaxToSing")
         env = self.getEnvironment(id).getName()
 
-        if( ( ( soundLevel > dbMaxToSing -5 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
+        if( ( ( soundLevel > dbMaxToSing -1 and soundLevel < dbMaxToSing ) or soundLevel == 0 ) and env == 'Eau') :
             male.state = 'singing'
             return breve.vector(0, 0, 0)
         else : # movement
