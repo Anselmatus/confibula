@@ -361,7 +361,7 @@ class SongFieldTexture(breve.Image):
                 for y in range(self.height) :
                     xInMap = ((x-(self.width/2))/self.width)*16
                     yInMap = ((y-(self.width/2))/self.height)*16
-                    print breve.vector(xInMap, yInMap, 0)
+#                    print breve.vector(xInMap, yInMap, 0)
                     sound = self.controller.getSoundLevel(breve.vector(xInMap, yInMap, 0))
                     if(sound >= self.controller.config.getValue("dbMaxToSing")) :
                         self.setAlphaPixel( (sound/100), x, y )
