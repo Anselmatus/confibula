@@ -241,7 +241,7 @@ class Confibula(breve.Control):
         borderTop = self.config.getValue("mapHeight")/2
         vector = breve.vector(0, 0, 0)
         if (location.x >= borderRight):
-            breve.vector(-borderRight, 0, 0.01)
+            vector = breve.vector(-borderRight, 0, 0.01)
         elif location.x <= -borderRight:
             vector = breve.vector(borderRight, 0, 0.01)
         else:
