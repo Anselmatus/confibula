@@ -17,7 +17,7 @@ class Movement(breve.Abstract):
     def selectMovement(self, id):
         frog = self.getFrog(id)
 	location = frog.getLocation()
-	speed = float(frog.energy) / 1000
+	speed = frog.speed()
 
         # Coupling & Sleeping state
 	if frog.state == 'coupling':

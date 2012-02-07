@@ -11,13 +11,14 @@ class Frog(breve.Mobile):
         breve.Mobile.__init__(self)
         Frog.numFrog += 1 
 	self.id = Frog.numFrog
-        self.energy = self.controller.config.getValue('energy')
         self.minEnergy = randint(self.controller.config.getValue('lowLimitMinEnergy'), self.controller.config.getValue('highLimitMinEnergy'))
         self.maxEnergy = randint(self.controller.config.getValue('lowLimitMaxEnergy'), self.controller.config.getValue('lowLimitMaxEnergy'))
+        self.energy = self.controller.config.getValue('energy')*self.maxEnergy/100
         self.state = None # initialization
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.sleepTime = 0
         self.timeLastCoupling = 0
+        self.speedMax = randint(800, 1300);
         self.init()
 
     def init(self):
@@ -90,6 +91,8 @@ class Frog(breve.Mobile):
             return viewFemale
 	else:
             return 0;
+    def speed(self):
+        return float(self.energy) / self.speedMax
 
     def getBestFemale(self, listFemale=[]):
         if len(listFemale) == 0:
