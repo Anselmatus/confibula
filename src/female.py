@@ -12,6 +12,7 @@ class Female(breve.Frog):
         breve.Frog.__init__(self)
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.state = self.controller.config.getValue('standartFemaleState')
+        self.seuil = 1.
         self.init()
 
     def init(self):

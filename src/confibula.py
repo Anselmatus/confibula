@@ -114,6 +114,8 @@ class Confibula(breve.Control):
         self.image = breve.createInstances(breve.Image,1).load(imageFile)
         self.image.width = self.image.getWidth()
         self.image.height = self.image.getHeight()
+
+        print self.image.width ,'\n',self.image.height
 	self.map = Map(self.image)
 
     def loadSongField(self):
@@ -259,8 +261,8 @@ class Confibula(breve.Control):
         '''
         width = self.config.getValue("mapWidth")
         height = self.config.getValue("mapHeight")
-        x = int((location.x + (width/2)) * (self.image.width/width))
-        y = int((location.y + (height/2)) * (self.image.height/height))
+        x = int((location.x + (width/2)) * (self.image.width / width))
+        y = int((location.y + (height/2)) * (self.image.height / height))
         return breve.vector(x, y, 0)
 
     def writeLogFile(self):
@@ -317,8 +319,8 @@ breve.Confibula = Confibula
 class Map(breve.Stationary):
     def __init__(self, image):
 	breve.Stationary.__init__( self )
-	self.setTextureImage(image)
-	mapShape = breve.createInstances( breve.Cube, 1 ).initWith( breve.vector( 16, 16, 0.0001 )) # constante magique
+#	self.setTextureImage(image)
+	mapShape = breve.createInstances( breve.Cube, 1 ).initWith( breve.vector( self.controller.config.getValue("mapWidth"), self.controller.config.getValue("mapHeight"), 0.0001 )) # constante magique
 	self.setShape( mapShape )
 	self.setTextureImage(image)
 	self.move( breve.vector( 0, 0, 0 ) )
@@ -329,7 +331,7 @@ breve.Map = Map
 class SongField(breve.Stationary):
     def __init__(self):
 	breve.Stationary.__init__( self )
-	self.setShape( breve.createInstances( breve.Cube, 1 ).initWith( breve.vector( 16, 16, 0.0001 )) )
+	self.setShape( breve.createInstances( breve.Cube, 1 ).initWith( breve.vector( self.controller.config.getValue("mapWidth"), self.controller.config.getValue("mapHeight"), 0.0001 )) )
 	self.setTextureImage( breve.createInstances( breve.SongFieldTexture, 1 ) )
         self.setColor(breve.vector(0,0,0))
         self.setTransparency(1.)
@@ -353,8 +355,8 @@ class SongFieldTexture(breve.Image):
         if(self.nbFrogSinging != self.controller.getNbFrogsSinging()) :
             for x in range(self.width) :
                 for y in range(self.height) :
-                    xInMap = ((x-(self.width/2))/self.width)*16
-                    yInMap = ((y-(self.width/2))/self.height)*16
+                    xInMap = ((x-(self.width/2))/self.width)*self.controller.config.getValue("mapWidth")
+                    yInMap = ((y-(self.width/2))/self.height)*self.controller.config.getValue("mapHeight")
 #                    print breve.vector(xInMap, yInMap, 0)
                     sound = self.controller.getSoundLevel(breve.vector(xInMap, yInMap, 0))
                     if(sound >= self.controller.config.getValue("dbMaxToSing")) :
