@@ -31,9 +31,11 @@ class Frog(breve.Mobile):
         move = self.controller.selectMovement(self.id)
         onBorder = self.onBorder()
         self.move(onBorder)
-        if (onBorder.x==self.getLocation().x and onBorder.y==self.getLocation().y):
+        if(move != breve.vector(0,0,0)) :
+            self.setVelocity(breve.vector(uniform(move.x-0.5,move.x+0.5), uniform(move.y-0.5,move.y+0.5), 0))
+        else :
             self.setVelocity(move)
-        
+
     def getId(self):
         return self.id
 

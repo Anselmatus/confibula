@@ -43,7 +43,13 @@ class Movement(breve.Abstract):
         # Classic Female Movement
 	elif isinstance(frog, breve.Female):
             if frog.state == 'findPartener':
-		return self.findBestMale(id, location, speed)
+                desire = uniform(0,100)
+                if(desire < frog.seuil):
+                    return self.findBestMale(id, location, speed)
+                else:
+                    frog.seuil += uniform(0,1)
+                    frog.state = 'hunting'
+                    return self.hunter(id, speed, location)
             elif frog.state == 'hunting':
 		return self.hunter(id, speed, location)
 
@@ -131,24 +137,31 @@ class Movement(breve.Abstract):
         frog = self.getFrog(id)
 	viewMale = frog.viewMale()
 	
-	if self.controller.getSoundLevel(location):
+	if self.controller.getSoundLevel(location) and self.controller.getNbFrogsSinging() >= self.controller.config.getValue("minChorusSize"):
             if viewMale != 0:
                 maleChoice = self.partnerChoice(viewMale, id)
                 distanceToMale = frog.getDistance(maleChoice)
                 if(distanceToStop <= 0):
-                    return self.moveTo(location, maleChoice.getLocation(), speed)
+                    direction =  maleChoice.getLocation()
+    #                    rand = uniform(-0.4,0.4)
+    #                    direction.x -= rand
+    #                    direction.y += rand
+                    return self.moveTo(location, direction, speed)
                 else:
                     if(float(distanceToMale) > float(distanceToStop)):
-                        return self.moveTo(location, maleChoice.getLocation(), speed)
+                        direction =  maleChoice.getLocation()
+    #                        rand = uniform(-0.4,0.4)
+    #                        direction.x += rand
+    #                        direction.y -= rand
+                        return self.moveTo(location, direction, speed)
                     else:
                         return breve.vector(0, 0, 0)
             else:
                 levelSong = 1000
                 return self.moveToLevelSong(location, speed, levelSong)
-
         else:
-		frog.state = 'hunting'
-		return self.hunter(id, speed, location)
+            frog.state = 'hunting'
+            return self.hunter(id, speed, location)
 
     def partnerChoice(self,listPartner,id): # choose a frogpartner considering a frogtable in parameter
 	maleChoice = self.getFrog(id).getBestMale(listPartner)
@@ -245,16 +258,18 @@ class Movement(breve.Abstract):
         return breve.vector(0, 0, 0)
 
     def sleeper(self,id,sleepTime):
-        if isinstance(self.getFrog(id), breve.Female):
+        frog = self.getFrog(id)
+        if isinstance(frog, breve.Female):
             if sleepTime >= self.controller.config.getValue("timeToSleepFemale"):
-                self.getFrog(id).sleepTime = 0
-                self.getFrog(id).state = 'hunting'
+                frog.sleepTime = 0
+                frog.seuil = 0
+                frog.state = 'hunting'
 #            print self.controller.config.getValue("timeToSleepFemale")
 
-        if isinstance(self.getFrog(id), breve.Male):
+        if isinstance(frog, breve.Male):
             if sleepTime >= self.controller.config.getValue("timeToSleepMale"):
-                self.getFrog(id).sleepTime = 0
-                self.getFrog(id).state = 'hunting'
+                frog.sleepTime = 0
+                frog.state = 'hunting'
 #            print self.controller.config.getValue("timeToSleepMale")
         
 #        print sleepTime
