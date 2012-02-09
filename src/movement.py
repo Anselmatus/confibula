@@ -64,7 +64,7 @@ class Movement(breve.Abstract):
 
         if envName == "No environnement":
             return self.moveTo(location, breve.vector(0,0,0), speed)
-        
+
         # what happen when energy is recovery
         if (frog.energy > recoveryEnergyLevel):
             if isinstance(frog, breve.Female):
@@ -87,12 +87,45 @@ class Movement(breve.Abstract):
             if uniform(0, 1) < env.predatorProbability:
                 frog.throatColor -= env.predatorProteinLost
 
-        if envName == "Eau":
-            forestCenter = self.controller.getNearestForest(location)
-            return self.moveTo(location, forestCenter, speed)
-
         frog.state == 'hunting'
         return self.randomMovement(id, speed)
+    
+#        frog = self.getFrog(id)
+#        recoveryEnergyLevel = ((frog.maxEnergy / 100.) * 1000)
+#        env = self.getEnvironment(id)
+#        envName = env.getName()
+#
+#        if envName == "No environnement":
+#            return self.moveTo(location, breve.vector(0,0,0), speed)
+#
+#        # what happen when energy is recovery
+#        if (frog.energy > recoveryEnergyLevel):
+#            if isinstance(frog, breve.Female):
+#                frog.state = self.controller.config.getValue('standartFemaleState')
+#            elif isinstance(self.getFrog(id), breve.Male) :
+#                frog.state = self.controller.config.getValue('standartMaleState')
+#
+#        if uniform(0, 1) < env.preyProbability:
+#            frog.encounteredPreys += 1
+#            frog.totalEnergyBoost += env.preyEnergyBoost
+#            frog.energy += env.preyEnergyBoost
+#
+#        if uniform(0, 1) < env.predatorProbability:
+#            frog.encounteredPredators += 1
+#            frog.energy -= env.predatorEnergyLost
+#
+#        if isinstance(frog, breve.Male):
+#            if uniform(0, 1) < env.preyProbability:
+#                frog.throatColor += env.preyProteinBoost
+#            if uniform(0, 1) < env.predatorProbability:
+#                frog.throatColor -= env.predatorProteinLost
+#
+#        if envName == "Eau":
+#            forestCenter = self.controller.getNearestForest(location)
+#            return self.moveTo(location, forestCenter, speed)
+#
+#        frog.state == 'hunting'
+#        return self.randomMovement(id, speed)
 
     def moveToSing(self, id, location, speed):
         male = self.getFrog(id)
