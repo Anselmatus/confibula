@@ -29,6 +29,7 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
+        print self.energy
         move = self.controller.selectMovement(self.id)
         onBorder = self.onBorder()
         self.move(onBorder)
@@ -91,6 +92,7 @@ class Frog(breve.Mobile):
             return viewFemale
 	else:
             return 0;
+
     def speed(self):
         return float(self.energy) / self.speedMax
 
