@@ -1,15 +1,13 @@
-# -*- coding: utf-8 -*-
-
 
 from time import ctime
 from os.path import exists
 from os import mkdir
-
+import simplejson as json
 
 console = True
 logFile = True
 date = str(ctime())
-fileName = 'logs/' + date + '.log'
+fileName = 'logs/1.log'
 fileName = fileName.replace(' ', '-')
 lines = []
 
@@ -17,7 +15,6 @@ def init():
     if logFile:
         if not exists('logs'):
             mkdir('logs')
-
 def log(text):
     """
     Affiche une info de log dans la console et/ou le fichier de log.
@@ -38,7 +35,7 @@ def warn(text):
 
 def title(text):
     """
-    Affiche l'entrÃ©e ou la sortie d'un partie du code, ex : chargement des paramtres dans la console et/ou le fichier de log.
+    Affiche l'entrée ou la sortie d'un partie du code, ex : chargement des paramtres dans la console et/ou le fichier de log.
     """
     if console:
         print text
@@ -54,9 +51,8 @@ def error(text):
     if logFile:
         lines.append('\n##### %s #####\n' % text)
 
-def write():
-    if len(lines) > 0:
-        file = open(fileName, 'a')
-        for line in lines:
-            file.write(line)
-        del(lines[:])
+
+def write(objet):
+    file = open(fileName, "w")
+    file.write(json.dumps(objet))
+    file.close()

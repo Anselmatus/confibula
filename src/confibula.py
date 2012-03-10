@@ -11,8 +11,9 @@ import breve
 
 #python imports
 from math import sqrt, log10
-
+import simplejson as json
 #modules imports
+from os.path import exists
 from utils import config
 from utils import logger
 from utils import color
@@ -37,6 +38,7 @@ class Confibula(breve.Control):
         self.frogsMale = []
 	self.frogsFemale = []
         self.frogs = []
+        self.log = {}
         self.femaleIsLoad = False
 	self.malesSingAll = 0
         self.init()
@@ -46,14 +48,18 @@ class Confibula(breve.Control):
         print "Loading config from confibula.cfg"
         self.config = config.Config('confibula.cfg')
         self.config.load()
+        self.log['environment'] = self.config.getAll()
+        self.log['frogs'] = {"males":{}, "females":{}}
         print "Config loaded."
         print "Starting simulation."
 
         logger.init()
+        i=2
+        while exists(logger.fileName):
+            logger.fileName = 'logs/'+ str(i) +'.log'
+            i=i+1
         logger.console = self.config.getValue("consoleOutput")
         logger.logFile = self.config.getValue("logfileOutput")
-        if logger.logFile:
-            self.scheduleRepeating('writeLogFile', 1)
 
         # /!\ ------------ RESERVED to Chou & Antoine ------------ /!\
         # Initialisation of the environment
@@ -69,6 +75,7 @@ class Confibula(breve.Control):
     def iterate(self):
         breve.Control.iterate(self)
         time = int(self.getTime())
+        self.logJson()
 	if self.malesSingAll == 0 :
             if (self.malesPlaced() or time >= self.config.getValue("femaleLoadTimeDefault")) and self.femaleIsLoad == False:
                 self.loadFemaleFrogs()
@@ -95,7 +102,6 @@ class Confibula(breve.Control):
         predatorProbability = self.config.getValue("predatorEncounterProbability")
         predatorEnergyLost = self.config.getValue("predatorEnergyLost")
         predatorProteinLost = self.config.getValue("predatorProteinLost")
-        logger.title("Loading %d environments." % len(envNames))
         for i in range(0, len(envNames)):
             myEnv = Environment(envNames[i], envColors[i])
             myEnv.ease = envEase[i]
@@ -138,6 +144,9 @@ class Confibula(breve.Control):
     def selectMovement(self, id):
         return self.movement.selectMovement(id)
 
+    def addLog(self, toLog):
+        self.logger.append(toLog)
+        
     def getNearestForest(self, location):
         Forest = self.config.getValue("forestCenter")
         nearest = (Forest[0],Forest[1])
@@ -264,38 +273,9 @@ class Confibula(breve.Control):
         x = int((location.x + (width/2)) * (self.image.width / width))
         y = int((location.y + (height/2)) * (self.image.height / height))
         return breve.vector(x, y, 0)
+    def logJson(self):
+        logger.write(self.log)
 
-    def writeLogFile(self):
-        logger.write()
-
-
-    def printEnvironments(self):
-        logger.title('Listing all frogs\' environments')
-        for frog in self.frogs:
-            logger.log(frog.getEnvironment())
-
-    def printSoundLevel(self):
-        logger.title('Sound level from following coordinates :')
-        x, y = int(raw_input('x : ')), int(raw_input('y : '))
-        logger.log('x=%d, y=%d' % (x, y))
-        lvl = self.getSoundLevel(breve.vector(x, y, 0))
-        logger.log('Sound intensity level : %dB' % lvl)
-
-    def printSoundSource(self):
-        logger.title('Printing sound source\'s position')
-        location = self.getSoundSource()
-        logger.log('x = %f' % location.x)
-        logger.log('y = %f' % location.y)
-
-    def printFrogs(self):
-        logger.title('Listing all frogs :')
-        for frog in self.frogs:
-            logger.log(frog)
-
-    def printEncounteredPreys(self):
-        logger.title('Encountered preys :')
-        for frog in self.frogs:
-            logger.log('Frog #%d, preys : %d, energy : %d, predators : %d' % (frog.id, frog.encounteredPreys, frog.totalEnergyBoost, frog.encounteredPredators))
 
 #    def debugSound(self):
 #        test = breve.createInstances(breve.Mobile, 1)

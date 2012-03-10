@@ -33,12 +33,15 @@ class Female(breve.Frog):
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 0, 0))
+        self.logIt()
 
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s  state:%s' % (self.id, self.energy, pos.x, pos.y, env, self.state)
-
+    def logIt(self):
+        breve.Frog.logIt(self)
+        self.controller.log['frogs']['females'][self.id] = self.log
     
 
 breve.Female = Female

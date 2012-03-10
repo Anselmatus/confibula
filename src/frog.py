@@ -9,8 +9,9 @@ class Frog(breve.Mobile):
 	
     def __init__(self):
         breve.Mobile.__init__(self)
-        Frog.numFrog += 1 
+        Frog.numFrog += 1
 	self.id = Frog.numFrog
+        self.log = {}
         self.minEnergy = randint(self.controller.config.getValue('lowLimitMinEnergy'), self.controller.config.getValue('highLimitMinEnergy'))
         self.maxEnergy = randint(self.controller.config.getValue('lowLimitMaxEnergy'), self.controller.config.getValue('lowLimitMaxEnergy'))
         self.energy = self.controller.config.getValue('energy')*self.maxEnergy/100
@@ -19,6 +20,7 @@ class Frog(breve.Mobile):
         self.sleepTime = 0
         self.timeLastCoupling = 0
         self.speedMax = randint(800, 1300);
+        self.nbCoupling = 0
         self.init()
 
     def init(self):
@@ -106,10 +108,15 @@ class Frog(breve.Mobile):
 			femaleId = female.getId()
 			femaleChoice = female
         return femaleChoice
-
+    def logIt(self):
+        self.log['minEnergy'] = self.minEnergy
+        self.log['maxEnergy'] = self.minEnergy
+        self.log['speed'] = self.speed()
+        self.log['NumberCoupling'] = self.nbCoupling
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s  state:%s' % (self.id, self.energy, pos.x, pos.y, env, self.state)
+
 
 breve.Frog = Frog

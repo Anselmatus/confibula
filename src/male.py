@@ -19,6 +19,7 @@ class Male(breve.Frog):
         self.encounteredPreys, self.encounteredPredators, self.totalEnergyBoost = 0, 0, 0
         self.state = self.controller.config.getValue('standartMaleState')
         self.isCheater = False
+        self.nbBecomeCheater = 0
         self.init()
 
     def init(self):
@@ -45,6 +46,7 @@ class Male(breve.Frog):
         else :
             self.setShape(breve.createInstances(breve.Cube, 1).initWith(breve.vector(0.1, 0.1, 0.1)))
             self.setColor(breve.vector(1, 1, 1))
+        self.logIt()
 
     def turnCheater(self, power=0):
         if power == 0:
@@ -64,6 +66,7 @@ class Male(breve.Frog):
             if uniform(0, 1) < becomeCheaterProbability:
                 self.isCheater = True
                 self.setColor(breve.vector(0, 0, 0))
+                self.nbBecomeCheater=self.nbBecomeCheater+1
                 return True
         return False
 
@@ -84,7 +87,7 @@ class Male(breve.Frog):
         i = 0;
         if listMale == 0:
             return 0
-        for male in listMale[1:]:
+        for male in listMale:
             i=i+1
             average = male.getPower()
         if i==0:
@@ -96,5 +99,11 @@ class Male(breve.Frog):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
         return 'Frog #%d  energy:%d location:%d,%d  env:%s  state:%s' % (self.id, self.energy, pos.x, pos.y, env, self.state)
-
+    def logIt(self):
+        breve.Frog.logIt(self)
+        self.log['VoicePower'] = self.voicePower
+        self.log['VoiceQuality'] = self.voiceQuality
+        self.log['PatienceMax'] = self.patienceTimeMax
+        self.log['NbBecomeCheater'] = self.nbBecomeCheater
+        self.controller.log['frogs']['males'][self.id]=self.log
 breve.Male = Male
