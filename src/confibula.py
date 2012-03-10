@@ -115,7 +115,7 @@ class Confibula(breve.Control):
         self.image.width = self.image.getWidth()
         self.image.height = self.image.getHeight()
 
-        print self.image.width ,'\n',self.image.height
+        #print self.image.width ,'\n',self.image.height
 	self.map = Map(self.image)
 
     def loadSongField(self):
