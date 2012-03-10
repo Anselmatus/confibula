@@ -50,6 +50,7 @@ class Confibula(breve.Control):
         self.config.load()
         self.log['environment'] = self.config.getAll()
         self.log['frogs'] = {"males":{}, "females":{}}
+        self.log['final'] = {}
         print "Config loaded."
         print "Starting simulation."
 
@@ -57,7 +58,7 @@ class Confibula(breve.Control):
         i=2
         while exists(logger.fileName):
             logger.fileName = 'logs/'+ str(i) +'.log'
-            i=i+1
+            i+=1
         logger.console = self.config.getValue("consoleOutput")
         logger.logFile = self.config.getValue("logfileOutput")
 
@@ -274,6 +275,7 @@ class Confibula(breve.Control):
         y = int((location.y + (height/2)) * (self.image.height / height))
         return breve.vector(x, y, 0)
     def logJson(self):
+        self.log['final']['SimulationTime'] = self.getTime()
         logger.write(self.log)
 
 

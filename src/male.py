@@ -20,6 +20,7 @@ class Male(breve.Frog):
         self.state = self.controller.config.getValue('standartMaleState')
         self.isCheater = False
         self.nbBecomeCheater = 0
+        self.controller.log['final']['nbCheater'] = 0
         self.init()
 
     def init(self):
@@ -66,7 +67,8 @@ class Male(breve.Frog):
             if uniform(0, 1) < becomeCheaterProbability:
                 self.isCheater = True
                 self.setColor(breve.vector(0, 0, 0))
-                self.nbBecomeCheater=self.nbBecomeCheater+1
+                self.nbBecomeCheater+=1
+                self.controller.log['final']['nbCheater'] +=1
                 return True
         return False
 

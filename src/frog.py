@@ -21,6 +21,7 @@ class Frog(breve.Mobile):
         self.timeLastCoupling = 0
         self.speedMax = randint(800, 1300);
         self.nbCoupling = 0
+        self.controller.log['final']['nbReproduction'] = 0
         self.init()
 
     def init(self):
@@ -113,6 +114,10 @@ class Frog(breve.Mobile):
         self.log['maxEnergy'] = self.minEnergy
         self.log['speed'] = self.speed()
         self.log['NumberCoupling'] = self.nbCoupling
+
+    def addCoupling(self):
+        self.nbCoupling += 1
+        self.controller.log['final']['nbReproduction'] += 1
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
