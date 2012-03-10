@@ -49,7 +49,7 @@ class Male(breve.Frog):
     def turnCheater(self, power=0):
         if power == 0:
             power = self.getPower()
-        if (power < 85) :
+        if (power < self.powerAverage()) :
             becomeCheaterProbability = self.controller.config.getValue("becomeCheaterProbability")
             addProbability = becomeCheaterProbability*35/100
             if self.voicePower < 45:
@@ -78,7 +78,20 @@ class Male(breve.Frog):
 
     def getPower(self):
         return self.voicePower + self.voiceQuality + self.throatColor
-    
+    def powerAverage(self):
+        listMale = self.viewMale()
+        average = 0;
+        i = 0;
+        if listMale == 0:
+            return 0
+        for male in listMale[1:]:
+            i=i+1
+            average = male.getPower()
+        if i==0:
+            return 0
+        average = average/i
+        return average
+
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()

@@ -29,7 +29,7 @@ class Frog(breve.Mobile):
         self.setColor(breve.vector(1, 1, 1))
 		
     def iterate(self):
-        print self.energy
+        #print self.energy
         move = self.controller.selectMovement(self.id)
         onBorder = self.onBorder()
         self.move(onBorder)
