@@ -107,5 +107,6 @@ class Male(breve.Frog):
         self.log['VoiceQuality'] = self.voiceQuality
         self.log['PatienceMax'] = self.patienceTimeMax
         self.log['NbBecomeCheater'] = self.nbBecomeCheater
-        self.controller.log['frogs']['males'][self.id]=self.log
+        
+        self.controller.log['frogs']['males']['male:'+ str(self.id)]=self.log
 breve.Male = Male
