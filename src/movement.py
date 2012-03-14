@@ -2,7 +2,6 @@
 from math import cos, pi, sin, sqrt
 from random import randint, uniform
 
-
 import breve
 
 class Movement(breve.Abstract):
@@ -206,6 +205,8 @@ class Movement(breve.Abstract):
         if(femeleX == maleX and femeleY == maleY):
             maleChoice.state = "coupling"
             self.getFrog(id).state = "coupling"
+            self.getFrog(id).setIsCouplingWith(maleChoice)
+            maleChoice.setIsCouplingWith(self.getFrog(id))
 	return maleChoice
 
     def randomMovement(self, id, speed):
@@ -225,6 +226,8 @@ class Movement(breve.Abstract):
             if(cheaterX == femaleX and cheaterY == femaleY):
                 femaleChoice.state = "coupling"
                 cheater.state = "coupling"
+                cheater.setIsCouplingWith(femaleChoice)
+                femaleChoice.setIsCouplingWith(cheater)
             return self.moveTo(location, femaleChoice.getLocation(), speed)
         else:
             return self.findBestMale(id, location, speed, 0.5)
@@ -285,6 +288,7 @@ class Movement(breve.Abstract):
         if (self.getFrog(id).energy <= (self.getFrog(id).minEnergy / 100.0) * 1000):
             self.getFrog(id).state = 'sleeping'
             self.getFrog(id).addCoupling()
+            self.getFrog(id).addCouplingWith()
             self.getFrog(id).timeLastCoupling = self.controller.getTime()
             if isinstance(self.getFrog(id), breve.Male) and self.getFrog(id).isCheater == True:
                 self.getFrog(id).isCheater = False

@@ -41,7 +41,7 @@ class Female(breve.Frog):
         return 'Frog #%d  energy:%d location:%d,%d  env:%s  state:%s' % (self.id, self.energy, pos.x, pos.y, env, self.state)
     def logIt(self):
         breve.Frog.logIt(self)
-        self.controller.log['frogs']['females'][self.id] = self.log
+        self.controller.log['frogs']['females']['female:'+ str(self.id)] = self.log
     
 
 breve.Female = Female

@@ -22,6 +22,8 @@ class Frog(breve.Mobile):
         self.speedMax = randint(800, 1300);
         self.nbCoupling = 0
         self.controller.log['final']['nbReproduction'] = 0
+        self.withCoupling = {}
+        self.isCouplingWith = 0
         self.init()
 
     def init(self):
@@ -43,7 +45,10 @@ class Frog(breve.Mobile):
 
     def getId(self):
         return self.id
-
+    
+    def setIsCouplingWith(self, frog):
+        self.isCouplingWith = frog
+        
     def getEnvironment(self):
         print self.controller.worldToImage(self.getLocation())
         return self.controller.getEnvironment(self.controller.worldToImage(self.getLocation()))
@@ -114,10 +119,18 @@ class Frog(breve.Mobile):
         self.log['maxEnergy'] = self.minEnergy
         self.log['speed'] = self.speed()
         self.log['NumberCoupling'] = self.nbCoupling
+        self.log['WithCoupling'] = self.withCoupling
 
     def addCoupling(self):
         self.nbCoupling += 1
         self.controller.log['final']['nbReproduction'] += 1
+
+    def addCouplingWith(self):
+        if('frog:'+str(self.isCouplingWith.getId()) in self.withCoupling):
+            self.withCoupling['frog:'+ str(self.isCouplingWith.getId())] += 1
+        else:
+            self.withCoupling['frog:'+ str(self.isCouplingWith.getId())] = 1
+
     def __str__(self):
         pos = self.controller.worldToImage(self.getLocation())
         env = self.getEnvironment().getName()
