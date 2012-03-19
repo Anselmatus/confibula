@@ -1,0 +1,26 @@
+/************************************************************************/
+Près-requis:
+	Avoir installé Breve
+	Avoir breve dans la variable PATH du shell
+	Avoir python 2.7(pas testé sur les autres) pour lancer l'outils d'optimisation
+
+/**************************************************************************/
+Lancement:
+	
+	PREPARATION :
+		la simulation ce sert du fichier confibulaInit.cfg pour se lancer
+		Ne supprimer pas le fichier !
+		il est par contre possible de le modifier mais pour le bon fonctionnement de la simulation ne supprimez aucun parametre
+	
+	Se placer dans le fichier où se trouve test.py (utiliser $ cd <Emplacement de votre fichier>)
+	lancer la simulation :
+		$ python ./test
+		
+	l'outils d'optimisation renvoi deux fichier :
+		result :
+			contient -la note du meilleur individu
+				 -la note du moins bon individu
+				 -la moyenne de la population
+		
+		meilleureConfig.cfg :
+			contient le fichier de config ayant obtenu la meilleure note a la fin du programme
