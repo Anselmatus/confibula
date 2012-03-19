@@ -45,7 +45,7 @@ class Opti:
 			fichier.write("iteration " + str(i) + " moyenne coef :" + str(moy) +"\n\n")			
 			
 			self.mutation()
-		self.pop[i].save("meilleureConfig.cfg")
+		self.pop[0].save("meilleureConfig.cfg")
 		
 	def adequation(self):
 		for indiv in self.pop:
